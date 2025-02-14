@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { page } from "$app/stores";
   import { allIcons, allTemplates } from "$lib/templates/allTemplates";
   import * as Breadcrumb from "$lib/components/ui/breadcrumb/index";
@@ -7,9 +9,11 @@
   import Badge from "$lib/components/ui/badge/badge.svelte";
   import Separator from "$lib/components/ui/separator/separator.svelte";
 
-  $: routeID = $page.params.templateID;
-  $: template = allTemplates.filter((t) => t.id === routeID)[0];
-  $: console.log(template, "Template");
+  let routeID = $derived($page.params.templateID);
+  let template = $derived(allTemplates.filter((t) => t.id === routeID)[0]);
+  run(() => {
+    console.log(template, "Template");
+  });
 </script>
 
 <!-- <svelte:head>

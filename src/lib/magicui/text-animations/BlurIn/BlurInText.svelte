@@ -2,17 +2,26 @@
   import { cn } from "$lib/utils";
   import { Motion } from "svelte-motion";
 
-  export let word: string = "Blur In";
-  export let variant: {
+  interface Props {
+    word?: string;
+    variant?: {
     hidden: { filter: string; opacity: number };
     visible: { filter: string; opacity: number };
-  } = {
+  };
+    duration?: number;
+    class?: string;
+  }
+
+  let {
+    word = "Blur In",
+    variant = {
     hidden: { filter: "blur(10px)", opacity: 0 },
     visible: { filter: "blur(0px)", opacity: 1 },
-  };
-  export let duration: number = 1;
-  let className = "";
-  export { className as class };
+  },
+    duration = 1,
+    class: className = ""
+  }: Props = $props();
+  
 
   let defaultVariants = {
     hidden: { filter: "blur(10px)", opacity: 0 },
@@ -26,15 +35,17 @@
   animate="visible"
   transition={{ duration }}
   variants={combinedVariants}
-  let:motion
+  
 >
-  <h1
-    class={cn(
-      className,
-      "font-display text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
-    )}
-    use:motion
-  >
-    {word}
-  </h1>
+  {#snippet children({ motion })}
+    <h1
+      class={cn(
+        className,
+        "font-display text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+      )}
+      use:motion
+    >
+      {word}
+    </h1>
+  {/snippet}
 </Motion>

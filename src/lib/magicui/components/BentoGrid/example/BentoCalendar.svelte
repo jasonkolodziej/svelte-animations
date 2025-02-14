@@ -2,7 +2,7 @@
   import { getLocalTimeZone, today } from "@internationalized/date";
   import { Calendar } from "$lib/components/ui/calendar/index.js";
 
-  let value = today(getLocalTimeZone());
+  let value = $state(today(getLocalTimeZone()));
 </script>
 
 <Calendar

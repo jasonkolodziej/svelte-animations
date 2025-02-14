@@ -63,16 +63,22 @@
       title={item.title}
       class={cn("[&>p:text-lg]", item.className)}
     >
-      <div slot="header">
-        <svelte:component this={item.header} />
-      </div>
+      {#snippet header()}
+            <div >
+          <item.header />
+        </div>
+          {/snippet}
 
-      <p slot="description" class="text-neutral-500 text-sm">
-        {item.description}
-      </p>
-      <div slot="icon">
-        <img src={item.icon} alt="svg_icons" class="h-4 w-4 text-neutral-500" />
-      </div>
+      {#snippet description()}
+            <p  class="text-neutral-500 text-sm">
+          {item.description}
+        </p>
+          {/snippet}
+      {#snippet icon()}
+            <div >
+          <img src={item.icon} alt="svg_icons" class="h-4 w-4 text-neutral-500" />
+        </div>
+          {/snippet}
     </BentoGridItem>
   {/each}
 </BentoGrid>

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { cn } from "$lib/utils";
   import {
     Motion,
@@ -7,16 +9,26 @@
     useTransform,
   } from "svelte-motion";
 
-  export let magnification = 60;
-  export let distance = 160;
-  export let mouseX = 0;
   let mint = useMotionValue(mouseX);
-  $: mint.set(mouseX);
 
-  let className: string | undefined  = "";
-  export { className as class };
+  interface Props {
+    magnification?: number;
+    distance?: number;
+    mouseX?: number;
+    class?: string | undefined;
+    children?: import('svelte').Snippet;
+  }
 
-  let iconElement: HTMLDivElement;
+  let {
+    magnification = 60,
+    distance = 160,
+    mouseX = 0,
+    class: className = "",
+    children
+  }: Props = $props();
+  
+
+  let iconElement: HTMLDivElement = $state();
 
   let distanceCalc = useTransform(mint, (val: number) => {
     const bounds = iconElement?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -39,10 +51,17 @@
     "flex aspect-square cursor-pointer items-center justify-center rounded-full",
     className
   );
+  run(() => {
+    mint.set(mouseX);
+  });
+
+  const children_render = $derived(children);
 </script>
 
-<Motion style={{ width: width }} let:motion>
-  <div use:motion bind:this={iconElement} class={iconClass}>
-    <slot></slot>
-  </div>
+<Motion style={{ width: width }} >
+  {#snippet children({ motion })}
+    <div use:motion bind:this={iconElement} class={iconClass}>
+      {@render children_render?.()}
+    </div>
+  {/snippet}
 </Motion>

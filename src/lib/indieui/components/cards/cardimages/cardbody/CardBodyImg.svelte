@@ -1,8 +1,12 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  let className = "";
-  export { className as class };
+  interface Props {
+    class?: string;
+  }
+
+  let { class: className = "" }: Props = $props();
+  
   let card = {
     title: "The Godfather",
     desc: "A man who doesn’t spend time with his family can never be a real man.",

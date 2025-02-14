@@ -17,7 +17,7 @@
           style="
             animation-delay: -{1.3 - i * 0.1}s;
             transform: rotate({30 * i}deg) translate(146%);"
-        />
+></div>
       {/each}
     </div>
   </div>

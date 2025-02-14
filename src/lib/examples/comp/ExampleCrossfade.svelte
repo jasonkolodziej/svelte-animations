@@ -1,7 +1,7 @@
 <script lang="ts">
     import { cubicInOut, cubicOut, quintInOut } from "svelte/easing";
     import { crossfade, scale, fade, slide, fly, blur } from "svelte/transition";
-    let layout = "layouta";
+    let layout = $state("layouta");
   
     let [send, receive] = crossfade({
       duration: 400,
@@ -10,10 +10,10 @@
   
   <div class="w-full h-full flex justify-center items-center flex-col md:my-44">
     {#if layout === "layouta"}
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
       <div
-        on:click={() => {
+        onclick={() => {
           layout = "layoutb";
         }}
         class="bg-lime-100 p-4 rounded-3xl layouta w-fit h-fit overflow-hidden"
@@ -49,10 +49,10 @@
         </div>
       </div>
     {:else if layout === "layoutb"}
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
       <div
-        on:click={() => {
+        onclick={() => {
           layout = "layouta";
         }}
         class="bg-lime-100 p-2.5 md:p-4 rounded-3xl layouta flex gap-1 md:gap-3 w-fit h-fit overflow-hidden"

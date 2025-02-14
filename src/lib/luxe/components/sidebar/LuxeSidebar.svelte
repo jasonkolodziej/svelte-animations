@@ -11,7 +11,7 @@
     return a.name.localeCompare(b.name);
   });
 
-  export let componentsNav = [
+  let { componentsNav = [
     {
       id: 1,
       heading: "Getting Started",
@@ -31,11 +31,11 @@
       heading: "Components",
       sub: sortedcomps,
     },
-  ];
+  ], children } = $props();
 
-  let mobileMenu = true;
-  let isLoading = false;
-  $: routeID = $page.url.pathname;
+  let mobileMenu = $state(true);
+  let isLoading = $state(false);
+  let routeID = $derived($page.url.pathname);
   onMount(() => {
     isLoading = true;
   });
@@ -70,7 +70,7 @@
       >
         <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
           <button
-            on:click={() => {
+            onclick={() => {
               mobileMenu = !mobileMenu;
             }}
             type="button"
@@ -130,7 +130,7 @@
                       {#each cnavs.sub as item}
                         <li>
                           <a
-                            on:click={() => {
+                            onclick={() => {
                               mobileMenu = !mobileMenu;
                             }}
                             href={item.link}
@@ -202,7 +202,7 @@
     class="sticky top-0 z-40 flex items-center gap-x-6 dark:bg-background border-b bg-white backdrop-blur-md px-4 py-4 shadow-sm sm:px-6 lg:hidden"
   >
     <button
-      on:click={() => (mobileMenu = !mobileMenu)}
+      onclick={() => (mobileMenu = !mobileMenu)}
       type="button"
       class="-m-2.5 p-2.5 text-primary/70 lg:hidden"
     >
@@ -229,7 +229,7 @@
 
   <main class="py-6 lg:pl-60">
     <div class="px-4 sm:px-6 lg:px-8">
-      <slot></slot>
+      {@render children?.()}
     </div>
   </main>
 </div>

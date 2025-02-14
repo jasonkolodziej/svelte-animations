@@ -1,6 +1,6 @@
 <script lang="ts">
   import Lens from "../Lens.svelte";
-  let hovering = false;
+  let hovering = $state(false);
 </script>
 
 <div>

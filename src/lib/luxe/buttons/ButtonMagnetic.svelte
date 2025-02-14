@@ -1,12 +1,17 @@
 <script lang="ts">
-  let _class: string = "";
-  export { _class as class };
+  
 
   import { cn } from "$lib/utils";
   import { Motion } from "svelte-motion";
+  interface Props {
+    class?: string;
+    children?: import('svelte').Snippet;
+  }
 
-  let position = { x: 0, y: 0 };
-  let ref: HTMLButtonElement | null = null;
+  let { class: _class = "", children }: Props = $props();
+
+  let position = $state({ x: 0, y: 0 });
+  let ref: HTMLButtonElement | null = $state(null);
 
   let handleMouseMove = (e: MouseEvent) => {
     let { clientX, clientY } = e;
@@ -23,10 +28,12 @@
     position.x = 0;
     position.y = 0;
   };
+
+  const children_render = $derived(children);
 </script>
 
 <Motion
-  let:motion
+  
   animate={{ x: position.x, y: position.y }}
   transition={{
     type: "spring",
@@ -35,16 +42,18 @@
     mass: 0.1,
   }}
 >
-  <button
-    class={cn(
-      "relative rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black",
-      _class
-    )}
-    bind:this={ref}
-    on:mousemove={handleMouseMove}
-    on:mouseleave={handleMouseLeave}
-    use:motion
-  >
-    <slot>Button</slot>
-  </button>
+  {#snippet children({ motion })}
+    <button
+      class={cn(
+        "relative rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black",
+        _class
+      )}
+      bind:this={ref}
+      onmousemove={handleMouseMove}
+      onmouseleave={handleMouseLeave}
+      use:motion
+    >
+      {#if children_render}{@render children_render()}{:else}Button{/if}
+    </button>
+  {/snippet}
 </Motion>

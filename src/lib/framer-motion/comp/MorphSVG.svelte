@@ -30,8 +30,10 @@
       duration: 6,
       times: [0, 0.16, 0.33, 0.5, 0.66, 0.83],
     }}
-    let:motion
+    
   >
-    <path d="M 40,40 Q 160,40 160,160" use:motion />
-  </Motion>
+    {#snippet children({ motion })}
+        <path d="M 40,40 Q 160,40 160,160" use:motion />
+          {/snippet}
+    </Motion>
 </svg>

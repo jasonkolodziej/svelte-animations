@@ -3,11 +3,22 @@
   import { onMount } from "svelte";
   import { cn } from "$lib/utils";
 
-  export let gradientSize: number = 200;
-  export let gradientColor: string = "#262626";
-  export let gradientOpacity: number = 0.8;
-  let className: string = "";
-  export { className as class };
+  interface Props {
+    gradientSize?: number;
+    gradientColor?: string;
+    gradientOpacity?: number;
+    class?: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let {
+    gradientSize = 200,
+    gradientColor = "#262626",
+    gradientOpacity = 0.8,
+    class: className = "",
+    children
+  }: Props = $props();
+  
 
   let gradSize = useMotionValue(gradientSize);
   let gradColor = useMotionValue(gradientColor);
@@ -32,11 +43,11 @@
   let bg = useMotionTemplate`radial-gradient(${gradSize}px circle at ${mouseX}px ${mouseY}px, ${gradColor}, transparent 100%)`;
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- I have added py-4 in below code, you can customize the component as per needs -->
 <div
-  on:mousemove={handleMouseMove}
-  on:mouseleave={handleMouseLeave}
+  onmousemove={handleMouseMove}
+  onmouseleave={handleMouseLeave}
   class={cn(
     "group relative flex size-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-900 border text-black dark:text-white justify-center py-4",
     className
@@ -44,24 +55,26 @@
 >
   <div class="relative z-10">
     <!-- Default  -->
-    <slot>
+    {#if children}{@render children()}{:else}
       <div class="flex items-center justify-center h-full text-center">
         <p class="text-2xl">Magic Card</p>
       </div>
-    </slot>
+    {/if}
   </div>
   <Motion
     style={{
       background: bg,
       opacity: gradientOpacity,
     }}
-    let:motion
+    
   >
-    <div
-      use:motion
-      class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-    />
-  </Motion>
+    {#snippet children({ motion })}
+        <div
+        use:motion
+        class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+  ></div>
+          {/snippet}
+    </Motion>
 </div>
 
 <style>

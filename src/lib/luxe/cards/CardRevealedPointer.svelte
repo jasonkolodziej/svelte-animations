@@ -9,7 +9,7 @@
 
 <div
   role="application"
-  on:mousemove={(e) => {
+  onmousemove={(e) => {
     const { left, top } = e.currentTarget.getBoundingClientRect();
 
     mouseX.set(e.clientX - left);
@@ -19,18 +19,20 @@
 >
   <div
     class="absolute right-5 top-0 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent"
-  />
+></div>
   <Motion
     style={{
       background,
     }}
-    let:motion
+    
   >
-    <div
-      use:motion
-      class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-    ></div>
-  </Motion>
+    {#snippet children({ motion })}
+        <div
+        use:motion
+        class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+      ></div>
+          {/snippet}
+    </Motion>
   <div
     class="relative flex flex-col gap-3 rounded-xl border border-white/10 px-4 py-5"
   >

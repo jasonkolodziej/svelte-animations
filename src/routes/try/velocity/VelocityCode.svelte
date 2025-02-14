@@ -8,7 +8,12 @@
   let smoothVelocity = spring(0, { damping: 50, stiffness: 400 });
   let velocityFactor = tweened(0);
 
-  export let baseVelocity = 100;
+  interface Props {
+    baseVelocity?: number;
+    children?: import('svelte').Snippet;
+  }
+
+  let { baseVelocity = 100, children }: Props = $props();
 
   const wrap = (min: number, max: number, value: number) => {
     const range = max - min;
@@ -71,16 +76,16 @@
     style="transform: translateX({x}%);"
   >
     <span>
-      <slot>Coding is Fun</slot>
+      {#if children}{@render children()}{:else}Coding is Fun{/if}
     </span>
     <span>
-      <slot>Coding is Fun</slot>
+      {#if children}{@render children()}{:else}Coding is Fun{/if}
     </span>
     <span>
-      <slot>Coding is Fun</slot>
+      {#if children}{@render children()}{:else}Coding is Fun{/if}
     </span>
     <span>
-      <slot>Coding is Fun</slot>
+      {#if children}{@render children()}{:else}Coding is Fun{/if}
     </span>
   </div>
 </div>

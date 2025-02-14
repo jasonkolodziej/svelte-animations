@@ -1,16 +1,28 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  let _class: string = "";
-  export { _class as class };
-  export let duration = "2000ms";
-  export let rippleColor = "#fff";
+  
+  interface Props {
+    class?: string;
+    duration?: string;
+    rippleColor?: string;
+    children?: import('svelte').Snippet;
+    [key: string]: any
+  }
+
+  let {
+    class: _class = "",
+    duration = "2000ms",
+    rippleColor = "#fff",
+    children,
+    ...rest
+  }: Props = $props();
 
   let buttonRipples: Array<{
     x: number;
     y: number;
     size: number;
     key: number;
-  }> = [];
+  }> = $state([]);
 
   let createRipple = (event: MouseEvent) => {
     const button = event.currentTarget as HTMLButtonElement;
@@ -34,15 +46,15 @@
 </script>
 
 <button
-  on:click={createRipple}
-  {...$$restProps}
+  onclick={createRipple}
+  {...rest}
   class={cn(
     "relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 bg-background px-4 py-2 text-center text-primary",
     _class
   )}
 >
   <div class="relative z-10">
-    <slot>Ripple</slot>
+    {#if children}{@render children()}{:else}Ripple{/if}
   </div>
   <span class="pointer-events-none absolute inset-0">
     {#each buttonRipples as ripple}
@@ -56,7 +68,7 @@
           background-color: {rippleColor};
           transform : scale(0);
         "
-      />
+></span>
     {/each}
   </span>
 </button>

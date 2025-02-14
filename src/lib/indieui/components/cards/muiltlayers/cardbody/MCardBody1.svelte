@@ -5,8 +5,12 @@
     title: "Coding is Fun",
     desc: '"The only way to learn a new programming language is by writing programs in it." - Dennis Ritchie',
   };
-  let className = "";
-  export { className as class };
+  interface Props {
+    class?: string;
+  }
+
+  let { class: className = "" }: Props = $props();
+  
 </script>
 
 <div class={cn(className)}>

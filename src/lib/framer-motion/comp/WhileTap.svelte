@@ -9,12 +9,16 @@
       rotate: 45,
       scale: 0.75,
     }}
-    let:motion><div class="box" use:motion>Rotate</div></Motion
+    >{#snippet children({ motion })}
+        <div class="box" use:motion>Rotate</div>      {/snippet}
+    </Motion
   >
   <Motion
     whileTap={{
       scale: 0.84,
     }}
-    let:motion><div class="box" use:motion>Simple</div></Motion
+    >{#snippet children({ motion })}
+        <div class="box" use:motion>Simple</div>      {/snippet}
+    </Motion
   >
 </Box>

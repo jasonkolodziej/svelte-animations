@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let code = "";
-  let isCopied = false;
+  interface Props {
+    code?: string;
+  }
+
+  let { code = "" }: Props = $props();
+  let isCopied = $state(false);
   let handleCopy = () => {
     navigator.clipboard.writeText(code);
     isCopied = true;
@@ -11,7 +15,7 @@
 </script>
 
 <button
-  on:click={handleCopy}
+  onclick={handleCopy}
   class="rounded-full py-1.5 w-[70px] border bg-neutral-900 border-border {isCopied
     ? 'bg-green-900/30 border-green-400/50 '
     : ''} "

@@ -1,7 +1,13 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  let _class: string = "";
-  export { _class as class };
+  interface Props {
+    class?: string;
+    children?: import('svelte').Snippet;
+    [key: string]: any
+  }
+
+  let { class: _class = "", children, ...rest }: Props = $props();
+  
 </script>
 
 <button
@@ -19,7 +25,7 @@
 
     _class
   )}
-  {...$$restProps}
+  {...rest}
 >
-  <slot>Default</slot>
+  {#if children}{@render children()}{:else}Default{/if}
 </button>

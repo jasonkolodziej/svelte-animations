@@ -45,39 +45,41 @@
     <Dock
       direction="middle"
       class="relative"
-      let:mouseX
-      let:distance
-      let:magnification
+      
+      
+      
     >
-      {#each navs.navbar as item}
-        <DockIcon {mouseX} {magnification} {distance}>
-          <Tooltip.Root>
-            <Tooltip.Trigger
-              class="hover:bg-zinc-900/80 transition-all duration-200 rounded-full p-3 mx-0"
-            >
-              <svelte:component this={item.icon} size={22} strokeWidth={1.2} />
-            </Tooltip.Trigger>
-            <Tooltip.Content sideOffset={8}>
-              <p>{item.label}</p>
-            </Tooltip.Content>
-          </Tooltip.Root>
-        </DockIcon>
-      {/each}
-      <Separator orientation="vertical" class="h-full w-[0.6px]" />
-      {#each navs.contact as item}
-        <DockIcon {mouseX} {magnification} {distance}>
-          <Tooltip.Root>
-            <Tooltip.Trigger
-              class="hover:bg-zinc-900/80 transition-all duration-200 rounded-full"
-            >
-              <img src={item.icon} alt={item.label} class="m-3 h-5 w-5" />
-            </Tooltip.Trigger>
-            <Tooltip.Content sideOffset={9}>
-              <p>{item.label}</p>
-            </Tooltip.Content>
-          </Tooltip.Root>
-        </DockIcon>
-      {/each}
-    </Dock>
+      {#snippet children({ mouseX, distance, magnification })}
+            {#each navs.navbar as item}
+          <DockIcon {mouseX} {magnification} {distance}>
+            <Tooltip.Root>
+              <Tooltip.Trigger
+                class="hover:bg-zinc-900/80 transition-all duration-200 rounded-full p-3 mx-0"
+              >
+                <item.icon size={22} strokeWidth={1.2} />
+              </Tooltip.Trigger>
+              <Tooltip.Content sideOffset={8}>
+                <p>{item.label}</p>
+              </Tooltip.Content>
+            </Tooltip.Root>
+          </DockIcon>
+        {/each}
+        <Separator orientation="vertical" class="h-full w-[0.6px]" />
+        {#each navs.contact as item}
+          <DockIcon {mouseX} {magnification} {distance}>
+            <Tooltip.Root>
+              <Tooltip.Trigger
+                class="hover:bg-zinc-900/80 transition-all duration-200 rounded-full"
+              >
+                <img src={item.icon} alt={item.label} class="m-3 h-5 w-5" />
+              </Tooltip.Trigger>
+              <Tooltip.Content sideOffset={9}>
+                <p>{item.label}</p>
+              </Tooltip.Content>
+            </Tooltip.Root>
+          </DockIcon>
+        {/each}
+                {/snippet}
+        </Dock>
   </div>
 </div>

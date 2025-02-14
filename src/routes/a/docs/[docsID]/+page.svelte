@@ -2,8 +2,8 @@
   import { page } from "$app/stores";
   import { allInstallations } from "$lib/aceternity-ui/docs/allinstallations";
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";
-  $: routeID = $page.params.docsID;
-  $: docs = allInstallations.filter((doc) => doc.id === routeID)[0];
+  let routeID = $derived($page.params.docsID);
+  let docs = $derived(allInstallations.filter((doc) => doc.id === routeID)[0]);
 </script>
 
 <!-- SEO -->

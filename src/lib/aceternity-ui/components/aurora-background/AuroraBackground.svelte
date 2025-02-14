@@ -1,11 +1,17 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  let _class: string = "";
-  export { _class as class };
-  export let showRadialGradient: boolean = true;
+  
+  interface Props {
+    class?: string;
+    showRadialGradient?: boolean; // Svelte 5 Code : https://svelte.dev/playground/09c5ff84a8ea4591a71b5a36f642a490?version=5.18.0
+    children?: import('svelte').Snippet;
+    [key: string]: any
+  }
 
-  // Svelte 5 Code : https://svelte.dev/playground/09c5ff84a8ea4591a71b5a36f642a490?version=5.18.0
+  let { class: _class = "", showRadialGradient = true, children, ...rest }: Props = $props();
+
+  
 </script>
 
 <div
@@ -13,7 +19,7 @@
     "relative flex flex-col h-[90vh] z-50 items-center justify-center bg-zinc-50 dark:bg-zinc-900  text-slate-950 transition-bg",
     _class
   )}
-  {...$$restProps}
+  {...rest}
 >
   <div class="absolute inset-0 overflow-hidden z-10">
     <!--  I'm sorry but this is what peak developer performance looks like  trigger warning -->
@@ -41,6 +47,6 @@
     ></div>
   </div>
   <div class="z-50 text-center">
-    <slot></slot>
+    {@render children?.()}
   </div>
 </div>

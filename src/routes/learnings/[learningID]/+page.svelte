@@ -5,19 +5,19 @@
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";
   import GradientLine from "$lib/luxe/components/codeblock/GradientLine.svelte";
 
-  $: exampleID = $page.params.learningID;
-  $: singlePage = motionLearnings.filter(
+  let exampleID = $derived($page.params.learningID);
+  let singlePage = $derived(motionLearnings.filter(
     (example) => example.id === Number(exampleID)
-  )[0];
-  $: fileName =
-    singlePage.name
+  )[0]);
+  let fileName =
+    $derived(singlePage.name
       .split(" ")
       .map((k) => {
         let kit = k.charAt(0).toUpperCase();
         let m = kit + k.replace(k[0], "");
         return m;
       })
-      .join("") + ".svelte";
+      .join("") + ".svelte");
 </script>
 
 <svelte:head>
@@ -66,7 +66,7 @@
     </h1>
     <ComponentView class="relative {singlePage.class} touch-none">
       <GradientLine />
-      <svelte:component this={singlePage.component} />
+      <singlePage.component />
     </ComponentView>
     <CodeBlock
       code={`npx @svelte-add/tailwindcss@latest \nnpm i svelte-motion\n`}

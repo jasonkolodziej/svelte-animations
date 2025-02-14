@@ -4,15 +4,19 @@
   import Card from "./Card.svelte";
   import CardTitle from "./CardTitle.svelte";
   import CardDesc from "./CardDesc.svelte";
-  let _class = "";
-  export { _class as class };
+  
   type Item = {
     title: string;
     desc: string;
     link: string;
   };
-  export let items: Item[] = [];
-  let hoveredIndex: number | null = null;
+  interface Props {
+    class?: string;
+    items?: Item[];
+  }
+
+  let { class: _class = "", items = [] }: Props = $props();
+  let hoveredIndex: number | null = $state(null);
 </script>
 
 <div
@@ -22,7 +26,7 @@
     {#each items as item, idx}
       <a
         class="relative group block p-2 h-full w-full"
-        on:mouseenter={() => (hoveredIndex = idx)}
+        onmouseenter={() => (hoveredIndex = idx)}
         href={item.link}
       >
         {#if hoveredIndex === idx}
@@ -37,14 +41,16 @@
               opacity: 0,
               transition: { duration: 0.15, delay: 0.2 },
             }}
-            let:motion
+            
           >
-            <span
-              use:motion
-              class="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-3xl"
-            >
-            </span>
-          </Motion>
+            {#snippet children({ motion })}
+                        <span
+                use:motion
+                class="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-3xl"
+              >
+              </span>
+                                  {/snippet}
+                    </Motion>
         {/if}
         <Card>
           <CardTitle>

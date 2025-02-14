@@ -6,15 +6,15 @@
   import { page } from "$app/stores";
   import Button from "$lib/components/ui/button/button.svelte";
 
-  let loading = false;
+  let loading = $state(false);
   onMount(() => {
     loading = true;
   });
 
   let paths = ["M21 4H2", "M18 8H6", "M19 12H9", "M16 16h-6", "M11 20H9"];
 
-  let mobileMenu = false;
-  $: routeID = $page.url.pathname;
+  let mobileMenu = $state(false);
+  let routeID = $derived($page.url.pathname);
 </script>
 
 <nav
@@ -88,7 +88,7 @@
       <div class="-mr-2 flex sm:hidden">
         <!-- Mobile menu button -->
         <button
-          on:click={() => (mobileMenu = !mobileMenu)}
+          onclick={() => (mobileMenu = !mobileMenu)}
           type="button"
           class="relative inline-flex items-center justify-center rounded-md p-2 text-primary/80 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
@@ -140,7 +140,7 @@
       <div class="space-y-1 px-2 pb-3 pt-0 w-full" transition:slide>
         {#each navs as item}
           <a
-            on:click={() => (mobileMenu = false)}
+            onclick={() => (mobileMenu = false)}
             href={item.link}
             class="block rounded-md px-3 py-2 text-sm {routeID === item.link
               ? 'text-primary font-medium'
