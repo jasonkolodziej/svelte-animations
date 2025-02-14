@@ -1,8 +1,6 @@
-<!-- @migration-task Error while migrating Svelte code: Identifier 'Sparkle' has already been declared
-https://svelte.dev/e/js_parse_error -->
 <script lang="ts">
   import { cn } from "$lib/utils";
-  interface Sparkle {
+  interface SparkleText {
     id: string;
     x: string;
     y: string;
@@ -22,7 +20,7 @@ https://svelte.dev/e/js_parse_error -->
   let className = "";
   export { className as class };
 
-  let sparkles: Sparkle[] = [];
+  let sparkles: SparkleText[] = [];
   import { onMount, onDestroy, tick } from "svelte";
   import Sparkle from "./Sparkle.svelte";
 
