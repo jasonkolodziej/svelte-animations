@@ -2,9 +2,9 @@
   // Scroll down to see the original Component
   import AnimatedBeam from "../AnimatedBeam.svelte";
   import Circle from "../Circle.svelte";
-  let containerRef;
-  let div1Ref;
-  let div2Ref;
+  let containerRef = $state();
+  let div1Ref = $state();
+  let div2Ref = $state();
 </script>
 
 <div
@@ -14,7 +14,7 @@
   <!--  Gradient Line -->
   <div
     class="absolute right-5 top-0 h-px w-1/2 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent"
-  />
+></div>
   <!-- Main Component  -->
   <div class="flex h-full w-full flex-col items-stretch justify-between gap-10">
     <div class="flex flex-row justify-between">

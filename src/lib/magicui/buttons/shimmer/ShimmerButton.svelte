@@ -1,13 +1,26 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  export let shimmerColor = "#ffffff";
-  export let shimmerSize = "0.05em";
-  export let shimmerDuration = "3s";
-  export let borderRadius = "100px";
-  export let background = "rgba(0, 0, 0, 1)";
-  let className: any = "";
-  export { className as class };
+  interface Props {
+    shimmerColor?: string;
+    shimmerSize?: string;
+    shimmerDuration?: string;
+    borderRadius?: string;
+    background?: string;
+    class?: any;
+    children?: import('svelte').Snippet;
+  }
+
+  let {
+    shimmerColor = "#ffffff",
+    shimmerSize = "0.05em",
+    shimmerDuration = "3s",
+    borderRadius = "100px",
+    background = "rgba(0, 0, 0, 1)",
+    class: className = "",
+    children
+  }: Props = $props();
+  
 </script>
 
 <button
@@ -35,10 +48,10 @@
       <!--  spark before  -->
       <div
         class="animate-spin-around absolute inset-[-100%] w-auto rotate-0 [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]"
-      />
+></div>
     </div>
   </div>
-  <slot>Shimmer Button</slot>
+  {#if children}{@render children()}{:else}Shimmer Button{/if}
   <!-- Highlight -->
   <div
     class={cn(

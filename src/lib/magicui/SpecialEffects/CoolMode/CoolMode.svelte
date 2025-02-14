@@ -221,8 +221,13 @@
     };
   }
 
-  export let options: CoolParticleOptions;
-  let containerElement: HTMLElement;
+  interface Props {
+    options: CoolParticleOptions;
+    children?: import('svelte').Snippet;
+  }
+
+  let { options, children }: Props = $props();
+  let containerElement: HTMLElement = $state();
 
   onMount(() => {
     if (containerElement) {
@@ -233,5 +238,5 @@
 </script>
 
 <div bind:this={containerElement} class="z-50">
-  <slot>Hello</slot>
+  {#if children}{@render children()}{:else}Hello{/if}
 </div>

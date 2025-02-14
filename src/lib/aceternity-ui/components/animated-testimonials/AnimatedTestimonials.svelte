@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { onDestroy } from "svelte";
   import { Motion, AnimatePresence } from "svelte-motion";
 
@@ -9,10 +11,14 @@
     designation: string;
     src: string;
   };
-  export let testimonials: Testimonial[];
-  export let autoplay: boolean = false;
+  interface Props {
+    testimonials: Testimonial[];
+    autoplay?: boolean;
+  }
 
-  let active = 0;
+  let { testimonials, autoplay = false }: Props = $props();
+
+  let active = $state(0);
   let handleNext = () => {
     active = (active + 1) % testimonials.length;
   };
@@ -26,15 +32,15 @@
   let randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
-  let interval: NodeJS.Timeout;
+  let interval: NodeJS.Timeout = $state();
   // Watch the autoplay variable and set up an interval when it is true
-  $: {
+  run(() => {
     if (autoplay) {
       interval = setInterval(handleNext, 5000);
     } else {
       clearInterval(interval);
     }
-  }
+  });
 
   // Cleanup on component destruction
   onDestroy(() => {
@@ -48,48 +54,52 @@
   <div class="relative grid grid-cols-1 md:grid-cols-2 gap-20">
     <div>
       <div class="relative h-80 w-full">
-        <AnimatePresence let:item list={[{ key: active }]}>
-          {#each testimonials as testimonial, index}
-            <Motion
-              initial={{
-                opacity: 0,
-                scale: 0.9,
-                z: -100,
-                rotate: randomRotateY(),
-              }}
-              animate={{
-                opacity: isActive(index) ? 1 : 0.7,
-                scale: isActive(index) ? 1 : 0.95,
-                z: isActive(index) ? 0 : -100,
-                rotate: isActive(index) ? 0 : randomRotateY(),
-                zIndex: isActive(index) ? 999 : testimonials.length + 2 - index,
-                y: isActive(index) ? [0, -80, 0] : 0,
-              }}
-              exit={{
-                opacity: 0,
-                scale: 0.9,
-                z: 100,
-                rotate: randomRotateY(),
-              }}
-              transition={{
-                duration: 0.4,
-                ease: "easeInOut",
-              }}
-              let:motion
-            >
-              <div use:motion class="absolute inset-0 origin-bottom">
-                <img
-                  src={testimonial.src}
-                  alt={testimonial.name}
-                  width={500}
-                  height={500}
-                  draggable={false}
-                  class="h-full w-full rounded-3xl object-cover object-center"
-                />
-              </div>
-            </Motion>
-          {/each}
-        </AnimatePresence>
+        <AnimatePresence  list={[{ key: active }]}>
+          {#snippet children({ item })}
+                    {#each testimonials as testimonial, index}
+              <Motion
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                  z: -100,
+                  rotate: randomRotateY(),
+                }}
+                animate={{
+                  opacity: isActive(index) ? 1 : 0.7,
+                  scale: isActive(index) ? 1 : 0.95,
+                  z: isActive(index) ? 0 : -100,
+                  rotate: isActive(index) ? 0 : randomRotateY(),
+                  zIndex: isActive(index) ? 999 : testimonials.length + 2 - index,
+                  y: isActive(index) ? [0, -80, 0] : 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.9,
+                  z: 100,
+                  rotate: randomRotateY(),
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeInOut",
+                }}
+                
+              >
+                {#snippet children({ motion })}
+                            <div use:motion class="absolute inset-0 origin-bottom">
+                    <img
+                      src={testimonial.src}
+                      alt={testimonial.name}
+                      width={500}
+                      height={500}
+                      draggable={false}
+                      class="h-full w-full rounded-3xl object-cover object-center"
+                    />
+                  </div>
+                                          {/snippet}
+                        </Motion>
+            {/each}
+                            {/snippet}
+                </AnimatePresence>
       </div>
     </div>
     <div class="flex justify-between flex-col py-4">
@@ -110,48 +120,52 @@
           duration: 0.2,
           ease: "easeInOut",
         }}
-        let:motion
+        
       >
-        <div use:motion>
-          <h3 class="text-2xl font-bold dark:text-white text-black">
-            {testimonials[active].name}
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-neutral-500">
-            {testimonials[active].designation}
-          </p>
-          {#key active}
-            <p class="text-lg text-gray-500 mt-8 dark:text-neutral-300">
-              {#each testimonials[active].quote.split(" ") as word, index}
-                <Motion
-                  initial={{
-                    filter: "blur(10px)",
-                    opacity: 0,
-                    y: 5,
-                  }}
-                  animate={{
-                    filter: "blur(0px)",
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.2,
-                    ease: "easeInOut",
-                    delay: 0.02 * index,
-                  }}
-                  let:motion
-                >
-                  <span use:motion class="inline-block">
-                    {word}&nbsp;
-                  </span>
-                </Motion>
-              {/each}
+        {#snippet children({ motion })}
+                <div use:motion>
+            <h3 class="text-2xl font-bold dark:text-white text-black">
+              {testimonials[active].name}
+            </h3>
+            <p class="text-sm text-gray-500 dark:text-neutral-500">
+              {testimonials[active].designation}
             </p>
-          {/key}
-        </div>
-      </Motion>
+            {#key active}
+              <p class="text-lg text-gray-500 mt-8 dark:text-neutral-300">
+                {#each testimonials[active].quote.split(" ") as word, index}
+                  <Motion
+                    initial={{
+                      filter: "blur(10px)",
+                      opacity: 0,
+                      y: 5,
+                    }}
+                    animate={{
+                      filter: "blur(0px)",
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                      delay: 0.02 * index,
+                    }}
+                    
+                  >
+                    {#snippet children({ motion })}
+                                    <span use:motion class="inline-block">
+                        {word}&nbsp;
+                      </span>
+                                                      {/snippet}
+                                </Motion>
+                {/each}
+              </p>
+            {/key}
+          </div>
+                      {/snippet}
+            </Motion>
       <div class="flex gap-4 pt-12 md:pt-0">
         <button
-          on:click={handlePrev}
+          onclick={handlePrev}
           class="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
         >
           <svg
@@ -169,7 +183,7 @@
           >
         </button>
         <button
-          on:click={handleNext}
+          onclick={handleNext}
           class="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
         >
           <svg

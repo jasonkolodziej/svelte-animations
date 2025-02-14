@@ -2,36 +2,50 @@
   import { cn } from "$lib/utils";
   import { AnimatePresence, Motion } from "svelte-motion";
 
-  export let word = "Flip Text";
-  export let duration = 0.5;
-  export let delayMultiple = 0.08;
-  export let framerProps = {
+  interface Props {
+    word?: string;
+    duration?: number;
+    delayMultiple?: number;
+    framerProps?: any;
+    class?: any;
+  }
+
+  let {
+    word = "Flip Text",
+    duration = 0.5,
+    delayMultiple = 0.08,
+    framerProps = {
     hidden: { rotateX: -90, opacity: 0 },
     visible: { rotateX: 0, opacity: 1 },
-  };
-  let className: any = "";
-  export { className as class };
+  },
+    class: className = ""
+  }: Props = $props();
+  
   let wordsspilit = word.split("");
 </script>
 
 <div class="flex justify-center space-x-2">
-  <AnimatePresence let:item list={[{ key: wordsspilit }]}>
-    {#each wordsspilit as letter, i}
-      <Motion
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        variants={framerProps}
-        transition={{
-          duration: duration,
-          delay: i * delayMultiple,
-        }}
-        let:motion
-      >
-        <span use:motion class={cn("origin-center drop-shadow-sm", className)}>
-          {letter}
-        </span>
-      </Motion>
-    {/each}
-  </AnimatePresence>
+  <AnimatePresence  list={[{ key: wordsspilit }]}>
+    {#snippet children({ item })}
+        {#each wordsspilit as letter, i}
+        <Motion
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={framerProps}
+          transition={{
+            duration: duration,
+            delay: i * delayMultiple,
+          }}
+          
+        >
+          {#snippet children({ motion })}
+                <span use:motion class={cn("origin-center drop-shadow-sm", className)}>
+              {letter}
+            </span>
+                        {/snippet}
+            </Motion>
+      {/each}
+          {/snippet}
+    </AnimatePresence>
 </div>

@@ -1,5 +1,10 @@
 <script lang="ts">
   import MCardBody1 from "./cardbody/MCardBody1.svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 
 <div class="py-6 w-full">
@@ -12,9 +17,9 @@
       class="absolute dark:bg-zinc-950 bg-white size-full rounded-3xl p-2 md:p-6 shadow-[0px_0px_16px_#D4D4D8] border border-neutral-200 dark:border-zinc-800 flex justify-center items-center dark:shadow-[0px_0px_64px_rgba(39,39,42,0.6)]"
       style="transform-origin: top center"
     >
-      <slot>
+      {#if children}{@render children()}{:else}
         <MCardBody1 />
-      </slot>
+      {/if}
     </div>
   </div>
 </div>

@@ -1,12 +1,12 @@
 <script lang="ts">
   // This contains Title, Visit button and Image
   import * as Card from "$lib/components/ui/card/index.js";
-  export let item = {
+  let { item = {
     name: "Create project",
     link: "/",
     image: "mint",
     desc: "",
-  };
+  } } = $props();
  
 </script>
 

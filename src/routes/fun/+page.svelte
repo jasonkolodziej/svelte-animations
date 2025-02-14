@@ -32,8 +32,8 @@
   import HeaderExample from "$lib/indieui/components/other/header/examples/HeaderExample.svelte";
   import Separator from "$lib/indieui/components/other/separator/Separator.svelte";
   import { fade, slide } from "svelte/transition";
-  $: routeId = $page.url.pathname;
-  let innerWidth = 0;
+  let routeId = $derived($page.url.pathname);
+  let innerWidth = $state(0);
 </script>
 
 <svelte:window bind:innerWidth />
@@ -304,35 +304,45 @@
   <Separator gradient={true} />
   <Separator />
   <Separator gradient={true}>
-    <div slot="label" class="px-2">Section</div>
+    {#snippet label()}
+        <div  class="px-2">Section</div>
+      {/snippet}
   </Separator>
   <Separator>
-    <div slot="label" class="px-2">Section</div>
+    {#snippet label()}
+        <div  class="px-2">Section</div>
+      {/snippet}
   </Separator>
   <Separator>
-    <div slot="label" class="border px-4 py-1 rounded-full">Section</div>
+    {#snippet label()}
+        <div  class="border px-4 py-1 rounded-full">Section</div>
+      {/snippet}
   </Separator>
   <Separator>
-    <div slot="label" class="border px-4 py-1 rounded-full border-dashed">
-      Section
-    </div>
+    {#snippet label()}
+        <div  class="border px-4 py-1 rounded-full border-dashed">
+        Section
+      </div>
+      {/snippet}
   </Separator>
   <Separator gradient={true}>
-    <div slot="label" class="border px-2 py-2 rounded-full">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-plus"
-        ><path d="M5 12h14" /><path d="M12 5v14" /></svg
-      >
-    </div>
+    {#snippet label()}
+        <div  class="border px-2 py-2 rounded-full">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-plus"
+          ><path d="M5 12h14" /><path d="M12 5v14" /></svg
+        >
+      </div>
+      {/snippet}
   </Separator>
 </div>
 

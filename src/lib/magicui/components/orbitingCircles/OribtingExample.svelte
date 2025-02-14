@@ -1,8 +1,12 @@
 <script lang='ts'>
   import { cn } from "$lib/utils";
   import OrbitingCircles from "./OrbitingCircles.svelte";
-  let className: any = "";
-  export { className as class };
+  interface Props {
+    class?: any;
+  }
+
+  let { class: className = "" }: Props = $props();
+  
 </script>
 
 <div

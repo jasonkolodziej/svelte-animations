@@ -11,9 +11,9 @@
   });
   let y = spring(28);
   let rounded = tweened(20);
-  let isHovered = false;
-  let isTimeHovered = false;
-  let text = "Ring";
+  let isHovered = $state(false);
+  let isTimeHovered = $state(false);
+  let text = $state("Ring");
   // Svg path
   let paths = [
     "M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9",
@@ -25,7 +25,7 @@
   let run: NodeJS.Timeout;
   let timeoutId: NodeJS.Timeout;
   //  Effects run on Click
-  let isSvgRing = true;
+  let isSvgRing = $state(true);
 
   let clickEffect = () => {
     if (run) clearInterval(run);

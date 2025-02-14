@@ -1,7 +1,7 @@
 <script lang="ts">
     import { cubicOut, quintInOut } from "svelte/easing";
     import { crossfade, scale, fade, slide, fly, blur } from "svelte/transition";
-    let layout = "layouta";
+    let layout = $state("layouta");
   
     let [send, receive] = crossfade({
       duration: 500,
@@ -75,12 +75,12 @@
   </div>
   <div class="h-[20vh] flex justify-center items-center gap-3">
     <button
-      on:click={() => {
+      onclick={() => {
         layout = "layouta";
       }}>Small</button
     >
     <button
-      on:click={() => {
+      onclick={() => {
         layout = "layoutb";
       }}>Medium</button
     >

@@ -2,9 +2,9 @@
   import GradientLine from "$lib/luxe/components/codeblock/GradientLine.svelte";
   import AnimatedBeam from "./AnimatedBeam.svelte";
   import Circle from "./Circle.svelte";
-  let containerRef;
-  let div1Ref;
-  let div2Ref;
+  let containerRef = $state();
+  let div1Ref = $state();
+  let div2Ref = $state();
 </script>
 
 <div class="flex justify-center items-center h-screen relative border-b border-dashed">

@@ -2,8 +2,12 @@
   import { cn } from "$lib/utils";
   import { onMount } from "svelte";
 
-  export let number = 10;
-  let meteorStyles: any = [];
+  interface Props {
+    number?: number;
+  }
+
+  let { number = 10 }: Props = $props();
+  let meteorStyles: any = $state([]);
   let changeMeteors = (num: number) => {
     meteorStyles = [];
     const styles = [...new Array(num)].map(() => ({
@@ -31,6 +35,6 @@
     <!-- Meteor Tail  -->
     <div
       class="pointer-events-none absolute top-1/2 -z-10 h-px w-[50px] -translate-y-1/2 bg-gradient-to-r from-slate-500 via-blue-600/30 to-transparent"
-    />
+></div>
   </span>
 {/each}

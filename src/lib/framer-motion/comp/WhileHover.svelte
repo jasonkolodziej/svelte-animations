@@ -8,26 +8,32 @@
         whileHover={{
           scale: 0.86,
         }}
-        let:motion><div class="box" use:motion>
-          Scale
-        </div></Motion
+        >{#snippet children({ motion })}
+        <div class="box" use:motion>
+            Scale
+          </div>      {/snippet}
+    </Motion
       >
       <Motion
         whileHover={{
           scale: 0.8,
           rotate: 45,
         }}
-        let:motion><div class="box" use:motion>
-          Hover Rotate
-        </div></Motion
+        >{#snippet children({ motion })}
+        <div class="box" use:motion>
+            Hover Rotate
+          </div>      {/snippet}
+    </Motion
       >
       <Motion
         whileHover={{
           backgroundColor: "#0091FF",
         }}
-        let:motion><div class="box" use:motion>
-          BgColor
-        </div></Motion
+        >{#snippet children({ motion })}
+        <div class="box" use:motion>
+            BgColor
+          </div>      {/snippet}
+    </Motion
       >
   </Box>
   

@@ -3,9 +3,9 @@
   import BorderBeam from "$lib/magicui/SpecialEffects/BorderBeam/BorderBeam.svelte";
   import AnimatedBeam from "./AnimatedBeam.svelte";
   import Circle from "./Circle.svelte";
-  let containerRef;
-  let div1Ref;
-  let div2Ref;
+  let containerRef = $state();
+  let div1Ref = $state();
+  let div2Ref = $state();
 </script>
 
 <div

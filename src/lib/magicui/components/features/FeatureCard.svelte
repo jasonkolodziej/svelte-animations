@@ -2,22 +2,32 @@
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
-  // Svelte 5 Code : https://svelte.dev/playground/39866a136f0d4268821e5ae901dce47f?version=5.0.5
+  
 
-  export let collapseDelay = 5000;
-  export let ltr = false;
-  export let linePosition: "left" | "right" | "top" | "bottom" = "left";
-  export let data: Array<{
+  interface Props {
+    // Svelte 5 Code : https://svelte.dev/playground/39866a136f0d4268821e5ae901dce47f?version=5.0.5
+    collapseDelay?: number;
+    ltr?: boolean;
+    linePosition?: "left" | "right" | "top" | "bottom";
+    data?: Array<{
     id: number;
     title: string;
     content: string;
     image?: string;
     video?: string;
     icon?: any;
-  }> = [];
+  }>;
+  }
+
+  let {
+    collapseDelay = 5000,
+    ltr = false,
+    linePosition = "left",
+    data = []
+  }: Props = $props();
 
   let currentIndex = writable(-1);
-  let carouselRef: HTMLUListElement;
+  let carouselRef: HTMLUListElement = $state();
   let isInView = false;
 
   const scrollToIndex = (index: number) => {
@@ -119,8 +129,7 @@
                 <div
                   class="item-box mx-2 flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 sm:mx-6"
                 >
-                  <svelte:component
-                    this={item.icon}
+                  <item.icon
                     class="size-6 text-primary"
                   />
                 </div>
@@ -150,7 +159,7 @@
               autoplay
               loop
               muted
-            />
+></video>
           {:else}
             <div
               class="aspect-auto size-full rounded-xl border border-neutral-300/50 bg-gray-200 p-1"
@@ -182,12 +191,12 @@
           class="relative flex h-full snap-x snap-mandatory flex-nowrap overflow-x-auto [-ms-overflow-style:none] [-webkit-mask-image:linear-gradient(90deg,transparent,black_20%,white_80%,transparent)] [mask-image:linear-gradient(90deg,transparent,black_20%,white_80%,transparent)] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden"
         >
           {#each data as item, index}
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 
             <li
               class="card_code relative mr-8 grid h-full max-w-full pl-2 shrink-0 items-start justify-center last:mr-0"
-              on:click={() => currentIndex.set(index)}
+              onclick={() => currentIndex.set(index)}
               style="scroll-snap-align: center;"
             >
               <h2 class="text-xl font-bold">{item.title}</h2>

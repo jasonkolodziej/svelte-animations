@@ -15,7 +15,9 @@
           duration: 2,
           repeat: Infinity,
         }}
-        let:motion><div class="box" use:motion></div></Motion
+        >{#snippet children({ motion })}
+            <div class="box" use:motion></div>          {/snippet}
+        </Motion
       >
     {/key}
   </Box>

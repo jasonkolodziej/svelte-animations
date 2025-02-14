@@ -1,7 +1,7 @@
 <script lang="ts">
   import { cubicInOut, expoIn, quintInOut } from "svelte/easing";
   import { crossfade } from "svelte/transition";
-  let openApp = "";
+  let openApp = $state("");
   let apps = [
     "🐦",
     "🐱",
@@ -36,7 +36,7 @@
       {#if openApp !== app}
         <button
           class="icon transition-all duration-150 ease-in h-12 w-12 md:h-fit md:w-fit"
-          on:click={() => (openApp = app)}
+          onclick={() => (openApp = app)}
           in:receive={{ key: app }}
           out:send={{ key: app }}
         >
@@ -49,7 +49,7 @@
           out:send={{ key: app }}
         >
           <h1>Hello Devs {app}</h1>
-          <button on:click={() => (openApp = "")}>Close</button>
+          <button onclick={() => (openApp = "")}>Close</button>
         </div>
       {/if}
     {/each}

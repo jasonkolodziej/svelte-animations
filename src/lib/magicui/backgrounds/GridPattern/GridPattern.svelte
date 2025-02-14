@@ -1,17 +1,34 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  export let width = 40;
-  export let height = 40;
-  export let x = -1;
-  export let y = -1;
-  export let strokeDashArray: string = "";
-  export let squares: Array<[x: number, y: number]> = [[0, 0]];
-  let className: any = "";
-  export { className as class };
+  
   let id = crypto.randomUUID().toString().slice(0, 8);
-  export let fillColor = "rgb(156 163 175 / 0.3)";
-  // : rgb(156 163 175 / 0.3)
-  export let strokeWidth = 1;
+  
+  interface Props {
+    width?: number;
+    height?: number;
+    x?: any;
+    y?: any;
+    strokeDashArray?: string;
+    squares?: Array<[x: number, y: number]>;
+    class?: any;
+    fillColor?: string;
+    // : rgb(156 163 175 / 0.3)
+    strokeWidth?: number;
+    [key: string]: any
+  }
+
+  let {
+    width = 40,
+    height = 40,
+    x = -1,
+    y = -1,
+    strokeDashArray = "",
+    squares = [[0, 0]],
+    class: className = "",
+    fillColor = "rgb(156 163 175 / 0.3)",
+    strokeWidth = 1,
+    ...rest
+  }: Props = $props();
 </script>
 
 <svg
@@ -20,7 +37,7 @@
     "pointer-events-none absolute inset-0 h-full w-full",
     className
   )}
-  {...$$restProps}
+  {...rest}
   stroke={fillColor}
   stroke-width={strokeWidth}
 >

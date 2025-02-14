@@ -6,14 +6,13 @@
   import { getContext } from "svelte";
   import { createEventDispatcher } from "svelte";
 
-  export let placeholders = [];
-  export let onSubmit;
+  let { placeholders = [], onSubmit } = $props();
 
-  let currentPlaceholder = 0;
+  let currentPlaceholder = $state(0);
   let intervalRef;
-  let value = "";
-  let animating = false;
-  let canvasRef, inputRef;
+  let value = $state("");
+  let animating = $state(false);
+  let canvasRef = $state(), inputRef = $state();
   let newDataRef = [];
   const dispatch = createEventDispatcher();
 
@@ -174,7 +173,7 @@
   class="w-full relative max-w-xl mx-auto bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow transition duration-200 {value
     ? 'bg-gray-50'
     : ''}"
-  on:submit={handleSubmit}
+  onsubmit={handleSubmit}
 >
   <canvas
     class="absolute pointer-events-none text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20"
@@ -184,7 +183,7 @@
   <input
     bind:this={inputRef}
     bind:value
-    on:keydown={handleKeyDown}
+    onkeydown={handleKeyDown}
     type="text"
     class="w-full text-sm sm:text-base z-50 border-none  bg-transparent  h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20 {animating
       ? 'text-transparent dark:text-transparent'

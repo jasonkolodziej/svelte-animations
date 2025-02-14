@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { Motion, AnimatePresence } from "svelte-motion";
   import Explosion from "./Explosion.svelte";
   import { onMount } from "svelte";
@@ -15,23 +17,27 @@
     repeatDelay?: number;
     class?: string;
   };
-  export let beam: Beam = {
-    initialX: 0,
-    translateX: 0,
-    duration: 8,
-    repeatDelay: 0,
-  };
   type Collision = {
     detected: boolean;
     coordinates: { x: number; y: number } | null;
   };
-  export let containerRef: HTMLDivElement;
-  export let parentRef: HTMLDivElement;
+  interface Props {
+    beam?: Beam;
+    containerRef: HTMLDivElement;
+    parentRef: HTMLDivElement;
+  }
 
-  let beamRef: HTMLDivElement;
-  let collision: Collision = { detected: false, coordinates: null };
-  let cycleCollisionDetected = false;
-  let beamKey = 0;
+  let { beam = {
+    initialX: 0,
+    translateX: 0,
+    duration: 8,
+    repeatDelay: 0,
+  }, containerRef, parentRef }: Props = $props();
+
+  let beamRef: HTMLDivElement = $state();
+  let collision: Collision = $state({ detected: false, coordinates: null });
+  let cycleCollisionDetected = $state(false);
+  let beamKey = $state(0);
 
   const checkCollision = () => {
     if (beamRef && containerRef && parentRef && !cycleCollisionDetected) {
@@ -56,15 +62,17 @@
     return () => clearInterval(interval);
   });
 
-  $: if (collision.detected && collision.coordinates) {
-    setTimeout(() => {
-      collision = { detected: false, coordinates: null };
-      cycleCollisionDetected = false;
-    }, 2000);
-    setTimeout(() => {
-      beamKey++;
-    }, 2000);
-  }
+  run(() => {
+    if (collision.detected && collision.coordinates) {
+      setTimeout(() => {
+        collision = { detected: false, coordinates: null };
+        cycleCollisionDetected = false;
+      }, 2000);
+      setTimeout(() => {
+        beamKey++;
+      }, 2000);
+    }
+  });
 </script>
 
 <Motion
@@ -86,13 +94,15 @@
     delay: beam.delay || 0,
     repeatDelay: beam.repeatDelay || 0,
   }}
-  let:motion
+  
 >
-  <div
-    bind:this={beamRef}
-    use:motion
-    class={`absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-purple-500 to-transparent ${beam.class}`}
-  ></div>
+  {#snippet children({ motion })}
+    <div
+      bind:this={beamRef}
+      use:motion
+      class={`absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-purple-500 to-transparent ${beam.class}`}
+    ></div>
+  {/snippet}
 </Motion>
 {#if collision.detected && collision.coordinates}
   <Explosion

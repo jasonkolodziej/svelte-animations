@@ -5,9 +5,9 @@
   let background = useMotionTemplate`radial-gradient(200px circle at ${mouseX}px ${mouseY}px, rgba(51, 51, 51, 0.4), transparent 80%)`;
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-  on:mousemove={(e) => {
+  onmousemove={(e) => {
     const { left, top } = e.currentTarget.getBoundingClientRect();
 
     mouseX.set(e.clientX - left);
@@ -17,23 +17,25 @@
 >
   <div
     class="absolute right-5 top-0 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent"
-  />
+></div>
   <Motion
     style={{
       background,
     }}
-    let:motion
+    
   >
-    <div
-      use:motion
-      class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-    ></div>
-  </Motion>
+    {#snippet children({ motion })}
+        <div
+        use:motion
+        class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+      ></div>
+          {/snippet}
+    </Motion>
   <div
     class="relative flex flex-col gap-3 rounded-xl border border-white/10 px-4 py-5"
   >
     <div class="space-y-2">
-      <!-- svelte-ignore a11y-img-redundant-alt -->
+      <!-- svelte-ignore a11y_img_redundant_alt -->
       <img
         src="https://i.pinimg.com/564x/c3/5c/30/c35c30d5bb21d2392c3daa0abd8a5440.jpg"
         alt="Product image"

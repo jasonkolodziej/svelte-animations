@@ -1,11 +1,22 @@
 <script lang="ts">
 //   Previous Components
-  // Modify these
-  export let MAIN_CIRCLE_SIZE = 180;
-  export let MAIN_CIRCLE_OPACITY = 0.24;
-  export let NUM_CIRCLES = 5;
-  export let HEIGHT = 60;
-  export let WIDTH = 60;
+  
+  interface Props {
+    // Modify these
+    MAIN_CIRCLE_SIZE?: number;
+    MAIN_CIRCLE_OPACITY?: number;
+    NUM_CIRCLES?: number;
+    HEIGHT?: number;
+    WIDTH?: number;
+  }
+
+  let {
+    MAIN_CIRCLE_SIZE = 180,
+    MAIN_CIRCLE_OPACITY = 0.24,
+    NUM_CIRCLES = 5,
+    HEIGHT = 60,
+    WIDTH = 60
+  }: Props = $props();
 </script>
 
 <div class="absolute left-1/2 top-1/2 h-[50%] w-[50%] overflow-visible">

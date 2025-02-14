@@ -19,14 +19,16 @@
         repeat: Infinity,
         ease: "linear",
       }}
-      let:motion
+      
     >
-      <span
-        use:motion
-        style="position: absolute; top: {random() * 100}%; left: {random() *
-          100}%; width: 2px; height: 2px; border-radius: 50%; z-index: 1;"
-        class="inline-block bg-black dark:bg-white"
-      ></span>
-    </Motion>
+      {#snippet children({ motion })}
+            <span
+          use:motion
+          style="position: absolute; top: {random() * 100}%; left: {random() *
+            100}%; width: 2px; height: 2px; border-radius: 50%; z-index: 1;"
+          class="inline-block bg-black dark:bg-white"
+        ></span>
+                {/snippet}
+        </Motion>
   {/each}
 </div>

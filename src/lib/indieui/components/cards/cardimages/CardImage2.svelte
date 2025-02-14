@@ -1,5 +1,10 @@
 <script lang="ts">
   import CardBodyImg from "./cardbody/CardBodyImg.svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 
 <div class="rounded-2xl relative aspect-[4/3] overflow-hidden group">
@@ -14,9 +19,9 @@
     class="absolute inset-0 from-black/95 via-black/70 to-black/10 bg-gradient-to-t"
   ></div>
   <!-- Add Any Content inside Slot -->
-  <slot>
+  {#if children}{@render children()}{:else}
     <CardBodyImg
       class="absolute pb-1 px-4 md:pb-4 inset-x-0 bottom-2 flex flex-col justify-end size-full "
     />
-  </slot>
+  {/if}
 </div>
