@@ -87,8 +87,7 @@
           {#if colSpan}
             <GradientLine />
           {/if}
-          {@const SvelteComponent = component}
-          <SvelteComponent />
+          <svelte:component this={component} />
         </ComponentView>
       </div>
     {/each}

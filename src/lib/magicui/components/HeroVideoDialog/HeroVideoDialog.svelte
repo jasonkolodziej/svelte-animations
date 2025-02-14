@@ -18,24 +18,13 @@
   // 	videoSrc: string;
   // 	thumbnailSrc: string;
   // 	thumbnailAlt?: string;
-  
+  // }
 
-  interface Props {
-    // }
-    animationStyle?: AnimationStyle;
-    videoSrc: string;
-    thumbnailSrc: string;
-    thumbnailAlt?: string;
-    iconColor?: string;
-  }
-
-  let {
-    animationStyle = "from-center",
-    videoSrc,
-    thumbnailSrc,
-    thumbnailAlt = "Video thumbnail",
-    iconColor = "white"
-  }: Props = $props();
+  export let animationStyle: AnimationStyle = "from-center";
+  export let videoSrc: string;
+  export let thumbnailSrc: string; 
+  export let thumbnailAlt: string = "Video thumbnail";
+  export let iconColor: string = "white";
 
   const isVideoOpen = writable(false);
   const isCloseHovered = writable(false);
@@ -92,14 +81,14 @@
     },
   };
 
-  let selectedAnimation = $derived(animationVariants[animationStyle]);
+  $: selectedAnimation = animationVariants[animationStyle];
 </script>
 
 <div class="relative">
   <!-- Thumbnail -->
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <!-- svelte-ignore a11y_click_events_have_key_events -->
-  <div class="relative cursor-pointer" onclick={openVideo}>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div class="relative cursor-pointer" on:click={openVideo}>
     <img
       src={thumbnailSrc}
       alt={thumbnailAlt}
@@ -109,11 +98,11 @@
     />
 	<!-- {$isPlayHovered===true ? 'blur-[2px]' :'' } to make background blur put this in above img class -->
     <div class="absolute inset-0 flex items-center justify-center">
-      <!-- svelte-ignore a11y_no_static_element_interactions -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         class="flex size-24 items-center justify-center rounded-full border border-neutral-800 backdrop-blur-md transition-transform duration-300 ease-out"
-        onmouseenter={() => isPlayHovered.set(true)}
-        onmouseleave={() => isPlayHovered.set(false)}
+        on:mouseenter={() => isPlayHovered.set(true)}
+        on:mouseleave={() => isPlayHovered.set(false)}
       >
         <div
           class="relative flex size-20 items-center justify-center rounded-full border border-neutral-800 backdrop-blur-2xl transition-all duration-300 ease-out"
@@ -133,79 +122,69 @@
     </div>
   </div>
 
-  <AnimatePresence  list={[{ key: $isVideoOpen }]}>
-    {#snippet children({ item })}
-        {#if item.key}
-        <Motion
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          
+  <AnimatePresence let:item list={[{ key: $isVideoOpen }]}>
+    {#if item.key}
+      <Motion
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        let:motion
+      >
+        <div
+          use:motion
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md"
         >
-          {#snippet children({ motion })}
-                <div
+          <!-- Modal Content -->
+          <Motion
+            initial={selectedAnimation.initial}
+            animate={selectedAnimation.animate}
+            exit={selectedAnimation.exit}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            let:motion
+          >
+            <div
               use:motion
-              class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md"
+              class="md:mx-0 relative mx-4 aspect-video w-full max-w-4xl"
             >
-              <!-- Modal Content -->
               <Motion
-                initial={selectedAnimation.initial}
-                animate={selectedAnimation.animate}
-                exit={selectedAnimation.exit}
-                transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                
+                let:motion
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {#snippet children({ motion })}
-                        <div
-                    use:motion
-                    class="md:mx-0 relative mx-4 aspect-video w-full max-w-4xl"
-                  >
-                    <Motion
-                      
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {#snippet children({ motion })}
-                                <button
-                          use:motion
-                          class="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md"
-                          onclick={closeVideo}
-                          onmouseenter={() => isCloseHovered.set(true)}
-                          onmouseleave={() => isCloseHovered.set(false)}
-                        >
-                          <X class="size-5" />
-                        </button>
-                                                    {/snippet}
-                            </Motion>
-                    <Motion
-                      animate={{ scale: $isCloseHovered ? 0.98 : 1 }}
-                      transition={{ duration: 0.2 }}
-                      
-                    >
-                      {#snippet children({ motion })}
-                                <div
-                          use:motion
-                          class="relative isolate z-[1] size-full overflow-hidden rounded-2xl border-2 border-white"
-                        >
-                          <!-- svelte-ignore a11y_missing_attribute -->
-                          <iframe
-                            src={videoSrc}
-                            class="size-full rounded-2xl"
-                            allowfullscreen
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          ></iframe>
-                        </div>
-                                                    {/snippet}
-                            </Motion>
-                  </div>
-                                      {/snippet}
-                    </Motion>
+                <button
+                  use:motion
+                  class="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md"
+                  on:click={closeVideo}
+                  on:mouseenter={() => isCloseHovered.set(true)}
+                  on:mouseleave={() => isCloseHovered.set(false)}
+                >
+                  <X class="size-5" />
+                </button>
+              </Motion>
+              <Motion
+                animate={{ scale: $isCloseHovered ? 0.98 : 1 }}
+                transition={{ duration: 0.2 }}
+                let:motion
+              >
+                <div
+                  use:motion
+                  class="relative isolate z-[1] size-full overflow-hidden rounded-2xl border-2 border-white"
+                >
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <iframe
+                    src={videoSrc}
+                    class="size-full rounded-2xl"
+                    allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  ></iframe>
+                </div>
+              </Motion>
             </div>
-                        {/snippet}
-            </Motion>
-      {/if}
-          {/snippet}
-    </AnimatePresence>
+          </Motion>
+        </div>
+      </Motion>
+    {/if}
+  </AnimatePresence>
 </div>
 
 <style>

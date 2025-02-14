@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
   import AnimatedExample from "$lib/magicui/text-animations/AnimatedGradientText/AnimatedExample.svelte";
   import * as Card from "$lib/components/ui/card/index";
   import * as Carousel from "$lib/components/ui/carousel/index";
@@ -14,19 +12,19 @@
   import SkewGridExample from "$lib/magicui/backgrounds/GridPattern/examples/SkewGridExample.svelte";
   import AnimatedShinyTextExample from "$lib/magicui/text-animations/AnimatedShinyText/AnimatedShinyTextExample.svelte";
 
-  let carouselApi: CarouselAPI = $state();
-  let activeCarouselItemId = $state(0);
+  let carouselApi: CarouselAPI;
+  let activeCarouselItemId = 0;
   function setActiveCarouselItem(index: number) {
     carouselApi.scrollTo(index);
     activeCarouselItemId = index;
   }
-  run(() => {
+  $: {
     if (carouselApi) {
       carouselApi.on("select", (e) => {
         activeCarouselItemId = carouselApi.selectedScrollSnap();
       });
     }
-  });
+  }
   let comps = [
     {
       id: 0,
@@ -128,7 +126,7 @@
                     /></svg
                   >
                 </a>
-                <item.comp />
+                <svelte:component this={item.comp} />
               </Card.Content>
             </Card.Root>
           </div>
@@ -138,7 +136,7 @@
     <div class="flex space-x-2 w-full items-center p-2 h-fit">
       {#each comps as _, idx}
         <button
-          onclick={() => {
+          on:click={() => {
             setActiveCarouselItem(idx);
           }}
           class="rounded-full aspect-square w-3.5 {idx === activeCarouselItemId

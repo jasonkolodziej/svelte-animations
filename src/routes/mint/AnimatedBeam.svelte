@@ -1,54 +1,30 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
   import { cn } from "$lib/utils";
   import { onMount, tick } from "svelte";
   import { M, Motion } from "svelte-motion";
 
-  
-  interface Props {
-    class?: any;
-    containerRef: any;
-    fromRef: any;
-    toRef: any;
-    curvature?: number;
-    reverse?: boolean; // Include the reverse pro;
-    duration?: any;
-    delay?: number;
-    pathColor?: string;
-    pathWidth?: number;
-    pathOpacity?: number;
-    gradientStartColor?: string;
-    gradientStopColor?: string;
-    startXOffset?: number;
-    startYOffset?: number;
-    endXOffset?: number;
-    endYOffset?: number;
-  }
-
-  let {
-    class: className = "",
-    containerRef,
-    fromRef,
-    toRef,
-    curvature = 0,
-    reverse = false,
-    duration = Math.random() * 3 + 4,
-    delay = 0,
-    pathColor = "gray",
-    pathWidth = 2,
-    pathOpacity = 0.2,
-    gradientStartColor = "#ffaa40",
-    gradientStopColor = "#9c40ff",
-    startXOffset = 0,
-    startYOffset = 0,
-    endXOffset = 0,
-    endYOffset = 0
-  }: Props = $props();
+  let className: any = "";
+  export { className as class };
+  export let containerRef;
+  export let fromRef;
+  export let toRef;
+  export let curvature = 0;
+  export let reverse = false; // Include the reverse pro;
+  export let duration = Math.random() * 3 + 4;
+  export let delay = 0;
+  export let pathColor = "gray";
+  export let pathWidth = 2;
+  export let pathOpacity = 0.2;
+  export let gradientStartColor = "#ffaa40";
+  export let gradientStopColor = "#9c40ff";
+  export let startXOffset = 0;
+  export let startYOffset = 0;
+  export let endXOffset = 0;
+  export let endYOffset = 0;
 
   let id = crypto.randomUUID().slice(0, 8);
-  let pathD = $state("");
-  let svgDimensions = $state({ width: 0, height: 0 });
+  let pathD = "";
+  let svgDimensions = { width: 0, height: 0 };
 
   // Calculate the gradient coordinates based on the reverse prop
   let gradientCoordinates = reverse
@@ -64,9 +40,7 @@
         y1: ["0%", "0%"],
         y2: ["0%", "0%"],
       };
-  run(() => {
-    console.log(fromRef, toRef, "Refs");
-  });
+  $: console.log(fromRef, toRef, "Refs");
   let updatePath = () => {
     let containerRect = containerRef?.getBoundingClientRect();
     let rectA = fromRef?.getBoundingClientRect();
@@ -162,22 +136,20 @@
         repeatDelay: 0,
       }}
       isSVG={true}
-      
+      let:motion
     >
-      {#snippet children({ motion })}
-            <linearGradient
-          use:motion
-          {id}
-          gradientUnits="userSpaceOnUse"
-          class="transform-gpu"
-        >
-          <stop stop-color={gradientStartColor} stop-opacity="0"></stop>
-          <stop stop-color={gradientStartColor}></stop>
-          <stop offset="32.5%" stop-color={gradientStopColor}></stop>
-          <stop offset="100%" stop-color={gradientStopColor} stop-opacity="0"
-          ></stop>
-        </linearGradient>
-                {/snippet}
-        </Motion>
+      <linearGradient
+        use:motion
+        {id}
+        gradientUnits="userSpaceOnUse"
+        class="transform-gpu"
+      >
+        <stop stop-color={gradientStartColor} stop-opacity="0"></stop>
+        <stop stop-color={gradientStartColor}></stop>
+        <stop offset="32.5%" stop-color={gradientStopColor}></stop>
+        <stop offset="100%" stop-color={gradientStopColor} stop-opacity="0"
+        ></stop>
+      </linearGradient>
+    </Motion>
   </defs>
 </svg>

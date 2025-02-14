@@ -6,7 +6,7 @@
   import { fly } from "svelte/transition";
   import { Key, Lock, LockKeyholeOpen } from "lucide-svelte";
   let intervalRef;
-  let text = $state("Framework ?");
+  let text = "Framework ?";
   const TARGET_TEXT = "Svelte is Vibe";
   const CYCLES_PER_LETTER = 2;
   const SHUFFLE_TIME = 50;
@@ -48,8 +48,8 @@
   class="grid min-h-[200px] min-w-[400px] place-content-center bg-gradient-to-br from-neutral-600/60 to bg-neutral-900/70 p-4 rounded-3xl"
 >
   <button
-    onmouseenter={scramble}
-    onmouseleave={stopScramble}
+    on:mouseenter={scramble}
+    on:mouseleave={stopScramble}
     class="group relative overflow-hidden rounded-lg border border-neutral-700 bg-gradient-to-tr from-neutral-700 to-neutral-900/80 px-4 py-2 font-mono font-medium uppercase text-neutral-300 transition-colors hover:text-neutral-100 shadow-lg"
   >
     <div
@@ -106,7 +106,7 @@
     </div>
     <div
       class="duration-300 absolute inset-0 z-0 scale-125 bg-gradient-to-t from-indigo-400/0 from-40% via-indigo-400/100 to-indigo-400/0 to-60% opacity-0 transition-opacity group-hover:opacity-100 animate-len"
-></div>
+    />
   </button>
 </div>
 

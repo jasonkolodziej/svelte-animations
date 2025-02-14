@@ -5,17 +5,17 @@
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";
   import Badge from "$lib/components/ui/badge/badge.svelte";
 
-  let routeID = $derived($page.params.componentID);
-  let comp = $derived(allLuxeComponents.filter((comp) => comp.id == routeID)[0]);
-  let fileName =
-    $derived(comp.name
+  $: routeID = $page.params.componentID;
+  $: comp = allLuxeComponents.filter((comp) => comp.id == routeID)[0];
+  $: fileName =
+    comp.name
       .split(" ")
       .map((k) => {
         let kit = k.charAt(0).toUpperCase();
         let m = kit + k.replace(k[0], "");
         return m;
       })
-      .join("") + ".svelte");
+      .join("") + ".svelte";
 </script>
 
 <svelte:head>
@@ -72,7 +72,7 @@
             class="absolute h-full w-full bg-[linear-gradient(to_right,#b1b1b12e_1px,transparent_1px),linear-gradient(to_bottom,#b1b1b12e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]"
           ></div>
         {/if}
-        <comp.component />
+        <svelte:component this={comp.component} />
       </ComponentView>
     </div>
     {#if comp?.download}

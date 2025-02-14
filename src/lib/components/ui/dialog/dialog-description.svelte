@@ -4,19 +4,13 @@
 
 	type $$Props = DialogPrimitive.DescriptionProps;
 
-	interface Props {
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, children, ...rest }: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <DialogPrimitive.Description
 	class={cn("text-sm text-muted-foreground", className)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </DialogPrimitive.Description>

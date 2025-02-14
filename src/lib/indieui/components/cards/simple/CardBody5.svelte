@@ -5,12 +5,8 @@
     title: "Gradient Card",
     desc: "Life is good when you are a developer.",
   };
-  interface Props {
-    class?: string;
-  }
-
-  let { class: className = "p-8" }: Props = $props();
-  
+  let className = "p-8";
+  export { className as class };
 </script>
 
 <div class={cn("text-left", className)}>

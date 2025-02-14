@@ -8,18 +8,18 @@
   import DotPattern from "$lib/magicui/backgrounds/DotPattern/DotPattern.svelte";
   import Badge from "$lib/components/ui/badge/badge.svelte";
 
-  let routeID = $derived($page.params.compID);
-  let comp = $derived(allMagicComponents.filter((c) => c.id === routeID)[0]);
+  $: routeID = $page.params.compID;
+  $: comp = allMagicComponents.filter((c) => c.id === routeID)[0];
   // $: console.log(comp, "Components", routeID);
-  let fileName =
-    $derived(comp.name
+  $: fileName =
+    comp.name
       .split(" ")
       .map((k) => {
         let kit = k.charAt(0).toUpperCase();
         let m = kit + k.replace(k[0], "");
         return m;
       })
-      .join("") + ".svelte");
+      .join("") + ".svelte";
 </script>
 
 <svelte:head>
@@ -106,7 +106,7 @@
                           />
                         </div>
                       {/if}
-                      <example.component />
+                      <svelte:component this={example.component} />
                     </ComponentView>
                   {/key}
                 </div>
@@ -163,7 +163,7 @@
               />
             </div>
           {/if}
-          <comp.component />
+          <svelte:component this={comp.component} />
         </ComponentView>
       </div>
     {/if}

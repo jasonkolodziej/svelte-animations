@@ -1,12 +1,8 @@
 <script lang="ts">
   import { fade, fly, scale, slide } from "svelte/transition";
-  interface Props {
-    x: any;
-    y: any;
-    title?: string;
-  }
-
-  let { x, y, title = "William Shakespeare" }: Props = $props();
+  export let x;
+  export let y;
+  export let title = "William Shakespeare";
 
   const colors = [
     "var(--sky-500)",

@@ -6,15 +6,9 @@
 		el?: HTMLSpanElement;
 	};
 
-	interface Props {
-		el?: $$Props["el"];
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { el = $bindable(undefined), class: className = undefined, children, ...rest }: Props = $props();
-	
+	export let el: $$Props["el"] = undefined;
+	export let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <span
@@ -23,7 +17,7 @@
 	aria-disabled="true"
 	aria-current="page"
 	class={cn("text-foreground font-normal", className)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </span>

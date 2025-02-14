@@ -3,14 +3,8 @@
 	import { cn } from "$lib/utils.js";
 	type $$Props = CommandPrimitive.GroupProps;
 
-	interface Props {
-		class?: string | undefined | null;
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, children, ...rest }: Props = $props();
-	
+	let className: string | undefined | null = undefined;
+	export { className as class };
 </script>
 
 <CommandPrimitive.Group
@@ -18,7 +12,7 @@
 		"overflow-hidden p-1 text-foreground [&_[data-cmdk-group-heading]]:px-2 [&_[data-cmdk-group-heading]]:py-1.5 [&_[data-cmdk-group-heading]]:text-xs [&_[data-cmdk-group-heading]]:font-medium [&_[data-cmdk-group-heading]]:text-muted-foreground",
 		className
 	)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </CommandPrimitive.Group>

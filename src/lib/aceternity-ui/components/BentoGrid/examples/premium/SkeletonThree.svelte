@@ -8,12 +8,12 @@
   });
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  onmouseenter={() => {
+  on:mouseenter={() => {
     colorChange.set(100);
   }}
-  onmouseleave={() => {
+  on:mouseleave={() => {
     colorChange.set(0);
   }}
   class="flex flex-1 w-full h-full min-h-[10rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2"

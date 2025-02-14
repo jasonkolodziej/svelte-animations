@@ -10,30 +10,19 @@
     lifespan: number;
   }
 
-
-  
-
-  let sparkles: SparkleText[] = $state([]);
-  import { onMount, onDestroy, tick } from "svelte";
-  import Sparkle from "./Sparkle.svelte";
-  interface Props {
-    text?: string;
-    colors?: any;
-    sparklesCount?: number;
-    class?: string;
-    [key: string]: any
-  }
-
-  let {
-    text = "Hello World",
-    colors = {
+  export let text: string = "Hello World";
+  export let colors = {
     first: "#9E7AFF",
     second: "#FE8BBB",
-  },
-    sparklesCount = 10,
-    class: className = "",
-    ...rest
-  }: Props = $props();
+  };
+  export let sparklesCount = 10;
+
+  let className = "";
+  export { className as class };
+
+  let sparkles: SparkleText[] = [];
+  import { onMount, onDestroy, tick } from "svelte";
+  import Sparkle from "./Sparkle.svelte";
 
   let generateStar = () => {
     let starX = `${Math.random() * 100}%`;
@@ -74,7 +63,7 @@
   style:--sparkles-first-color="{colors.first};"
   style:--sparkles-second-color="{colors.second};"
   class={cn("text-6xl font-bold", className)}
-  {...rest}
+  {...$$restProps}
 >
   <span class="relative inline-block">
     {#each sparkles as item, _}

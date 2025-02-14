@@ -8,11 +8,7 @@
     icon: any;
   }
 
-  interface Props {
-    link: Links;
-  }
-
-  let { link }: Props = $props();
+  export let link: Links;
 </script>
 
 <a
@@ -20,7 +16,7 @@
   class="flex items-center justify-start gap-2 group/sidebar py-2"
 >
   <div>
-    <link.icon strokeWidth={1.3} />
+    <svelte:component this={link.icon} strokeWidth={1.3} />
   </div>
   {#if $vopen}
     <div in:slide={{ axis: "x" }}>

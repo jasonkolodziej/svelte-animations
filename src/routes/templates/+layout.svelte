@@ -1,10 +1,5 @@
 <script lang="ts">
   import MagicSidebar from "$lib/magicui/components/MagicSidebar/MagicSidebar.svelte";
-  interface Props {
-    children?: import('svelte').Snippet;
-  }
-
-  let { children }: Props = $props();
 
   type compNavs = {
     id: number;
@@ -30,5 +25,5 @@
 </script>
 
 <MagicSidebar {componentsNav}>
-  {@render children?.()}
+  <slot></slot>
 </MagicSidebar>

@@ -22,9 +22,7 @@
       transition={{
         duration: 0.2,
       }}
-      >{#snippet children({ motion })}
-        <div class="box" use:motion>Drag</div>      {/snippet}
-    </Motion
+      let:motion><div class="box" use:motion>Drag</div></Motion
     >
   </Box>
   

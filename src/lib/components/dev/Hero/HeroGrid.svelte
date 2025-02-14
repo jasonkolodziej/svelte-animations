@@ -41,7 +41,7 @@
             <div
               class="size-full overflow-auto rounded-lg border  text-xl"
             >
-              <item.comp />
+              <svelte:component this={item.comp} />
             </div>
           </div>
         {/each}

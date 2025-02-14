@@ -33,13 +33,13 @@
   });
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  onmouseenter={() => {
+  on:mouseenter={() => {
     variantOne.set(one.animate);
     variantTwo.set(two.animate);
   }}
-  onmouseleave={() => {
+  on:mouseleave={() => {
     variantOne.set(one.initial);
     variantTwo.set(two.initial);
   }}
@@ -68,6 +68,6 @@
     <p class="text-xs text-neutral-500">Use PHP.</p>
     <div
       class="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0"
-></div>
+    />
   </div>
 </div>

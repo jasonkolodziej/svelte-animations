@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Motion } from "svelte-motion";
-  let { style } = $props();
+  export let style;
 
   let spans = Array.from({ length: 20 }, (_, index) => ({
     id: index,
@@ -18,29 +18,25 @@
     exit={{ opacity: 0 }}
     transition={{ duration: 1.5, ease: "easeOut" }}
     
-    
+    let:motion
   >
-    {#snippet children({ motion })}
-        <div
-        use:motion
-        class="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
-  ></div>
-          {/snippet}
-    </Motion>
+    <div
+      use:motion
+      class="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
+    />
+  </Motion>
 
   {#each spans as span}
     <Motion
       initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}
       animate={{ x: span.directionX, y: span.directionY, opacity: 0 }}
       transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
-      
+      let:motion
     >
-      {#snippet children({ motion })}
-            <span
-          use:motion
-          class="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500"
-  ></span>
-                {/snippet}
-        </Motion>
+      <span
+        use:motion
+        class="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500"
+      />
+    </Motion>
   {/each}
 </div>

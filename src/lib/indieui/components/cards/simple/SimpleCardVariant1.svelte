@@ -6,12 +6,8 @@
     title: "Svelte is Vibe",
     desc: "Svelte is javascript framework that is easy to learn and use. ",
   };
-  interface Props {
-    class?: any;
-  }
-
-  let { class: className = "p-6" }: Props = $props();
-  
+  let className: any = "p-6";
+  export { className as class };
 </script>
 
 <div>

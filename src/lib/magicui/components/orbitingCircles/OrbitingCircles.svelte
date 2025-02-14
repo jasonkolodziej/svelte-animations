@@ -1,25 +1,12 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
-    
-  interface Props {
-    class?: any;
-    reverse?: boolean;
-    duration?: number;
-    delay?: number;
-    radius?: number;
-    path?: boolean;
-    children?: import('svelte').Snippet;
-  }
-
-  let {
-    class: className = "",
-    reverse = false,
-    duration = 20,
-    delay = 0,
-    radius = 50,
-    path = true,
-    children
-  }: Props = $props();
+    let className: any = "";
+    export { className as class };
+    export let reverse: boolean = false;
+    export let duration: number = 20;
+    export let delay: number = 0;
+    export let radius: number = 50;
+    export let path: boolean = true;
   </script>
   
   {#if path}
@@ -47,7 +34,7 @@
         className
       )}
     >
-      {@render children?.()}
+      <slot></slot>
     </div>
   {/if}
   

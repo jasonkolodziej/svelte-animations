@@ -2,29 +2,17 @@
   import { type Variant, badgeVariants } from "./index.js";
   import { cn } from "$lib/utils.js";
 
-  interface Props {
-    class?: string | undefined | null;
-    href?: string | undefined;
-    variant?: Variant;
-    children?: import('svelte').Snippet;
-    [key: string]: any
-  }
-
-  let {
-    class: className = undefined,
-    href = undefined,
-    variant = "default",
-    children,
-    ...rest
-  }: Props = $props();
-  
+  let className: string | undefined | null = undefined;
+  export let href: string | undefined = undefined;
+  export let variant: Variant = "default";
+  export { className as class };
 </script>
 
 <svelte:element
   this={href ? "a" : "span"}
   {href}
   class={cn(badgeVariants({ variant, className }))}
-  {...rest}
+  {...$$restProps}
 >
   <!-- {#if variant === "animated"}
     <span>
@@ -50,6 +38,6 @@
         </span>
         </div>
         {:else} -->
-  {#if children}{@render children()}{:else}Badge{/if}
+  <slot>Badge</slot>
   <!-- {/if} -->
 </svelte:element>

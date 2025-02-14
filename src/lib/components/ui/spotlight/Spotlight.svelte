@@ -1,12 +1,8 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  interface Props {
-    className?: string | undefined;
-    fill?: string | undefined;
-  }
-
-  let { className = undefined, fill = undefined }: Props = $props();
+  export let className: string | undefined = undefined;
+  export let fill: string | undefined = undefined;
 </script>
 
 <svg

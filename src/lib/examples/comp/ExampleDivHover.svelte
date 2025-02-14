@@ -6,7 +6,7 @@
   let width = spring(120);
   let height = spring(30);
   let rounded = spring(50);
-  let isChanged = $state(false);
+  let isChanged = false;
 
   let animationElement = (node: HTMLElement) => {
     let changeSize = () => {

@@ -2,12 +2,7 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import { cn } from "$lib/utils";
   import { XIcon, MenuIcon } from "lucide-svelte";
-  interface Props {
-    mobileItems?: import('svelte').Snippet;
-  }
-
-  let { mobileItems }: Props = $props();
-  let isOpen = $state(false);
+  let isOpen = false;
 </script>
 
 <div
@@ -35,6 +30,6 @@
       ? "animate-popover-in flex flex-col gap-3 h-full w-full pt-4 px-4 bg-inherit"
       : "hidden"}
   >
-    {@render mobileItems?.()}
+    <slot name="mobileItems"></slot>
   </dailog>
 </div>

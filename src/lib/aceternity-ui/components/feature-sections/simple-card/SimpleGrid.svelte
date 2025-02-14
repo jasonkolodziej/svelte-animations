@@ -1,18 +1,14 @@
 <script lang="ts">
   import SimpleGridPattern from "./SimpleGridPattern.svelte"; // Scroll down to see the SimpleGridPattern component
 
-  interface Props {
-    pattern?: number[][];
-    size: number;
-  }
-
-  let { pattern = [
+  export let pattern: number[][] = [
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-  ], size }: Props = $props();
+  ];
+  export let size: number;
 </script>
 
 <div

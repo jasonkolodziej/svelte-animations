@@ -3,30 +3,17 @@
     import Particles from "@tsparticles/svelte";
     import { tweened } from 'svelte/motion';
     
-    
-  interface Props {
-    id: any;
-    class?: string;
-    background?: string;
-    minSize?: number;
-    maxSize?: number;
-    speed?: number;
-    particleColor?: string;
-    particleDensity?: number;
-  }
-
-  let {
-    id,
-    class: className = '',
-    background = '#0d47a1',
-    minSize = 1,
-    maxSize = 3,
-    speed = 4,
-    particleColor = '#ffffff',
-    particleDensity = 120
-  }: Props = $props();
+    export let id;
+    let className = '';
+    export { className as class };
+    export let background = '#0d47a1';
+    export let minSize = 1;
+    export let maxSize = 3;
+    export let speed = 4;
+    export let particleColor = '#ffffff';
+    export let particleDensity = 120;
   
-    let init = $state(false);
+    let init = false;
     const opacity = tweened(0, { duration: 1000 });
   
     onMount(() => {

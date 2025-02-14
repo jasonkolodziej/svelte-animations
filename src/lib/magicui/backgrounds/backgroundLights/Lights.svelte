@@ -3,21 +3,16 @@
 
    type Direction = 'top' | 'bottom';
 
-  
+  // Export the 'direction' property
+  export let direction: Direction = 'bottom';
 
-  interface Props {
-    // Export the 'direction' property
-    direction?: Direction;
-    class?: any;
-  }
+  let className: any = '';
 
-  let { direction = 'bottom', class: className = '' }: Props = $props();
-
-  
+  export { className as class };
 
   // Reactive variables to adjust gradient and position based on direction
-  let gradientDirection = $derived(direction === 'top' ? '0deg' : '180deg');
-  let positionClass = $derived(direction === 'top' ? 'top-[-200px]' : 'bottom-[-200px]');
+  $: gradientDirection = direction === 'top' ? '0deg' : '180deg';
+  $: positionClass = direction === 'top' ? 'top-[-200px]' : 'bottom-[-200px]';
 </script>
 
 <div class={cn('w-full h-full overflow-hidden', className)}>

@@ -1,12 +1,8 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  interface Props {
-    class?: string;
-    fill?: string;
-  }
-
-  let { class: _class = "", fill = "" }: Props = $props();
-  
+  let _class: string = "";
+  export let fill: string = "";
+  export { _class as class };
 </script>
 
 <svg

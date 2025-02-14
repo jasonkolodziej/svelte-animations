@@ -1,20 +1,10 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  interface Props {
-    pulseColor?: string;
-    duration?: string;
-    class?: string;
-    children?: import('svelte').Snippet;
-  }
-
-  let {
-    pulseColor = "#0096ff",
-    duration = "1.5s",
-    class: className = "",
-    children
-  }: Props = $props();
-  
+  export let pulseColor: string = "#0096ff";
+  export let duration: string = "1.5s";
+  let className: string = "";
+  export { className as class };
 </script>
 
 <button
@@ -26,9 +16,9 @@
   style:--duration={duration}
 >
   <div class="relative z-10">
-    {#if children}{@render children()}{:else}Button{/if}
+    <slot>Button</slot>
   </div>
   <div
     class="absolute top-1/2 left-1/2 size-full rounded-lg bg-inherit animate-pulse -translate-x-1/2 -translate-y-1/2"
-></div>
+  />
 </button>

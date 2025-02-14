@@ -5,7 +5,7 @@
   import MetaIconOutline from "./MetaIconOutline.svelte";
   import OpenAiLogo from "./OpenAILogo.svelte";
   import { onMount } from "svelte";
-  let key = $state(false);
+  let key = false;
   onMount(() => {
     let intervalId = setInterval(() => {
       key = !key;

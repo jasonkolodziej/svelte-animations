@@ -1,10 +1,5 @@
 <script lang="ts">
-  interface Props {
-    showFade?: boolean;
-    children?: import('svelte').Snippet;
-  }
-
-  let { showFade = true, children }: Props = $props();
+  export let showFade: boolean = true;
 </script>
 
 <div
@@ -16,5 +11,5 @@
       class="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_2%,black)] dark:bg-black"
     ></div>
   {/if}
-  {@render children?.()}
+  <slot />
 </div>

@@ -1,12 +1,8 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  interface Props {
-    class?: any;
-  }
-
-  let { class: className = "p-4" }: Props = $props();
-  
+  let className: any = "p-4";
+  export { className as class };
   let cardContent = {
     title: "Svelte is Vibe",
     description:

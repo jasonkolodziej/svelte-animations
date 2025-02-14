@@ -1,11 +1,11 @@
 <script lang="ts">
   import { Motion, useMotionTemplate, useMotionValue } from "svelte-motion";
 
-  let divRef: HTMLInputElement = $state();
+  let divRef: HTMLInputElement;
   let isFocused = false;
   let positionX = useMotionValue(0);
   let positionY = useMotionValue(0);
-  let opacity = $state(0);
+  let opacity = 0;
   let handleMouseMove = (e: MouseEvent) => {
     const rect = divRef.getBoundingClientRect();
     // console.log("rect", rect);
@@ -35,11 +35,11 @@
 
 <div class="relative w-52">
   <input
-    onmousemove={handleMouseMove}
-    onfocus={handleFocus}
-    onblur={handleBlur}
-    onmouseenter={handleMouseEnter}
-    onmouseleave={handleMouseLeave}
+    on:mousemove={handleMouseMove}
+    on:focus={handleFocus}
+    on:blur={handleBlur}
+    on:mouseenter={handleMouseEnter}
+    on:mouseleave={handleMouseLeave}
     autocomplete="off"
     placeholder="Enter Name Here"
     type="text"

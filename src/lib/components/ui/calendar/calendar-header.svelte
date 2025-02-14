@@ -4,19 +4,13 @@
 
 	type $$Props = CalendarPrimitive.HeaderProps;
 
-	interface Props {
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, children, ...rest }: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <CalendarPrimitive.Header
 	class={cn("relative flex w-full items-center justify-between pt-1", className)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </CalendarPrimitive.Header>

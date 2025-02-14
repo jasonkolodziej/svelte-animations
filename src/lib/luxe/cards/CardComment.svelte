@@ -3,7 +3,7 @@
 >
   <div
     class="absolute right-5 top-0 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent"
-></div>
+  />
   <p class="text-base text-center leading-[1.5] text-neutral-300">
     “Luxe is an interesting library, with its ease of copying and pasting
     complex components without the need to install any lib and leaves us with

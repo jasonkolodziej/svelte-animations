@@ -6,12 +6,8 @@
     title: "Be Happy",
     desc: "Life is a shipwreck, but we must not forget to sing in the lifeboats.",
   };
-  interface Props {
-    class?: string;
-  }
-
-  let { class: className = "" }: Props = $props();
-  
+  let className = "";
+  export { className as class };
 </script>
 
 <CardContainer2>

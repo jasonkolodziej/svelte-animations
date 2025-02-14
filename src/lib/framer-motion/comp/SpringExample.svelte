@@ -2,7 +2,7 @@
   import Box from "$lib/components/dev/tags/Box.svelte";
     import Button from "$lib/components/ui/button/button.svelte";
     import { Motion } from "svelte-motion";
-    let i = $state(0);
+    let i = 0;
   </script>
   
   <Box cls='bg-slate-900 flex-col gap-10'>
@@ -17,9 +17,7 @@
           mass: 0.75,
           stiffness: 100,
         }}
-        >{#snippet children({ motion })}
-            <div class="box" use:motion></div>          {/snippet}
-        </Motion
+        let:motion><div class="box" use:motion></div></Motion
       >
     {/key}
     <div>

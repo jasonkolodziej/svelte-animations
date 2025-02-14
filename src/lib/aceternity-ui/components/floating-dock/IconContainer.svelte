@@ -10,23 +10,13 @@
   import type { MotionValue } from "svelte-motion";
   import { fade } from "svelte/transition";
 
-  interface Props {
-    containerX: MotionValue<number>;
-    mouseX: MotionValue<number>;
-    title: any;
-    icon: any;
-    href: any;
-  }
+  export let containerX: MotionValue<number>;
+  export let mouseX: MotionValue<number>;
+  export let title;
+  export let icon;
+  export let href;
 
-  let {
-    containerX,
-    mouseX,
-    title,
-    icon,
-    href
-  }: Props = $props();
-
-  let ref: HTMLElement = $state();
+  let ref: HTMLElement;
 
   let distance = useTransform(mouseX, (val) => {
     const bounds = ref?.getBoundingClientRect() ?? {
@@ -55,9 +45,9 @@
 </script>
 
 <a {href}>
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <Motion
-    
+    let:motion
     style={{
       width: width,
     }}
@@ -68,31 +58,29 @@
       duration: 0.8,
     }}
   >
-    {#snippet children({ motion })}
-        {@const SvelteComponent = icon}
     <div
-        use:motion
-        bind:this={ref}
-        onmouseenter={handleMouseEnter}
-        onmouseleave={handleMouseLeave}
-        class="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative group"
-      >
-        {#if $hovered}
-          <div
-            in:fade
-            out:fade
-            class="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
-          >
-            {title}
-          </div>
-        {/if}
-        <div class="flex items-center  justify-center group-hover:scale-125 transition-all duration-200">
-          <SvelteComponent
-            strokeWidth={1.4}
-            class=" text-neutral-500 dark:text-neutral-300"
-          />
+      use:motion
+      bind:this={ref}
+      on:mouseenter={handleMouseEnter}
+      on:mouseleave={handleMouseLeave}
+      class="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative group"
+    >
+      {#if $hovered}
+        <div
+          in:fade
+          out:fade
+          class="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+        >
+          {title}
         </div>
+      {/if}
+      <div class="flex items-center  justify-center group-hover:scale-125 transition-all duration-200">
+        <svelte:component
+          this={icon}
+          strokeWidth={1.4}
+          class=" text-neutral-500 dark:text-neutral-300"
+        />
       </div>
-          {/snippet}
-    </Motion>
+    </div>
+  </Motion>
 </a>

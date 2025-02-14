@@ -6,14 +6,8 @@
 
 	type $$Props = HTMLAttributes<HTMLDivElement>;
 
-	interface Props {
-		class?: string | undefined | null;
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, children, ...rest }: Props = $props();
-	
+	let className: string | undefined | null = undefined;
+	export { className as class };
 
 	const { orientation, options, plugins, onInit } = getEmblaContext("<Carousel.Content/>");
 </script>
@@ -29,13 +23,13 @@
 		},
 		plugins: $plugins,
 	}}
-	onemblaInit={onInit}
+	on:emblaInit={onInit}
 >
 	<div
 		class={cn("flex", $orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}
 		data-embla-container=""
-		{...rest}
+		{...$$restProps}
 	>
-		{@render children?.()}
+		<slot />
 	</div>
 </div>

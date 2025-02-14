@@ -4,21 +4,15 @@
 
 	type $$Props = AvatarPrimitive.Props;
 
-	interface Props {
-		class?: $$Props["class"];
-		delayMs?: $$Props["delayMs"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, delayMs = undefined, children, ...rest }: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export let delayMs: $$Props["delayMs"] = undefined;
+	export { className as class };
 </script>
 
 <AvatarPrimitive.Root
 	{delayMs}
 	class={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </AvatarPrimitive.Root>

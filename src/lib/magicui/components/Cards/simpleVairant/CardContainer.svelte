@@ -1,10 +1,5 @@
 <script lang="ts">
   import Ellipses from "./Ellipses.svelte";
-  interface Props {
-    children?: import('svelte').Snippet;
-  }
-
-  let { children }: Props = $props();
 </script>
 
 <div
@@ -19,7 +14,7 @@
   <div class="relative w-full border-x border-zinc-400 dark:border-zinc-700">
     <Ellipses />
     <div class="relative z-20 mx-auto py-8">
-      {#if children}{@render children()}{:else}Default{/if}
+      <slot>Default</slot>
     </div>
   </div>
 </div>

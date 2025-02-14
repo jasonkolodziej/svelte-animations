@@ -1,9 +1,10 @@
 <script lang="ts">
   import CollisionMechanism from "./CollisionMechanism.svelte";
-  let containerRef: HTMLDivElement = $state();
-  let parentRef: HTMLDivElement = $state();
+  let containerRef: HTMLDivElement;
+  let parentRef: HTMLDivElement;
 
-  
+  let _class = "";
+  export { _class as class };
   type Beam = {
     initialX?: number;
     translateX?: number;
@@ -16,13 +17,7 @@
     repeatDelay?: number;
     class?: string;
   };
-  interface Props {
-    class?: string;
-    beams?: Beam[];
-    children?: import('svelte').Snippet;
-  }
-
-  let { class: _class = "", beams = [
+  export let beams: Beam[] = [
     { initialX: 10, translateX: 10, duration: 7, repeatDelay: 3, delay: 2 },
     { initialX: 600, translateX: 600, duration: 3, repeatDelay: 3, delay: 4 },
     {
@@ -55,7 +50,7 @@
       delay: 2,
       class: "h-6",
     },
-  ], children }: Props = $props();
+  ];
 </script>
 
 <div
@@ -66,7 +61,7 @@
     <CollisionMechanism {beam} bind:containerRef bind:parentRef />
   {/each}
 
-  {@render children?.()}
+  <slot />
 
   <div
     bind:this={containerRef}

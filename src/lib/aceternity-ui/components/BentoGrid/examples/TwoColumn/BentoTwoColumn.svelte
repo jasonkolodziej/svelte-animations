@@ -49,16 +49,12 @@
       description={item.description}
       class={item.className}
     >
-      {#snippet header()}
-            <div >
-          <item.header />
-        </div>
-          {/snippet}
-      {#snippet icon()}
-            <div >
-          <img src={item.icon} alt="svg_icons" class="h-4 w-4 text-neutral-500" />
-        </div>
-          {/snippet}
+      <div slot="header">
+        <svelte:component this={item.header} />
+      </div>
+      <div slot="icon">
+        <img src={item.icon} alt="svg_icons" class="h-4 w-4 text-neutral-500" />
+      </div>
     </BentoGridItem>
   {/each}
 </BentoGrid>

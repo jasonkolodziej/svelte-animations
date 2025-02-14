@@ -1,9 +1,5 @@
 <script lang="ts">
-  interface Props {
-    text?: string;
-  }
-
-  let { text = "Hover Me" }: Props = $props();
+  export let text = "Hover Me";
 </script>
 
 <button
@@ -27,6 +23,6 @@
   <div
     class="absolute inset-0 flex h-full w-full animate-brightness justify-center"
   >
-    <div class="relative h-full w-8 bg-white/40 blur"></div>
+    <div class="relative h-full w-8 bg-white/40 blur" />
   </div>
 </button>

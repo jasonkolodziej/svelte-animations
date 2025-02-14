@@ -1,18 +1,12 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
   import { Motion } from "svelte-motion";
   import { writable } from "svelte/store";
   import { draw } from "svelte/transition";
 
-  interface Props {
-    text?: string;
-    duration?: number;
-  }
+  export let text = "";
+  export let duration = 0;
 
-  let { text = "", duration = 0 }: Props = $props();
-
-  let svgRef: any = $state(null);
+  let svgRef: any = null;
   let cursor = writable({ x: 0, y: 0 });
   let hovered = writable(false);
   let maskPosition = writable({ cx: "50%", cy: "50%" });
@@ -41,21 +35,19 @@
   function handleMouseMove(e) {
     cursor.set({ x: e.clientX, y: e.clientY });
   }
-  run(() => {
-    $cursor, cursorChange();
-  });
+  $: $cursor, cursorChange();
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <svg
   bind:this={svgRef}
   width="100%"
   height="100%"
   viewBox="0 0 300 100"
   xmlns="http://www.w3.org/2000/svg"
-  onmouseenter={handleMouseEnter}
-  onmouseleave={handleMouseLeave}
-  onmousemove={(e) => handleMouseMove(e)}
+  on:mouseenter={handleMouseEnter}
+  on:mouseleave={handleMouseLeave}
+  on:mousemove={(e) => handleMouseMove(e)}
   class="select-none"
 >
   <defs>
@@ -107,23 +99,21 @@
     initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
     animate={{ strokeDashoffset: 0, strokeDasharray: 1000 }}
     transition={{ duration: 4, ease: "easeInOut" }}
-    
+    let:motion
     isSVG={true}
   >
-  {#snippet children({ motion })}
-        <text
-      use:motion
-      x="50%"
-      y="50%"
-      text-anchor="middle"
-      dominant-baseline="middle"
-      stroke-width="0.3"
-      class="font-[helvetica] font-bold fill-transparent text-7xl stroke-neutral-200 dark:stroke-neutral-800"
-    >
-      {text}
-    </text>
-          {/snippet}
-    </Motion>
+  <text
+    use:motion
+    x="50%"
+    y="50%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    stroke-width="0.3"
+    class="font-[helvetica] font-bold fill-transparent text-7xl stroke-neutral-200 dark:stroke-neutral-800"
+  >
+    {text}
+  </text>
+  </Motion>
   <text
     x="50%"
     y="50%"

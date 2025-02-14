@@ -5,12 +5,8 @@
     title: "3D Card",
     desc: "Don't take above two words seriously, I just made them up.",
   };
-  interface Props {
-    class?: string;
-  }
-
-  let { class: className = "p-8" }: Props = $props();
-  
+  let className = "p-8";
+  export { className as class };
 </script>
 
 <div class={cn("text-left", className)}>

@@ -4,17 +4,17 @@
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";
   import { animationExamples } from "$lib/examples/AnimationsExamples";
 
-  let routeID = $derived($page.params.exampleID);
-  let comp = $derived(animationExamples.filter((comp) => comp.id == Number(routeID))[0]);
-  let fileName =
-    $derived(comp.name
+  $: routeID = $page.params.exampleID;
+  $: comp = animationExamples.filter((comp) => comp.id == Number(routeID))[0];
+  $: fileName =
+    comp.name
       .split(" ")
       .map((k) => {
         let kit = k.charAt(0).toUpperCase();
         let m = kit + k.replace(k[0], "");
         return m;
       })
-      .join("") + ".svelte");
+      .join("") + ".svelte";
 </script>
 
 <div class="my-0 md:my-2 mx-2 md:mx-5">
@@ -44,7 +44,7 @@
       </h1>
       <div>
         <ComponentView>
-          <comp.component />
+          <svelte:component this={comp.component} />
         </ComponentView>
       </div>
       <div>

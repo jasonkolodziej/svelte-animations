@@ -5,12 +5,8 @@
     title: "Everything is Luck",
     desc: "I am a great believer in luck, and I find the harder I work the more I have of it.",
   };
-  interface Props {
-    class?: string;
-  }
-
-  let { class: className = "p-6" }: Props = $props();
-  
+  let className = "p-6";
+  export { className as class };
 </script>
 
 <CardBody3>

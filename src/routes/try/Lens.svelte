@@ -1,25 +1,13 @@
 <script lang="ts">
   import {  scale } from "svelte/transition";
 
-  interface Props {
-    zoomFactor?: number;
-    lensSize?: number;
-    isStatic?: boolean;
-    position?: any;
-    hovering: boolean;
-    children?: import('svelte').Snippet;
-  }
+  export let zoomFactor = 1.5;
+  export let lensSize = 170;
+  export let isStatic = false;
+  export let position = { x: 200, y: 150 };
+  export let hovering: boolean;
 
-  let {
-    zoomFactor = 1.5,
-    lensSize = 170,
-    isStatic = false,
-    position = $bindable({ x: 200, y: 150 }),
-    hovering = $bindable(),
-    children
-  }: Props = $props();
-
-  let mousePosition = $state({ x: 100, y: 100 });
+  let mousePosition = { x: 100, y: 100 };
 
   const handleMouseMove = (e: { currentTarget: { getBoundingClientRect: () => any; }; clientX: number; clientY: number; }) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -30,14 +18,14 @@
   };
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="relative overflow-hidden rounded-lg z-20 bg-gray-300 cursor-none"
-  onmouseenter={() => (hovering = true)}
-  onmouseleave={() => (hovering = false)}
-  onmousemove={handleMouseMove}
+  on:mouseenter={() => (hovering = true)}
+  on:mouseleave={() => (hovering = false)}
+  on:mousemove={handleMouseMove}
 >
-  {@render children?.()}
+  <slot></slot>
   {#if isStatic && hovering}
     <div
       in:scale
@@ -55,7 +43,7 @@
         class="absolute inset-0"
         style="transform: scale({zoomFactor}); transform-origin: {position.x}px {position.y}px;"
       >
-        {@render children?.()}
+        <slot></slot>
       </div>
     </div>
   {:else if hovering}
@@ -75,7 +63,7 @@
         class="absolute inset-0"
         style="transform: scale({zoomFactor}); transform-origin: {mousePosition.x}px {mousePosition.y}px;"
       >
-        {@render children?.()}
+        <slot />
       </div>
     </div>
   {/if}

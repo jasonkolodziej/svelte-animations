@@ -5,14 +5,9 @@
 
 	type $$Props = CommandPrimitive.InputProps;
 
-	
-	interface Props {
-		class?: string | undefined | null;
-		value?: string;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, value = $bindable(""), ...rest }: Props = $props();
+	let className: string | undefined | null = undefined;
+	export { className as class };
+	export let value: string = "";
 </script>
 
 <div class="flex items-center border-b px-2" data-cmdk-input-wrapper="">
@@ -22,7 +17,7 @@
 			"flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
 			className
 		)}
-		{...rest}
+		{...$$restProps}
 		bind:value
 	/>
 </div>

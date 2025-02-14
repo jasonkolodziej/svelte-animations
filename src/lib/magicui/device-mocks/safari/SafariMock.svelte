@@ -1,22 +1,10 @@
 <script lang="ts">
-  interface Props {
-    url?: string;
-    imageSrc?: string;
-    videoSrc?: string;
-    width?: number;
-    height?: number; // Spread props can be handled manually if specific additional props are needed
-    [key: string]: any
-  }
-
-  let {
-    url = "default",
-    imageSrc = "",
-    videoSrc = "",
-    width = 1200,
-    height = 700,
-    ...rest
-  }: Props = $props();
-  
+  export let url: string = "default";
+  export let imageSrc: string = "";
+  export let videoSrc: string = "";
+  export let width: number = 1200;
+  export let height: number = 700;
+  // Spread props can be handled manually if specific additional props are needed
 </script>
 
 <svg
@@ -26,7 +14,7 @@
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   class="rounded-lg"
-  {...rest}
+  {...$$restProps}
 >
   <g clip-path="url(#path0)">
     <path
@@ -146,7 +134,7 @@
           loop
           muted
           playsInline
-></video>
+        />
       </foreignObject>
     {/if}
   </g>

@@ -3,15 +3,10 @@
   import { onMount } from "svelte";
   import BackgroundSvg from "./BackgroundSvg.svelte";
 
-  interface Props {
-    duration?: number;
-    class?: string;
-    children?: import('svelte').Snippet;
-  }
-
-  let { duration = 10, class: _class = "", children }: Props = $props();
-  
-  let isMounted = $state(false);
+  export let duration: number = 10;
+  let _class = "";
+  export { _class as class };
+  let isMounted = false;
   onMount(() => {
     isMounted = true;
   });
@@ -22,5 +17,5 @@
   {#if isMounted}
     <BackgroundSvg {duration} />
   {/if}
-  {@render children?.()}
+  <slot></slot>
 </div>

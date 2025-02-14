@@ -1,25 +1,14 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
+  export let max: number = 100;
+  export let value: number = 0;
+  export let min: number = 0;
+  export let gaugePrimaryColor: string = "#f00";
+  export let gaugeSecondaryColor: string = "#ddd";
 
-  interface Props {
-    max?: number;
-    value?: number;
-    min?: number;
-    gaugePrimaryColor?: string;
-    gaugeSecondaryColor?: string;
-    class?: string;
-  }
-
-  let {
-    max = 100,
-    value = 0,
-    min = 0,
-    gaugePrimaryColor = "#f00",
-    gaugeSecondaryColor = "#ddd",
-    class: className = ""
-  }: Props = $props();
-  
+  let className: string = "";
+  export { className as class };
 
   let circumference = 2 * Math.PI * 45;
   let percentPx = circumference / 100;

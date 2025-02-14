@@ -8,14 +8,10 @@
     href: string;
   }
 
-  interface Props {
-    items?: Item[];
-    className?: string;
-  }
+  export let items: Item[] = [];
+  export let className: string = "";
 
-  let { items = [], className = "" }: Props = $props();
-
-  let open: boolean = $state(false);
+  let open: boolean = false;
   const toggleOpen = (): void => {
     open = !open;
   };
@@ -37,7 +33,8 @@
                 alt="svg_icons"
                 class="h-full w-full text-neutral-500 dark:text-neutral-300"
               /> -->
-            <item.icon
+            <svelte:component
+              this={item.icon}
               strokeWidth={1.4}
               class="h-full w-full text-neutral-500 dark:text-neutral-300"
             />
@@ -47,7 +44,7 @@
     </div>
   {/if}
   <button
-    onclick={toggleOpen}
+    on:click={toggleOpen}
     class="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
   >
     <img

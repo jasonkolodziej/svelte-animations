@@ -2,15 +2,15 @@
   import { spring } from "svelte/motion";
   import { fade, fly, scale } from "svelte/transition";
 
-  let { hrefDetails = {
+  export let hrefDetails = {
     href: "https://in.pinterest.com/pin/724375921339895692/",
     text: "Mumbai City",
     imgSrc:
       "https://i.pinimg.com/736x/7e/61/74/7e6174c858a5aa169de033f55fc3050c.jpg",
     imgAlt: "Mumbai",
-  } } = $props();
+  };
 
-  let isHover = $state(false);
+  let isHover = false;
   let x = spring(0, {
     stiffness: 0.1,
     damping: 0.3,

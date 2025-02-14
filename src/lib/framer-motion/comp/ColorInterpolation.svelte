@@ -13,28 +13,24 @@
   style={{
     background,
   }}
-  
+  let:motion
 >
-  {#snippet children({ motion })}
-    <div
-      class="w-[400px] h-[250px] border border-dashed flex justify-center items-center rounded-3xl"
-      use:motion
+  <div
+    class="w-[400px] h-[250px] border border-dashed flex justify-center items-center rounded-3xl"
+    use:motion
+  >
+    <Motion
+      style={{
+        x: x,
+      }}
+      drag="x"
+      dragConstraints={{ right: 0, left: 0 }}
+      whileTap={{ cursor: "grabbing" }}
+      let:motion
     >
-      <Motion
-        style={{
-          x: x,
-        }}
-        drag="x"
-        dragConstraints={{ right: 0, left: 0 }}
-        whileTap={{ cursor: "grabbing" }}
-        
-      >
-        {#snippet children({ motion })}
-            <div class="w-32 h-32 text-black rounded-full bg-white cursor-grab flex justify-center items-center select-none" use:motion>
-            Drag me
-          </div>
-                  {/snippet}
-        </Motion>
-    </div>
-  {/snippet}
+      <div class="w-32 h-32 text-black rounded-full bg-white cursor-grab flex justify-center items-center select-none" use:motion>
+        Drag me
+      </div>
+    </Motion>
+  </div>
 </Motion>

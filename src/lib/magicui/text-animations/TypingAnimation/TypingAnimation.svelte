@@ -2,16 +2,12 @@
   import { cn } from "$lib/utils";
   import { onMount } from "svelte";
 
-  interface Props {
-    text?: string;
-    duration?: number;
-    class?: string;
-  }
-
-  let { text = "Typing Animation", duration = 200, class: className = "" }: Props = $props();
+  export let text: string = "Typing Animation";
+  export let duration: number = 200;
+  let className: string = "";
+  export { className as class };
   
-  
-  let displayedText = $state("");
+  let displayedText = "";
   onMount(() => {
     let i = 0;
     const interval = setInterval(() => {

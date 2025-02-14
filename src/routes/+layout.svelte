@@ -5,17 +5,12 @@
   import "../app.css";
   import "./global.css";
   import { ModeWatcher } from "mode-watcher";
-  let routeID = $derived($page.url.pathname.split("/"));
+  $: routeID = $page.url.pathname.split("/");
 
   import { resetMode, setMode } from "mode-watcher";
   import NewNavbar from "$lib/components/dev/Navbar/NewNavbar.svelte";
-  interface Props {
-    children?: import('svelte').Snippet;
-  }
-
-  let { children }: Props = $props();
   setMode("dark");
-  let pageWidth = $state(0);
+  let pageWidth = 0;
 </script>
 
 <svelte:window bind:innerWidth={pageWidth} />
@@ -27,5 +22,5 @@
 {/if} -->
 <NewNavbar />
 <div>
-  {@render children?.()}
+  <slot />
 </div>

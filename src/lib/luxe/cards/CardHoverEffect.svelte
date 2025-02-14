@@ -2,7 +2,7 @@
   import { Motion, AnimateSharedLayout, AnimatePresence } from "svelte-motion";
   import { cn } from "$lib/utils";
 
-  let hoverdIdx = $state(0);
+  let hoverdIdx = 0;
   const items = [
     {
       id: 1,
@@ -26,16 +26,12 @@
       href: "https://github.com/SikandarJODD/svelte-animations",
     },
   ];
-  interface Props {
-    containerClassName?: string;
-  }
-
-  let { containerClassName = "" }: Props = $props();
+  export let containerClassName = "";
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  onmouseleave={() => {
+  on:mouseleave={() => {
     hoverdIdx = 0;
   }}
   class={cn("grid md:grid-cols-3 ", containerClassName)}
@@ -45,35 +41,31 @@
       <a
         href={one.href}
         target="_blank"
-        onmouseenter={() => (hoverdIdx = one.id)}
+        on:mouseenter={() => (hoverdIdx = one.id)}
         class="relative flex flex-col gap-3 p-4"
       >
         {#if hoverdIdx === one.id}
-          <AnimatePresence  list={[{ key: hoverdIdx }]}>
-            {#snippet children({ item })}
-                        <Motion
-                layoutId="cardeffect"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
-                  transition: { duration: 0.15 },
-                }}
-                exit={{
-                  opacity: 0.8,
-                  transition: { duration: 2, delay: 0.2 },
-                }}
-                
+          <AnimatePresence let:item list={[{ key: hoverdIdx }]}>
+            <Motion
+              layoutId="cardeffect"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.15 },
+              }}
+              exit={{
+                opacity: 0.8,
+                transition: { duration: 2, delay: 0.2 },
+              }}
+              let:motion
+            >
+              <span
+                use:motion
+                class="absolute inset-0 z-0 block h-full w-full rounded-xl bg-neutral-900 cardHoverEffect"
               >
-                {#snippet children({ motion })}
-                            <span
-                    use:motion
-                    class="absolute inset-0 z-0 block h-full w-full rounded-xl bg-neutral-900 cardHoverEffect"
-                  >
-                  </span>
-                                          {/snippet}
-                        </Motion>
-                                  {/snippet}
-                    </AnimatePresence>
+              </span>
+            </Motion>
+          </AnimatePresence>
         {/if}
         <div class="z-[1] space-y-3">
           <h1 class="font-medium text-white {hoverdIdx === i + 1 ? 'text-orange-400 transition-all duration-300':'' }">

@@ -7,8 +7,8 @@
   import DotPattern from "$lib/magicui/backgrounds/DotPattern/DotPattern.svelte";
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";
 
-  let routeID = $derived($page.params.compID);
-  let comp = $derived(allIndieUIComponents.filter((comp) => comp.id == routeID)[0]);
+  $: routeID = $page.params.compID;
+  $: comp = allIndieUIComponents.filter((comp) => comp.id == routeID)[0];
 
   /* 
   class="{comp?.showGrid === true
@@ -95,7 +95,7 @@ class="{example?.showGrid === true
                             />
                           </div>
                         {/if}
-                        <item.component />
+                        <svelte:component this={item.component} />
                       </ComponentView>
                     {/key}
                   </div>

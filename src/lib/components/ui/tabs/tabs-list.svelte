@@ -4,14 +4,8 @@
 
 	type $$Props = TabsPrimitive.ListProps;
 
-	interface Props {
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, children, ...rest }: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <TabsPrimitive.List
@@ -19,7 +13,7 @@
 		"inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
 		className
 	)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </TabsPrimitive.List>

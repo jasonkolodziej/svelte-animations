@@ -2,15 +2,11 @@
   import { cn } from "$lib/utils";
   import { useElementScroll } from "svelte-motion";
   import Word from "./Word.svelte";
-  
-  interface Props {
-    class?: any;
-    text?: string;
-  }
-
-  let { class: className = "", text = "Hello Everyone Svelte is Fun" }: Props = $props();
+  let className: any = "";
+  export { className as class };
+  export let text = "Hello Everyone Svelte is Fun";
   let words = text.split(" ");
-  let val = $state(useElementScroll());
+  let val = useElementScroll();
   let icode = val.scrollYProgress;
 </script>
 

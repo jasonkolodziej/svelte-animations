@@ -2,19 +2,9 @@
   import { inview } from "svelte-inview";
   import { Motion, useAnimation } from "svelte-motion";
 
-  interface Props {
-    width?: string;
-    boxColor?: string;
-    duration?: number;
-    children?: import('svelte').Snippet;
-  }
-
-  let {
-    width = "fit-content",
-    boxColor = "#5046e6",
-    duration = 0.5,
-    children
-  }: Props = $props();
+  export let width = "fit-content";
+  export let boxColor = "#5046e6";
+  export let duration = 0.5;
 
   //   Animation Controls
   let mainControls = useAnimation();
@@ -30,19 +20,17 @@
     mainControls.start("hidden");
     sideControls.start("hidden");
   };
-
-  const children_render = $derived(children);
 </script>
 
 <div
   class="relative overflow-hidden"
   style="width:{width}"
   use:inview
-  oninview_enter={viewEnter}
-  oninview_leave={viewLeave}
+  on:inview_enter={viewEnter}
+  on:inview_leave={viewLeave}
 >
   <Motion
-    
+    let:motion
     variants={{
       hidden: { opacity: 0, y: 75 },
       visible: { opacity: 1, y: 0 },
@@ -51,12 +39,10 @@
     animate={mainControls}
     transition={{ duration: duration ? duration : 0.5, delay: 0.25 }}
   >
-    {#snippet children({ motion })}
-        <div use:motion>
-        {#if children_render}{@render children_render()}{:else}Default{/if}
-      </div>
-          {/snippet}
-    </Motion>
+    <div use:motion>
+      <slot>Default</slot>
+    </div>
+  </Motion>
   <Motion
     variants={{
       hidden: { left: 0 },
@@ -65,14 +51,12 @@
     initial="hidden"
     animate={sideControls}
     transition={{ duration: duration ? duration : 0.5, ease: "easeIn" }}
-    
+    let:motion
   >
-    {#snippet children({ motion })}
-        <div
-        style="background:{boxColor}"
-        class="absolute top-[4px] bottom-[4px] left-0 right-0 z-40"
-        use:motion
-      ></div>
-          {/snippet}
-    </Motion>
+    <div
+      style="background:{boxColor}"
+      class="absolute top-[4px] bottom-[4px] left-0 right-0 z-40"
+      use:motion
+    ></div>
+  </Motion>
 </div>

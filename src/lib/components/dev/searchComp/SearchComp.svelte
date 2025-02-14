@@ -11,7 +11,7 @@
   import { allMagicComponents } from "$lib/magicui/AllMagicComponents";
   import Badge from "$lib/components/ui/badge/badge.svelte";
 
-  let open = $state(false);
+  let open = false;
 
   onMount(() => {
     function handleKeydown(e: KeyboardEvent) {
@@ -30,7 +30,7 @@
 </script>
 
 <button
-  onclick={() => (open = !open)}
+  on:click={() => (open = !open)}
   class="w-full bg-background-muted flex items-center justify-between gap-2 px-3 py-2 rounded-lg border text-sm border-border duration-300 hover:bg-neutral-900"
 >
   <span class="flex items-center gap-2 text-neutral-500">
@@ -51,7 +51,7 @@
       {#each allMagicComponents as item}
         <a
           href="/magic/{item.id}"
-          onclick={() => {
+          on:click={() => {
             open = false;
           }}
         >
@@ -76,7 +76,7 @@
       {#each allLuxeComponents as item}
         <a
           href="/luxe/{item.id}"
-          onclick={() => {
+          on:click={() => {
             open = false;
           }}
         >

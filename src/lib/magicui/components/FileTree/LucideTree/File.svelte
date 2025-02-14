@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { name } = $props();
+  export let name;
 </script>
 
 <span class=" w-fit">

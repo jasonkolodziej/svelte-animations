@@ -4,19 +4,13 @@
 
 	type $$Props = CalendarPrimitive.HeadCellProps;
 
-	interface Props {
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, children, ...rest }: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <CalendarPrimitive.HeadCell
 	class={cn("w-9 rounded-md text-[0.8rem] font-normal text-muted-foreground", className)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </CalendarPrimitive.HeadCell>

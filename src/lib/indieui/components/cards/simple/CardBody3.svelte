@@ -1,10 +1,5 @@
 <script lang="ts">
   import CardIcon from "./CardIcon.svelte";
-  interface Props {
-    children?: import('svelte').Snippet;
-  }
-
-  let { children }: Props = $props();
 </script>
 
 <div>
@@ -16,6 +11,6 @@
     <CardIcon class="-bottom-3 -left-3" />
     <CardIcon class="-bottom-3 -right-3" />
     <!-- Put Any Content inside this Slot  -->
-    {@render children?.()}
+    <slot></slot>
   </div>
 </div>

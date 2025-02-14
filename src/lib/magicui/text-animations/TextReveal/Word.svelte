@@ -1,34 +1,20 @@
 <script lang="ts">
   import { Motion, useTransform } from "svelte-motion";
-  interface Props {
-    progress?: any;
-    range: [number, number];
-    wordsLen?: number;
-    children?: import('svelte').Snippet;
-  }
-
-  let {
-    progress = 0,
-    range,
-    wordsLen = 0,
-    children
-  }: Props = $props();
+  export let progress: any = 0;
+  export let range: [number, number];
+  export let wordsLen = 0;
   let rangeValue1 = range[0] / wordsLen;
   let rangeValue2 = range[1] / wordsLen;
   let opacity = useTransform(progress, [rangeValue1, rangeValue2], [0.2, 1]);
-
-  const children_render = $derived(children);
 </script>
 
 <span class="xl:lg-3 relative mx-1 lg:mx-2.5">
   <span class="absolute opacity-30">
-    {@render children?.()}
+    <slot></slot>
   </span>
-  <Motion style={{ opacity: opacity }} >
-    {#snippet children({ motion })}
-        <span class="text-black dark:text-white" use:motion>
-        {@render children_render?.()}
-      </span>
-          {/snippet}
-    </Motion>
+  <Motion style={{ opacity: opacity }} let:motion>
+    <span class="text-black dark:text-white" use:motion>
+      <slot></slot>
+    </span>
+  </Motion>
 </span>

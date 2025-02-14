@@ -10,7 +10,7 @@
 <Box cls="bg-slate-800 flex text-black"  minHeight={450}>
   <div class="small_circle">
     <Motion
-      
+      let:motion
       style={{
         left: -25,
         top: -25,
@@ -30,9 +30,7 @@
       }}
       dragElastic={0.6}
       whileTap={{ cursor: "grabbing" }}
-      >{#snippet children({ motion })}
-            <div class="box font-medium" use:motion>3D</div>          {/snippet}
-        </Motion
+      ><div class="box font-medium" use:motion>3D</div></Motion
     >
   </div>
 </Box>

@@ -4,16 +4,10 @@
   import Button from "$lib/components/ui/button/button.svelte";
 
   type $$Props = HTMLAttributes<HTMLDivElement>;
-  
-  interface Props {
-    class?: $$Props["class"];
-    reRender?: boolean;
-    children?: import('svelte').Snippet;
-    [key: string]: any
-  }
-
-  let { class: className = undefined, reRender = true, children, ...rest }: Props = $props();
-  let rendering = $state(false);
+  let className: $$Props["class"] = undefined;
+  export { className as class };
+  export let reRender = true;
+  let rendering = false;
   let updateRendering = () => {
     rendering = !rendering;
     
@@ -25,7 +19,7 @@
     "p-3 md:p-8 min-h-[250px] flex items-center justify-center shadow border border-neutral-900 rounded-xl relative",
     className
   )}
-  {...rest}
+  {...$$restProps}
 >
   {#if reRender}
     <div class="absolute top-2 right-2 z-50">
@@ -51,6 +45,6 @@
     </div>
   {/if}
   {#key rendering}
-    {@render children?.()}
+    <slot></slot>
   {/key}
 </div>

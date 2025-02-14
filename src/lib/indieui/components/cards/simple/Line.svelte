@@ -1,12 +1,8 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  interface Props {
-    class?: string;
-  }
-
-  let { class: className = "" }: Props = $props();
-  
+  let className = "";
+  export { className as class };
 </script>
 
 <div

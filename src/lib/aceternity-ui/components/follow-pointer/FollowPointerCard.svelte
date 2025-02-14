@@ -2,14 +2,9 @@
   import { spring } from "svelte/motion";
   import FollowPointer from "./FollowPointer.svelte";
 
-  interface Props {
-    title?: string;
-    children?: import('svelte').Snippet;
-  }
-
-  let { title = "Coding is fun", children }: Props = $props();
-  let ref = $state(null);
-  let isInside = $state(false);
+  export let title = "Coding is fun";
+  let ref = null;
+  let isInside = false;
   let x = spring(0, { stiffness: 0.25, damping: 1.4 });
   let y = spring(0, { stiffness: 0.25, damping: 1.4 });
 
@@ -30,11 +25,11 @@
   };
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  onmouseleave={handleMouseLeave}
-  onmouseenter={handleMouseEnter}
-  onmousemove={handleMouseMove}
+  on:mouseleave={handleMouseLeave}
+  on:mouseenter={handleMouseEnter}
+  on:mousemove={handleMouseMove}
   bind:this={ref}
   style="cursor: none"
   class="relative"
@@ -42,5 +37,5 @@
   {#if isInside}
     <FollowPointer x={$x} y={$y} {title} />
   {/if}
-  {@render children?.()}
+  <slot></slot>
 </div>

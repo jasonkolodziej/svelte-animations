@@ -1,11 +1,7 @@
 <script lang="ts">
-  interface Props {
-    mainCircleSize?: number;
-    mainCircleOpacity?: number;
-    numCircles?: number;
-  }
-
-  let { mainCircleSize = 210, mainCircleOpacity = 0.24, numCircles = 8 }: Props = $props();
+  export let mainCircleSize: number = 210;
+  export let mainCircleOpacity: number = 0.24;
+  export let numCircles: number = 8;
 </script>
 
 <div

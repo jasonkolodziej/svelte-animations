@@ -4,15 +4,9 @@
 
 	type $$Props = CalendarPrimitive.CellProps;
 
-	interface Props {
-		date: $$Props["date"];
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { date, class: className = undefined, children, ...rest }: Props = $props();
-	
+	export let date: $$Props["date"];
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <CalendarPrimitive.Cell
@@ -21,7 +15,7 @@
 		"relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:rounded-md [&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50",
 		className
 	)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </CalendarPrimitive.Cell>

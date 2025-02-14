@@ -1,13 +1,8 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  interface Props {
-    class?: string;
-    children?: import('svelte').Snippet;
-  }
-
-  let { class: _class = "", children }: Props = $props();
-  
+  let _class = "";
+  export { _class as class };
 </script>
 
 <div
@@ -18,7 +13,7 @@
 >
   <div class="relative z-50">
     <div class="p-4">
-      {@render children?.()}
+      <slot></slot>
     </div>
   </div>
 </div>

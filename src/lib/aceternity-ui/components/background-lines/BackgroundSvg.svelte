@@ -1,10 +1,6 @@
 <script lang="ts">
   import { Motion } from "svelte-motion";
-  interface Props {
-    duration?: number;
-  }
-
-  let { duration = 10 }: Props = $props();
+  export let duration: number = 10;
 
   const pathVariants = {
     initial: { strokeDashoffset: 800, strokeDasharray: "50 800" },
@@ -67,73 +63,67 @@
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 1 }}
-  
+  let:motion
   isSVG={true}
 >
-  {#snippet children({ motion })}
-    <svg
-      use:motion
-      viewBox="0 0 1440 900"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      class="absolute inset-0 w-full h-full"
-    >
-      {#each paths as path, i}
-        <Motion
-          variants={pathVariants}
-          initial="initial"
-          animate="animate"
-          transition={{
-            duration: duration || 10,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop",
-            delay: Math.floor(Math.random() * 10),
-            repeatDelay: Math.floor(Math.random() * 10 + 2),
-          }}
-          
-          isSVG={true}
-        >
-          {#snippet children({ motion })}
-                <path
-              use:motion
-              d={path}
-              stroke={colors[i]}
-              stroke-width="2.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-                        {/snippet}
-            </Motion>
-      {/each}
+  <svg
+    use:motion
+    viewBox="0 0 1440 900"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="absolute inset-0 w-full h-full"
+  >
+    {#each paths as path, i}
+      <Motion
+        variants={pathVariants}
+        initial="initial"
+        animate="animate"
+        transition={{
+          duration: duration || 10,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+          delay: Math.floor(Math.random() * 10),
+          repeatDelay: Math.floor(Math.random() * 10 + 2),
+        }}
+        let:motion
+        isSVG={true}
+      >
+        <path
+          use:motion
+          d={path}
+          stroke={colors[i]}
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Motion>
+    {/each}
 
-      {#each paths as path, i}
-        <Motion
-          variants={pathVariants}
-          initial="initial"
-          animate="animate"
-          transition={{
-            duration: duration || 10,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop",
-            delay: Math.floor(Math.random() * 10),
-            repeatDelay: Math.floor(Math.random() * 10 + 2),
-          }}
-          
-        >
-          {#snippet children({ motion })}
-                <path
-              use:motion
-              d={path}
-              stroke={colors[i]}
-              stroke-width="2.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-                        {/snippet}
-            </Motion>
-      {/each}
-    </svg>
-  {/snippet}
+    {#each paths as path, i}
+      <Motion
+        variants={pathVariants}
+        initial="initial"
+        animate="animate"
+        transition={{
+          duration: duration || 10,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+          delay: Math.floor(Math.random() * 10),
+          repeatDelay: Math.floor(Math.random() * 10 + 2),
+        }}
+        let:motion
+      >
+        <path
+          use:motion
+          d={path}
+          stroke={colors[i]}
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Motion>
+    {/each}
+  </svg>
 </Motion>

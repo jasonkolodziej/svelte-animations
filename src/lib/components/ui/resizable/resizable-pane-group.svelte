@@ -4,24 +4,11 @@
 
 	type $$Props = ResizablePrimitive.PaneGroupProps;
 
-	interface Props {
-		class?: $$Props["class"];
-		direction: $$Props["direction"];
-		paneGroup?: $$Props["paneGroup"];
-		el?: $$Props["el"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let {
-		class: className = undefined,
-		direction,
-		paneGroup = $bindable(undefined),
-		el = $bindable(undefined),
-		children,
-		...rest
-	}: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export let direction: $$Props["direction"];
+	export let paneGroup: $$Props["paneGroup"] = undefined;
+	export let el: $$Props["el"] = undefined;
+	export { className as class };
 </script>
 
 <ResizablePrimitive.PaneGroup
@@ -29,7 +16,7 @@
 	bind:paneGroup
 	{direction}
 	class={cn("flex h-full w-full data-[direction=vertical]:flex-col", className)}
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </ResizablePrimitive.PaneGroup>

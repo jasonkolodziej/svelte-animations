@@ -1,16 +1,11 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  let mousePosition = $state({ x: 0, y: 0 });
-  let isHovering = $state(false);
-  interface Props {
-    containerClass?: string;
-    class?: string;
-    children?: import('svelte').Snippet;
-  }
-
-  let { containerClass = "", class: _class = "", children }: Props = $props();
-  
+  let mousePosition = { x: 0, y: 0 };
+  let isHovering = false;
+  export let containerClass = "";
+  let _class = "";
+  export { _class as class };
 
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
@@ -26,11 +21,11 @@
   };
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <section
-  onmousemove={handleMouseMove}
-  onmouseenter={() => (isHovering = true)}
-  onmouseleave={handleMouseLeave}
+  on:mousemove={handleMouseMove}
+  on:mouseenter={() => (isHovering = true)}
+  on:mouseleave={handleMouseLeave}
   style="transform: {isHovering
     ? `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0) scale3d(1, 1, 1)`
     : 'translate3d(0px, 0px, 0) scale3d(1, 1, 1)'}; transition: transform 0.1s ease-out;"
@@ -49,7 +44,7 @@
         : 'translate3d(0px, 0px, 0) scale3d(1, 1, 1)'}; transition: transform 0.1s ease-out;"
       class={cn("h-full px-4 py-20 sm:px-10", _class)}
     >
-      {@render children?.()}
+      <slot />
     </div>
   </div>
 </section>

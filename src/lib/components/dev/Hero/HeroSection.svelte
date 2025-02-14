@@ -4,7 +4,7 @@
   import DotBackground from "$lib/components/ui/GridDotBg/DotBackground.svelte";
   import GradientLine from "$lib/luxe/components/codeblock/GradientLine.svelte";
   import { onMount } from "svelte";
-  let stars = $state(0);
+  let stars = 0;
   let getStarsCount = async () => {
     let res = await fetch(
       "https://api.github.com/repos/SikandarJODD/svelte-animations"

@@ -4,17 +4,11 @@
 
 	type $$Props = AccordionPrimitive.ItemProps;
 
-	interface Props {
-		class?: $$Props["class"];
-		value: $$Props["value"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, value, children, ...rest }: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export let value: $$Props["value"];
+	export { className as class };
 </script>
 
-<AccordionPrimitive.Item {value} class={cn("border-b", className)} {...rest}>
-	{@render children?.()}
+<AccordionPrimitive.Item {value} class={cn("border-b", className)} {...$$restProps}>
+	<slot />
 </AccordionPrimitive.Item>

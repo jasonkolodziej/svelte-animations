@@ -2,13 +2,8 @@
   import { cn } from "$lib/utils";
   import { M, Motion } from "svelte-motion";
 
-  interface Props {
-    class?: any;
-    children?: import('svelte').Snippet;
-  }
-
-  let { class: className = "", children }: Props = $props();
-  
+  let className: any = "";
+  export { className as class };
 </script>
 
 <div class={cn("relative w-full h-full", className)}>
@@ -52,18 +47,16 @@
           repeatDelay: 2,
         }}
         isSVG={true}
-        
+        let:motion
       >
-        {#snippet children({ motion })}
-                <linearGradient id="grad1" use:motion>
-            <stop stop-color="#18CCFC" stop-opacity="0" />
-            <stop stop-color="#18CCFC" />
-            <stop offset="0.325" stop-color="#6344F5" />
-            <stop offset="1" stop-color="#AE48FF" stop-opacity="0" />
-          </linearGradient>
-                      {/snippet}
-            </Motion>
+        <linearGradient id="grad1" use:motion>
+          <stop stop-color="#18CCFC" stop-opacity="0" />
+          <stop stop-color="#18CCFC" />
+          <stop offset="0.325" stop-color="#6344F5" />
+          <stop offset="1" stop-color="#AE48FF" stop-opacity="0" />
+        </linearGradient>
+      </Motion>
     </defs>
   </svg>
-  {#if children}{@render children()}{:else}Helo{/if}
+  <slot>Helo</slot>
 </div>

@@ -2,15 +2,15 @@
   import GradientLine from "$lib/luxe/components/codeblock/GradientLine.svelte";
   import AnimatedBeam from "./AnimatedBeam.svelte";
   import Circle from "./Circle.svelte";
-  let containerRef = $state();
+  let containerRef;
   // Circles
-  let div1Ref = $state();
-  let div2Ref = $state();
-  let div3Ref = $state();
-  let div4Ref = $state();
-  let div5Ref = $state();
-  let div6Ref = $state();
-  let div7Ref = $state();
+  let div1Ref;
+  let div2Ref;
+  let div3Ref;
+  let div4Ref;
+  let div5Ref;
+  let div6Ref;
+  let div7Ref;
 </script>
 
 <div class="flex justify-center items-center h-screen relative">

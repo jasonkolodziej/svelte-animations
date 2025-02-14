@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { run, createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { writable } from "svelte/store";
 	import { onDestroy } from "svelte";
 	import { type CarouselAPI, type CarouselProps, setEmblaContext } from "./context.js";
@@ -9,27 +6,13 @@
 
 	type $$Props = CarouselProps;
 
+	export let opts = {};
+	export let plugins: NonNullable<$$Props["plugins"]> = [];
+	export let api: $$Props["api"] = undefined;
+	export let orientation: NonNullable<$$Props["orientation"]> = "horizontal";
 
-	interface Props {
-		opts?: any;
-		plugins?: NonNullable<$$Props["plugins"]>;
-		api?: $$Props["api"];
-		orientation?: NonNullable<$$Props["orientation"]>;
-		class?: $$Props["class"];
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
-
-	let {
-		opts = {},
-		plugins = [],
-		api = $bindable(undefined),
-		orientation = "horizontal",
-		class: className = undefined,
-		children,
-		...rest
-	}: Props = $props();
-	
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 
 	const apiStore = writable<CarouselAPI | undefined>(undefined);
 	const orientationStore = writable(orientation);
@@ -40,15 +23,9 @@
 	const scrollSnapsStore = writable<number[]>([]);
 	const selectedIndexStore = writable(0);
 
-	run(() => {
-		orientationStore.set(orientation);
-	});
-	run(() => {
-		pluginStore.set(plugins);
-	});
-	run(() => {
-		optionsStore.set(opts);
-	});
+	$: orientationStore.set(orientation);
+	$: pluginStore.set(plugins);
+	$: optionsStore.set(opts);
 
 	function scrollPrev() {
 		api?.scrollPrev();
@@ -66,13 +43,11 @@
 		canScrollNext.set(api.canScrollNext());
 	}
 
-	run(() => {
-		if (api) {
-			onSelect(api);
-			api.on("select", onSelect);
-			api.on("reInit", onSelect);
-		}
-	});
+	$: if (api) {
+		onSelect(api);
+		api.on("select", onSelect);
+		api.on("reInit", onSelect);
+	}
 
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === "ArrowLeft") {
@@ -113,11 +88,11 @@
 
 <div
 	class={cn("relative", className)}
-	onmouseenter={bubble('mouseenter')}
-	onmouseleave={bubble('mouseleave')}
+	on:mouseenter
+	on:mouseleave
 	role="region"
 	aria-roledescription="carousel"
-	{...rest}
+	{...$$restProps}
 >
-	{@render children?.()}
+	<slot />
 </div>

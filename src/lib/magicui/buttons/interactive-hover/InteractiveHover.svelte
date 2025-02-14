@@ -1,14 +1,9 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
   import { ArrowRight } from "lucide-svelte";
-  
-  interface Props {
-    class?: string;
-    text?: string;
-    [key: string]: any
-  }
-
-  let { class: _class = "", text = "Button", ...rest }: Props = $props();
+  let _class: string = "";
+  export { _class as class };
+  export let text: string = "Button";
 </script>
 
 <button
@@ -16,7 +11,7 @@
     "group relative w-32 cursor-pointer overflow-hidden rounded-full border bg-background p-2 text-center font-semibold",
     _class
   )}
-  {...rest}
+  {...$$restProps}
 >
   <span
     class="inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0"

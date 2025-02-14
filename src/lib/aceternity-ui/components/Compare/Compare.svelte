@@ -2,37 +2,22 @@
   import { onMount } from "svelte";
   import { tweened } from "svelte/motion";
 
-  
-  interface Props {
-    firstImage?: string;
-    secondImage?: string;
-    class?: string;
-    firstImageClass?: string;
-    secondImageClass?: string;
-    initialSliderPercentage?: number;
-    slideMode?: "hover" | "drag";
-    showHandlebar?: boolean;
-    autoplay?: boolean;
-    autoplayDuration?: number;
-  }
-
-  let {
-    firstImage = "",
-    secondImage = "",
-    class: className = "",
-    firstImageClass = "",
-    secondImageClass = "",
-    initialSliderPercentage = 50,
-    slideMode = "hover",
-    showHandlebar = true,
-    autoplay = false,
-    autoplayDuration = 5000
-  }: Props = $props();
+  export let firstImage: string = "";
+  export let secondImage: string = "";
+  let className: string = "";
+  export { className as class };
+  export let firstImageClass: string = "";
+  export let secondImageClass: string = "";
+  export let initialSliderPercentage: number = 50;
+  export let slideMode: "hover" | "drag" = "hover";
+  export let showHandlebar: boolean = true;
+  export let autoplay: boolean = false;
+  export let autoplayDuration: number = 5000;
 
   let sliderXPercent = tweened(initialSliderPercentage, { duration: 0 });
   let isDragging = false;
   let isMouseOver = false;
-  let sliderRef = $state();
+  let sliderRef;
   let autoplayTimeout;
 
   const startAutoplay = () => {
@@ -134,21 +119,21 @@
   }
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   bind:this={sliderRef}
   class="w-[400px] h-[400px] overflow-hidden {className}"
   style="position: relative; cursor: {slideMode === 'drag'
     ? 'grab'
     : 'col-resize'};"
-  onmousemove={handleMouseMove}
-  onmouseleave={mouseLeaveHandler}
-  onmouseenter={mouseEnterHandler}
-  onmousedown={handleMouseDown}
-  onmouseup={handleMouseUp}
-  ontouchstart={handleTouchStart}
-  ontouchend={handleTouchEnd}
-  ontouchmove={handleTouchMove}
+  on:mousemove={handleMouseMove}
+  on:mouseleave={mouseLeaveHandler}
+  on:mouseenter={mouseEnterHandler}
+  on:mousedown={handleMouseDown}
+  on:mouseup={handleMouseUp}
+  on:touchstart={handleTouchStart}
+  on:touchend={handleTouchEnd}
+  on:touchmove={handleTouchMove}
 >
   <div
     class="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-transparent from-[5%] to-[95%] via-indigo-500 to-transparent"
@@ -198,12 +183,12 @@
 
   <div class="overflow-hidden w-full h-full relative z-20 pointer-events-none">
     {#if firstImage}
-      <!-- svelte-ignore a11y_img_redundant_alt -->
+      <!-- svelte-ignore a11y-img-redundant-alt -->
       <div
         class="absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none overflow-hidden {firstImageClass}"
         style="clip-path: inset(0 {100 - $sliderXPercent}% 0 0);"
       >
-        <!-- svelte-ignore a11y_img_redundant_alt -->
+        <!-- svelte-ignore a11y-img-redundant-alt -->
         <img
           alt="first image"
           src={firstImage}
@@ -215,7 +200,7 @@
   </div>
 
   {#if secondImage}
-    <!-- svelte-ignore a11y_img_redundant_alt -->
+    <!-- svelte-ignore a11y-img-redundant-alt -->
     <img
       class="absolute top-0 left-0 z-[19] rounded-2xl w-full h-full select-none {secondImageClass}"
       alt="second image"

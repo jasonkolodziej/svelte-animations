@@ -43,13 +43,13 @@
   );
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  onmouseenter={() => {
+  on:mouseenter={() => {
     variantOne.set(variants.animate);
     variantTwo.set(variantsSecond.animate);
   }}
-  onmouseleave={() => {
+  on:mouseleave={() => {
     variantOne.set(variants.initial);
     variantTwo.set(variantsSecond.initial);
   }}
@@ -61,17 +61,17 @@
   >
     <div
       class="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0"
-></div>
-    <div class="w-full bg-gray-100 h-4 rounded-full dark:bg-neutral-900"></div>
+    />
+    <div class="w-full bg-gray-100 h-4 rounded-full dark:bg-neutral-900" />
   </div>
   <div
     style="transform: rotate({$variantTwo.rotate}deg) translateX({$variantTwo.x}px);"
     class="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
   >
-    <div class="w-full bg-gray-100 h-4 rounded-full dark:bg-neutral-900"></div>
+    <div class="w-full bg-gray-100 h-4 rounded-full dark:bg-neutral-900" />
     <div
       class="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0"
-></div>
+    />
   </div>
   <div
     style="transform: rotate({$variantOne.rotate}deg) translateX({$variantOne.x}px);"
@@ -79,7 +79,7 @@
   >
     <div
       class="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0"
-></div>
-    <div class="w-full bg-gray-100 h-4 rounded-full dark:bg-neutral-900"></div>
+    />
+    <div class="w-full bg-gray-100 h-4 rounded-full dark:bg-neutral-900" />
   </div>
 </div>

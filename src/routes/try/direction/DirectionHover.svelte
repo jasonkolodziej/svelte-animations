@@ -3,25 +3,14 @@
   import { writable } from "svelte/store";
   import { cn } from "$lib/utils";
 
-  interface Props {
-    imageUrl?: string;
-    children?: string;
-    childrenClassName?: string;
-    imageClassName?: string;
-    className?: string;
-    children?: import('svelte').Snippet;
-  }
+  export let imageUrl =
+    "https://i.pinimg.com/736x/98/d8/f2/98d8f20aebc103a2bd97d15c6c56fca1.jpg";
+  export let children = "coding";
+  export let childrenClassName = "";
+  export let imageClassName = "";
+  export let className = "";
 
-  let {
-    imageUrl = "https://i.pinimg.com/736x/98/d8/f2/98d8f20aebc103a2bd97d15c6c56fca1.jpg",
-    children = "coding",
-    childrenClassName = "",
-    imageClassName = "",
-    className = "",
-    children
-  }: Props = $props();
-
-  let ref = $state();
+  let ref;
   const direction = writable("left");
 
   function handleMouseEnter(event: MouseEvent) {
@@ -74,75 +63,63 @@
     left: { x: -2, opacity: 1 },
     right: { x: 20, opacity: 1 },
   };
-
-  const children_render = $derived(children);
 </script>
 
 <div class="flex justify-center items-center h-[80vh]">
-  <Motion >
-    {#snippet children({ motion })}
-        <!-- svelte-ignore a11y_no_static_element_interactions -->
-      <div
-        use:motion
-        class={cn(
-          "md:h-96 w-60 h-60 md:w-96 bg-transparent rounded-lg overflow-hidden relative group/card",
-          className
-        )}
-        bind:this={ref}
-        onmouseenter={handleMouseEnter}
-      >
-        <AnimatePresence  list={[{ key: "s" }]}>
-          {#snippet children({ item })}
-                <Motion
-              initial="initial"
-              whileHover={$direction}
-              exit="exit"
-              
+  <Motion let:motion>
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div
+      use:motion
+      class={cn(
+        "md:h-96 w-60 h-60 md:w-96 bg-transparent rounded-lg overflow-hidden relative group/card",
+        className
+      )}
+      bind:this={ref}
+      on:mouseenter={handleMouseEnter}
+    >
+      <AnimatePresence let:item list={[{ key: "s" }]}>
+        <Motion
+          initial="initial"
+          whileHover={$direction}
+          exit="exit"
+          let:motion
+        >
+          <div class="relative h-full w-full" use:motion>
+            <div
+              class="group-hover/card:block hidden absolute inset-0 w-full h-full bg-black/40 z-10 transition duration-700"
+            />
+            <Motion
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              {variants}
+              let:motion
             >
-              {#snippet children({ motion })}
-                    <div class="relative h-full w-full" use:motion>
-                  <div
-                    class="group-hover/card:block hidden absolute inset-0 w-full h-full bg-black/40 z-10 transition duration-700"
-      ></div>
-                  <Motion
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    {variants}
-                    
-                  >
-                    {#snippet children({ motion })}
-                            <div
-                        use:motion
-                        class="h-full w-full relative bg-gray-50 dark:bg-black"
-                      >
-                        <!-- svelte-ignore a11y_img_redundant_alt -->
-                        <img
-                          alt="image"
-                          class="h-full w-full object-cover scale-[1.15]"
-                          src={imageUrl}
-                        />
-                      </div>
-                                              {/snippet}
-                        </Motion>
-                  <Motion
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    variants={textVariants}
-                    
-                  >
-                    {#snippet children({ motion })}
-                            <div
-                        use:motion
-                        class="text-white absolute bottom-4 left-4 z-40 {childrenClassName}"
-                      >
-                        {#if children_render}{@render children_render()}{:else}{children}{/if}
-                      </div>
-                                              {/snippet}
-                        </Motion>
-                </div>
-                                {/snippet}
-                </Motion>
-                        {/snippet}
-            </AnimatePresence>
-      </div>
-          {/snippet}
-    </Motion>
+              <div
+                use:motion
+                class="h-full w-full relative bg-gray-50 dark:bg-black"
+              >
+                <!-- svelte-ignore a11y-img-redundant-alt -->
+                <img
+                  alt="image"
+                  class="h-full w-full object-cover scale-[1.15]"
+                  src={imageUrl}
+                />
+              </div>
+            </Motion>
+            <Motion
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              variants={textVariants}
+              let:motion
+            >
+              <div
+                use:motion
+                class="text-white absolute bottom-4 left-4 z-40 {childrenClassName}"
+              >
+                <slot>{children}</slot>
+              </div>
+            </Motion>
+          </div>
+        </Motion>
+      </AnimatePresence>
+    </div>
+  </Motion>
 </div>

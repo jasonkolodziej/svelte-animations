@@ -5,6 +5,12 @@
   import SearchComp from "../searchComp/SearchComp.svelte";
   import { fade } from "svelte/transition";
 
+  export let mainNavs = [
+    { link: "/", name: "Home" },
+    { link: "/", name: "Components" },
+    { link: "/changelog", name: "Changelog" },
+    { link: "/templates/developer-portfolio", name: "Templates" },
+  ];
   let miniNav = [
     { link: "/magic", name: "Magic UI" },
     { link: "/in", name: "Indie UI" },
@@ -16,15 +22,9 @@
   import { navs } from "$lib";
   import { slide } from "svelte/transition";
   import Button from "$lib/components/ui/button/button.svelte";
-  let { mainNavs = [
-    { link: "/", name: "Home" },
-    { link: "/", name: "Components" },
-    { link: "/changelog", name: "Changelog" },
-    { link: "/templates/developer-portfolio", name: "Templates" },
-  ] } = $props();
-  let ismobileMenuOpen = $state(false);
-  let openComponents = $state(false);
-  let routeId = $derived($page.url.pathname);
+  let ismobileMenuOpen = false;
+  let openComponents = false;
+  $: routeId = $page.url.pathname;
 </script>
 
 <nav class="bg-background/50 border-b sticky top-0 z-50 backdrop-blur-md">
@@ -90,7 +90,7 @@
                             )}
                           >
                             <a
-                              onclick={() => (openComponents = false)}
+                              on:click={() => (openComponents = false)}
                               href={item.link}
                               class="relative size-full rounded-lg flex justify-center items-center bg-zinc-200 dark:bg-zinc-950 border text-md px-6 dark:hover:bg-zinc-900/70 transition-all duration-200 {i ==
                               3
@@ -101,11 +101,11 @@
                                 <span>
                                   <span
                                     class="spark mask-gradient animate-flip before:animate-kitrotate absolute inset-0 h-[100%] w-[100%] overflow-hidden rounded-xl [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]"
-></span>
+                                  />
                                 </span>
                                 <span
                                   class="backdrop absolute inset-px rounded-[11px] bg-zinc-950 transition-colors duration-200"
-></span>
+                                />
                               {/if}
                               <span class="z-50">
                                 {item.name}
@@ -162,7 +162,7 @@
           class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 outline-none"
           aria-controls="mobile-menu"
           aria-expanded="false"
-          onclick={() => (ismobileMenuOpen = !ismobileMenuOpen)}
+          on:click={() => (ismobileMenuOpen = !ismobileMenuOpen)}
         >
           <span class="absolute -inset-0.5"></span>
           <span class="sr-only">Open main menu</span>
@@ -218,7 +218,7 @@
       <div class="space-y-1 px-2 pb-3 pt-2" transition:slide>
         {#each navs as { link, name }}
           <a
-            onclick={() => (ismobileMenuOpen = false)}
+            on:click={() => (ismobileMenuOpen = false)}
             href={link}
             class="block rounded-md px-3 py-1.5 text-base text-gray-300 transition-all duration-200"
             >{name}</a
