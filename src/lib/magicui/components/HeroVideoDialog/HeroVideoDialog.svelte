@@ -196,10 +196,11 @@
     width: 5rem;
     height: 5rem;
   }
+/* unused */
   .size-8 {
     width: 2rem;
     height: 2rem;
-  }
+  } 
   .size-full {
     width: 100%;
     height: 100%;
