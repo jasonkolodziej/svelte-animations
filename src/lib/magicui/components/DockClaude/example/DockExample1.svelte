@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // Lucide Svelte
   import {
     Home,

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import MagicSidebar from "$lib/magicui/components/MagicSidebar/MagicSidebar.svelte";
 
     

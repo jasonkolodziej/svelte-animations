@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import CardContainer2 from "./CardContainer2.svelte";
 

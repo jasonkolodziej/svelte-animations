@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BackgroundBeamCollision from "./BackgroundBeamCollision.svelte";
 </script>
 

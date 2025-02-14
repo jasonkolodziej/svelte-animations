@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion, AnimateSharedLayout } from "svelte-motion";
   const tabs = [
     {

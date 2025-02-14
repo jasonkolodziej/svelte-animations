@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import Code from "./Code.svelte";
   import CopyCode from "./CopyCode.svelte";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import VelocityCode from "./VelocityCode.svelte";
 </script>
 

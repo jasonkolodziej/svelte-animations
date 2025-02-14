@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // Scroll below to see the original Component file
   import ShineBorder from "../ShineBorder.svelte";
 </script>

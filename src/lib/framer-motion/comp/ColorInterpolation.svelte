@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion, useMotionValue, useTransform } from "svelte-motion";
   let x = useMotionValue(0);
   let background = useTransform(

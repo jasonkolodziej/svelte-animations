@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import SvelteSeo from "svelte-seo";
   import Page from "../fun/+page.svelte";
   import Separator from "$lib/components/ui/separator/separator.svelte";

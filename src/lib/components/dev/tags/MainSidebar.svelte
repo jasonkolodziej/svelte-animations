@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import { navs } from "$lib";
   import Separator from "$lib/components/ui/separator/separator.svelte";

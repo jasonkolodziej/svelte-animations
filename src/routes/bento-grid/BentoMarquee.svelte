@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Marquee from "$lib/magicui/components/Marquee/Marquee.svelte";
   import { cn } from "$lib/utils";
   const files = [

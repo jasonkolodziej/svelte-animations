@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BorderBeam from "./BorderBeam.svelte";
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import CardHoverEffect from "./CardHoverEffect.svelte";
   export const projects = [
     {

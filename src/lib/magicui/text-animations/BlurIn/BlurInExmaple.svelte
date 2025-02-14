@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BlurInText from "./BlurInText.svelte";
 </script>
 

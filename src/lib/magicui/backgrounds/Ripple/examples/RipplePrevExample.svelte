@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Ripple from "../PrevRipple.svelte";
 </script>
 

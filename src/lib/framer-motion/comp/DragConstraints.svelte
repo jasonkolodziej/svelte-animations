@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Box from "$lib/components/dev/tags/Box.svelte";
   import { Motion, useAnimation } from "svelte-motion";
   let controls = useAnimation();

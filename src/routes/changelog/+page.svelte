@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Separator from "$lib/components/ui/separator/separator.svelte";
   import { marked } from "marked";
   import GithubSvg from "$lib/svg/web/github.svg";

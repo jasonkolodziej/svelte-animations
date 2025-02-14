@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import { motionLearnings } from "$lib/framer-motion/MotionsLearnings";
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";

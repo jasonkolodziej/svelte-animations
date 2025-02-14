@@ -1,4 +1,4 @@
-<!-- <script>
+<!-- <script lang="ts">
   import { cn } from "$lib/utils";
   export let name;
   export let description;

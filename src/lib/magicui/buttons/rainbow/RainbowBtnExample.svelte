@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import RainbowButton from "./RainbowButton.svelte";
 </script>
 

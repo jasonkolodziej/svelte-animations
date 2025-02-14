@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import BlurFade from "../BlurFade.svelte";
   
     let images = Array.from({ length: 9 }, (_, i) => {

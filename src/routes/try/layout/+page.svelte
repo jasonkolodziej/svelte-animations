@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import LayoutGrid from "$lib/aceternity-ui/components/layout-grid/LayoutGrid.svelte";
   import SkeletonFour from "./SkeletonFour.svelte";
   import SkeletonOne from "./SkeletonOne.svelte";

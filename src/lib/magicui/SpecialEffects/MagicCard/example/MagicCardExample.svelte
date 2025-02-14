@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import SvelteSvg from "$lib/svg/web/svelte.svg";
   import SupabaseSvg from "$lib/svg/web/supabase.svg";
   import MagicCard from "../MagicCard.svelte";

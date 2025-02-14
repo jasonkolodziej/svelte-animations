@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BackgroundLines from "$lib/aceternity-ui/components/background-lines/BackgroundLines.svelte";
 
 </script>

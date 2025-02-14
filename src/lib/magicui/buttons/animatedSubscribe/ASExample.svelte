@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import AnimatedSubscribeButton from "./AnimatedSubscribeButton.svelte";
   import { CheckIcon, ChevronRightIcon } from "lucide-svelte";
 </script>

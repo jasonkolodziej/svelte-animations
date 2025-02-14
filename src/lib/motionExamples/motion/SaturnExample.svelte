@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { cubicOut } from "svelte/easing";
     import { crossfade } from "svelte/transition";
     import { scale,fade,fly } from "svelte/transition";

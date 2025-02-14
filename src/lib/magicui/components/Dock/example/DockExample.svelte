@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Home, Pencil } from "lucide-svelte";
   import Dock from "../Dock.svelte";
   import DockIcon from "../DockIcon.svelte";

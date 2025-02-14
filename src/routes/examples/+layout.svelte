@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import MainSidebar from "$lib/components/dev/tags/MainSidebar.svelte";
   import SideNav from "$lib/components/dev/tags/SideNav.svelte";
   import { animationExamples } from "$lib/examples/AnimationsExamples";

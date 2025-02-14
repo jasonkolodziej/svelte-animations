@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import File from "./File.svelte";
   import { slide } from "svelte/transition";
 

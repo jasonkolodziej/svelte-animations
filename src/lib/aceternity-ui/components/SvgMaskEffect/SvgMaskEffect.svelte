@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { writable } from "svelte/store";
   import maskSvg from "./mask.svg";

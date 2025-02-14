@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import CircularProgressBar from "./CircularProgressBar.svelte";
   import { spring, tweened } from "svelte/motion";

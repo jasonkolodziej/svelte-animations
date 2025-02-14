@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { navs } from "$lib";
   import { onMount } from "svelte";
   import { draw, slide } from "svelte/transition";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import CardBody from "./CardBody.svelte";
   import CardIcon from "./CardIcon.svelte";
 </script>

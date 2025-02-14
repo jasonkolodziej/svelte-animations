@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import DirectionHover from "./DirectionHover.svelte";
 </script>
 

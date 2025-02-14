@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion, useMotionValue, useMotionTemplate } from "svelte-motion";
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
@@ -8,6 +8,7 @@
 </script>
 
 <div
+  role="application"
   on:mousemove={(e) => {
     const { left, top } = e.currentTarget.getBoundingClientRect();
 

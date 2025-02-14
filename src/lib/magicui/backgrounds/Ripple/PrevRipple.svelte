@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 //   Previous Components
   // Modify these
   export let MAIN_CIRCLE_SIZE = 180;

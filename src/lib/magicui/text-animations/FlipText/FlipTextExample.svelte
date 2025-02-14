@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FlipText from "./FlipText.svelte";
 </script>
 

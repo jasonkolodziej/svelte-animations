@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { Motion } from "svelte-motion";
     // Change the duration and stagger to see the effect
     let duration = 0.25;

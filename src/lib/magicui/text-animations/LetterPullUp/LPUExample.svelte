@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import LetterPullUp from "./LetterPullUp.svelte";
 </script>
 

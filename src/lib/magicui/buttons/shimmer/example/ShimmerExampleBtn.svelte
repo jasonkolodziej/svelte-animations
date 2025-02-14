@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ShimmerButton from "../ShimmerButton.svelte";
 </script>
 

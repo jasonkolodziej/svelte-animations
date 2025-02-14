@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { tailwindCode } from "$lib";
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";
 </script>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Button from "$lib/components/ui/button/button.svelte";
   import { cn } from "$lib/utils";
   import { XIcon, MenuIcon } from "lucide-svelte";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ScratchToReveal from "./ScratchToReveal.svelte";
 </script>
 <div class='z-10'>

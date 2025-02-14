@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Marquee from "../Marquee.svelte";
   import Reviewcard from "./Reviewcard.svelte";
 

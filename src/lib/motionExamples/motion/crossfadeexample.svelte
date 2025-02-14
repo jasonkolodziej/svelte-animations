@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { crossfade, scale } from 'svelte/transition';
 	let layout = 'layout-a';
 	

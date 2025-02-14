@@ -51,7 +51,7 @@
     sparkles = temp;
   };
 
-  let interval;
+  let interval: NodeJS.Timeout;
   onMount(async () => {
     initializeStars();
     interval = setInterval(updateStars, 100);

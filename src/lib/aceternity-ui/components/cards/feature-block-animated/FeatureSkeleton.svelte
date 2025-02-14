@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import SparkleCard from "./SparkleCard.svelte";
   import Container from "./Container.svelte";
   import GeminiLogo from "./GeminiLogo.svelte";

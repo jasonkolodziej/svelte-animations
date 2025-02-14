@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";
   import { Motion } from "svelte-motion";
 </script>

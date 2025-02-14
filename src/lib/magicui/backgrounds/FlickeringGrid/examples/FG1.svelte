@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // Scroll down to see the original component
   import FlickeringGrid from "../FlickeringGrid.svelte";
 </script>

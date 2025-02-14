@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { allLuxeComponents } from "$lib/luxe/components/AllLuxeComponents";
   import { page } from "$app/stores";
   import { navs } from "$lib";

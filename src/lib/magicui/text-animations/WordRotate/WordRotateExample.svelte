@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import WordRotate from "./WordRotate.svelte";
 </script>
 

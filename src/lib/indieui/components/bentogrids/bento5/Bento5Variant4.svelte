@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
 
   let cells = [1, 2, 3, 4, 5];

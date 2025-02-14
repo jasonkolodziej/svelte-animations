@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import RetroGrid from "../RetroGrid.svelte";
 </script>
 

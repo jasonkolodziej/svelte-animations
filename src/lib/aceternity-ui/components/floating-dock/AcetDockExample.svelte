@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FloatingDockDesktop from "$lib/aceternity-ui/components/floating-dock/FloatingDockDesktop.svelte";
   import { Home, FolderPen, Mic, Award, Trash2, Share } from "lucide-svelte";
   import FloatingDockMobile from "./FloatingDockMobile.svelte";

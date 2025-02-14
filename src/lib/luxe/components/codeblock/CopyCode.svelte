@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let code = "";
   let isCopied = false;
   let handleCopy = () => {

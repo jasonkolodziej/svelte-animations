@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import { allIcons, allTemplates } from "$lib/templates/allTemplates";
   import * as Breadcrumb from "$lib/components/ui/breadcrumb/index";

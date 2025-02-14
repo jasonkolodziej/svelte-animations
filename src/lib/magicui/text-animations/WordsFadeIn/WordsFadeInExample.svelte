@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import WordsFadeIn from "./WordsFadeIn.svelte";
 </script>
 

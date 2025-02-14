@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import PlaceHolderVanish from "./PlaceHolderVanish.svelte";
   import HoverBorderGradient from "./HoverBorderGradient.svelte";
 

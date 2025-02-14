@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Lights from "../Lights.svelte";
   // for bg-grid : please scroll to the bottom of the page to see the bg-grid tailwind.config.ts file.
   // No need to install base components for this example. just checkout tailwind.config.ts file. 

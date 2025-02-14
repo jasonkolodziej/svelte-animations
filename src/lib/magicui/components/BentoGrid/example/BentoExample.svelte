@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Calendar, TextSearch, ReceiptText, CodeXml } from "lucide-svelte";
 
   //  4 Minor Components :

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import HeroGrid from "$lib/components/dev/Hero/HeroGrid.svelte";
   import HeroSection from "$lib/components/dev/Hero/HeroSection.svelte";
   import HeroMagic from "$lib/components/dev/landing/HeroMagic.svelte";

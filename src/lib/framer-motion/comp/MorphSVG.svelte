@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion, M } from "svelte-motion";
 </script>
 

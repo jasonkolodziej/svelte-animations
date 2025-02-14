@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Card from "./Card.svelte";
   import CardDesc from "./CardDesc.svelte";
   import CardSkeletonContainer from "./CardSkeletonContainer.svelte";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import GradualSpacing from "./GradualSpacing.svelte";
 </script>
 

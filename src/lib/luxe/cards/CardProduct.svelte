@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion, useMotionTemplate, useMotionValue } from "svelte-motion";
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);

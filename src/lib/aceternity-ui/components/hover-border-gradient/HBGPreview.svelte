@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import HoverBorderGradient from "./HoverBorderGradient.svelte";
 
 </script>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
   // Visit Border Beam Component for more information
   import BorderBeam from "$lib/magicui/SpecialEffects/BorderBeam/BorderBeam.svelte";

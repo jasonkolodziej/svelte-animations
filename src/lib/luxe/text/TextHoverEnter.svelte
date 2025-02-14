@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion } from "svelte-motion";
 
   let DURATION = 0.25;

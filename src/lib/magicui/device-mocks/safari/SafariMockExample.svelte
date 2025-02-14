@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import SafariMock from "./SafariMock.svelte";
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Spotlight from "./Spotlight.svelte";
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // From Shadcn Svelte UI Library
   import Button from "$lib/components/ui/button/button.svelte";
   import BoxReveal from "./BoxReveal.svelte";

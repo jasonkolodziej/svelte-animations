@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Iphone15ProMock from "./Iphone15ProMock.svelte";
 </script>
 

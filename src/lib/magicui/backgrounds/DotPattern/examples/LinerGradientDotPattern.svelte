@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import DotPattern from "../DotPattern.svelte";
 </script>
 

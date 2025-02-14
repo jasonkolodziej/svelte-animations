@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   let sharedClass =
     "rounded-full outline outline-8 dark:outline-gray-950 sm:my-6 md:my-8 size-1 my-4 outline-gray-50 bg-green-400";
 </script>

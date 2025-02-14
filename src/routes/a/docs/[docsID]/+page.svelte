@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import { allInstallations } from "$lib/aceternity-ui/docs/allinstallations";
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";

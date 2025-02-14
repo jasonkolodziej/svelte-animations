@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FollowPointerCard from "$lib/aceternity-ui/components/follow-pointer/FollowPointerCard.svelte";
 
   const blogContent = {

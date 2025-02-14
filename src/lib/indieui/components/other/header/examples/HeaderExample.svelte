@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Xsvg from "./x.svg";
   import GithubSvg from "./github.svg";
   import HeaderNav from "../HeaderNav.svelte";

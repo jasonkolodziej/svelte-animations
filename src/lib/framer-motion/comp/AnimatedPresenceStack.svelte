@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Motion, AnimatePresence } from "svelte-motion";
   import Card from "./Card.svelte";
   let index = 0;

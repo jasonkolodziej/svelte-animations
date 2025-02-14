@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import SimpleGrid from "./SimpleGrid.svelte"; // Scroll down to see the SimpleGrid component
 
   const grid = [

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // Checkout BorderBeam Component from Special Effects
   import BorderBeam from "$lib/magicui/SpecialEffects/BorderBeam/BorderBeam.svelte"; // Checkout BorderBeam Component from Special Effects
   import AnimatedBeam from "../AnimatedBeam.svelte";

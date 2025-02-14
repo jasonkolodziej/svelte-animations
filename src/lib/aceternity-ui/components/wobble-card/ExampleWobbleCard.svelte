@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import WobbleCard from "./WobbleCard.svelte";
   import LinearImg from "./linear.webp";
 </script>

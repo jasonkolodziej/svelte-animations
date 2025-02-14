@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Separator from "$lib/components/ui/separator/separator.svelte";
   import CodeBlock from "$lib/luxe/components/codeblock/CodeBlock.svelte";
 </script>

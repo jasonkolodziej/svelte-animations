@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import InteractiveHover from "./InteractiveHover.svelte";
 </script>
 

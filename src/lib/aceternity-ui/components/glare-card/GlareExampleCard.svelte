@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import GlareCard from "./GlareCard.svelte";
 </script>
 

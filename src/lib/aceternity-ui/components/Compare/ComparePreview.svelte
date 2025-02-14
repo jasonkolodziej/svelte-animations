@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Svelte4Syntax from "$lib/svg/svelte4Syntax.png";
   import Svelte5Syntax from "$lib/svg/svelte5syntax.png";
   import Compare from "./Compare.svelte";

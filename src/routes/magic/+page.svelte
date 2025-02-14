@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";
   import GradientLine from "$lib/luxe/components/codeblock/GradientLine.svelte";
   import DotPattern from "$lib/magicui/backgrounds/DotPattern/DotPattern.svelte";

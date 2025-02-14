@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Timeline from "../Timeline.svelte";
   import Content1 from "./Content1.svelte";
   import Content2 from "./Content2.svelte";

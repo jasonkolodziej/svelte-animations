@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Separator from "$lib/components/ui/separator/separator.svelte";
   import { allLuxeComponents } from "$lib/luxe/components/AllLuxeComponents";
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";

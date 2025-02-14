@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import GradientLine from "$lib/luxe/components/codeblock/GradientLine.svelte";
   import AnimatedBeam from "./AnimatedBeam.svelte";
   import Circle from "./Circle.svelte";

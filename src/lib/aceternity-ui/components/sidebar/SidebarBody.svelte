@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import DesktopSidebar from "./DesktopSidebar.svelte";
   import MobileSidebar from "./MobileSidebar.svelte";

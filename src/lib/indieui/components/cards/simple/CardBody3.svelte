@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import CardIcon from "./CardIcon.svelte";
 </script>
 

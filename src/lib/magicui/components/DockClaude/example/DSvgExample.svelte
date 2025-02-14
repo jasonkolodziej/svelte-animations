@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Dock from "../Dock.svelte";
   import DockIcon from "../DockIcon.svelte";
   import GithubSvg from "$lib/svg/web/github.svg";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { Motion, AnimatePresence } from "svelte-motion";
     import { writable } from "svelte/store";
     import { cn } from "$lib/utils";
@@ -13,7 +13,7 @@
     let ref;
     const direction = writable("left");
   
-    function handleMouseEnter(event) {
+    function handleMouseEnter(event: MouseEvent) {
       if (!ref) return;
   
       const directionValue = getDirection(event, ref);

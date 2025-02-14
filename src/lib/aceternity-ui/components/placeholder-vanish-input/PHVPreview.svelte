@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import PlaceholderVanishInput from "./PlaceholderVanishInput.svelte";
 
   const placeholders = [

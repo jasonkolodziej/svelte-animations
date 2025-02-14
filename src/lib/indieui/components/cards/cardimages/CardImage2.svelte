@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import CardBodyImg from "./cardbody/CardBodyImg.svelte";
 </script>
 

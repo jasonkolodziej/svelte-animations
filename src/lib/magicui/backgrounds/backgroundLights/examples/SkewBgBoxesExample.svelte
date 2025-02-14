@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import BgTiles from "$lib/magicui/backgrounds/backgroundLights/BgTiles.svelte";
     import { cn } from "$lib/utils";
   </script>

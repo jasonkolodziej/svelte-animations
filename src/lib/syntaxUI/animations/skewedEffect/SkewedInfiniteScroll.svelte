@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Button from "$lib/components/ui/button/button.svelte";
   import Reviewcard from "$lib/magicui/components/Marquee/example/Reviewcard.svelte";
   import Marquee from "$lib/magicui/components/Marquee/Marquee.svelte";

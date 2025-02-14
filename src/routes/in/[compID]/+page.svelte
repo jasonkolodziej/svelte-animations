@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { allIndieUIComponents } from "$lib/indieui/allIndieUIComponents";
   import { page } from "$app/stores";
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";

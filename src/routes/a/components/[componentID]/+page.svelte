@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import * as Tabs from "$lib/components/ui/tabs/index";
   import { allAceternityUI } from "$lib/aceternity-ui/components/allAceternityUI";

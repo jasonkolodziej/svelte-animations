@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import MCardBody1 from "./cardbody/MCardBody1.svelte";
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FeatureDemoCard from "$lib/aceternity-ui/components/cards/feature-block-animated/FeatureDemoCard.svelte";
 </script>
 

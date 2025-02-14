@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import GithubSvg from "$lib/svg/web/github.svg";
   import TwitterSvg from "$lib/svg/web/x.svg";
   import { page } from "$app/stores";

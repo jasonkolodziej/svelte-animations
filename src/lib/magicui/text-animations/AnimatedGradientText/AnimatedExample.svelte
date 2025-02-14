@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import AnimatedGradientText from "./AnimatedGradientText.svelte";
   import { cn } from "$lib/utils";
 </script>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import AceternitySidebar from "$lib/aceternity-ui/web/AceternitySidebar.svelte";
 </script>
 

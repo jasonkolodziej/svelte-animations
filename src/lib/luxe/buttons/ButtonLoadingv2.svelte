@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   let bars = Array(12).fill(0);
 </script>
 

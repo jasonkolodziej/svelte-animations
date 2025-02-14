@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import HeadingOne from "$lib/components/dev/tags/HeadingOne.svelte";
   import Para from "$lib/components/dev/tags/Para.svelte";
   import { motionLearnings } from "$lib/framer-motion/MotionsLearnings";

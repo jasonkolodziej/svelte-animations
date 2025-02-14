@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
     import Particles from "@tsparticles/svelte";
     import { tweened } from 'svelte/motion';

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Nub from './../../../../routes/motion/Nub.svelte';
     import { Motion } from "svelte-motion";
     import Products from "./Products.svelte";

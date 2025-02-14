@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BentoGrid from "../BentoGrid.svelte";
   import BentoGridItem from "../BentoGridItem.svelte";
   import BentoSkeleton from "./BentoSkeleton.svelte";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cubicInOut, expoIn, quintInOut } from "svelte/easing";
   import { crossfade } from "svelte/transition";
   let openApp = "";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BgDarkTiles from "../BgDarkTiles.svelte";
 </script>
 

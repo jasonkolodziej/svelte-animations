@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Marquee from "$lib/magicui/components/Marquee/Marquee.svelte";
   import { cn } from "$lib/utils";
   const files = [
@@ -46,6 +46,14 @@
           </figcaption>
         </div>
       </div>
+
+          <!-- <figcaption class="text-sm font-medium dark:text-white ">
+            <div class="flex flex-row items-center gap-2">
+              <div class="flex flex-col">
+                {f.name}
+              </div>
+            </div>
+          </figcaption> -->
       <blockquote class="mt-2 text-xs">{f.body}</blockquote>
     </figure>
   {/each}

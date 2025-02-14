@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import AuroraBackground from "./AuroraBackground.svelte";
 </script>
 

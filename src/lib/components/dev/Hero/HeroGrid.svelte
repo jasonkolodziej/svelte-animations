@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import CarouselCard2 from "./CarouselCard2.svelte";
   import CarouselCard3 from "./CarouselCard3.svelte";

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import TypingAnimation from "./TypingAnimation.svelte";
 </script>
 

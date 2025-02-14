@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FollowPointerCard from "./FollowPointerCard.svelte";
 
   const blogContent = {

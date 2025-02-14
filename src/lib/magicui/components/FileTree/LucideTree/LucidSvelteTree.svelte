@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Folder from "./Folder.svelte";
 
   let root = [

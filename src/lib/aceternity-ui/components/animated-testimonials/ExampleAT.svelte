@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import AnimatedTestimonials from "./AnimatedTestimonials.svelte";
 
   const testimonials = [

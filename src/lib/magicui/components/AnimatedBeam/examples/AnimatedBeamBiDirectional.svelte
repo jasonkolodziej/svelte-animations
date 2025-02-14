@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // Scroll down to see the original Component
   import AnimatedBeam from "../AnimatedBeam.svelte";
   import Circle from "../Circle.svelte";

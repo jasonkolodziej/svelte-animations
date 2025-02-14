@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import CardBody3 from "./CardBody3.svelte";
   import { cn } from "$lib/utils";
   let card = {

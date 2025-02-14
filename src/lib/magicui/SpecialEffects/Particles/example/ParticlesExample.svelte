@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // Scroll below to see the original Component code
   import Particles from "../Particles.svelte";
 </script>

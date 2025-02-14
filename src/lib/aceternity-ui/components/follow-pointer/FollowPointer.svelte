@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { fade, fly, scale, slide } from "svelte/transition";
   export let x;
   export let y;

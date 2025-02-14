@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import IconAdjustmentsBolt from "$lib/svg/tabler/adjustments-bolt.svg";
   import IconCloud from "$lib/svg/tabler/cloud.svg";
   import IconCurrencyDollar from "$lib/svg/tabler/currency-dollar.svg";

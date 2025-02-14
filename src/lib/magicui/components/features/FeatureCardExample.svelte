@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FeatureCard from "$lib/magicui/components/features/FeatureCard.svelte";
   import { Eye, PackageSearch, Settings } from "lucide-svelte";
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import RippleButton from "./RippleButton.svelte";
 </script>
 

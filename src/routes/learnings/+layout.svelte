@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { motionLearnings } from '$lib/framer-motion/MotionsLearnings';
   import { page } from "$app/stores";
   import Navbar from "$lib/components/dev/Navbar/Navbar.svelte";
