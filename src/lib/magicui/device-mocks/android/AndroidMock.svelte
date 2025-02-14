@@ -65,7 +65,7 @@
         loop
         muted
         playsinline
-      />
+      ></video>
     </foreignObject>
   {/if}
 
