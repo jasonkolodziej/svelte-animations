@@ -1,9 +1,10 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
+import typography from "@tailwindcss/typography";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 import svgToDataUri from "mini-svg-data-uri";
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   darkMode: ["class"],
   content: ["./src/**/*.{html,js,svelte,ts}"],
   safelist: ["dark"],
@@ -79,9 +80,9 @@ const config: Config = {
         "text-glitch-from": "text-glitch-from 0.6s ease-in-out infinite",
         "text-scale": "text-scale 1s linear infinite forwards",
         spin: "spin 2s linear infinite",
-        "spinner": "spinner 1.2s linear infinite",
+        spinner: "spinner 1.2s linear infinite",
         // Luxe UI
-        "brightness": "brightness 2.2s linear infinite",
+        brightness: "brightness 2.2s linear infinite",
 
         // From UI-Snippets : https://ui.ibelick.com
         // 'text-gradient': 'text-gradient 1.5s linear infinite',
@@ -142,13 +143,13 @@ const config: Config = {
             backgroundPosition: "-200% 0",
           },
         },
-        "spinner": {
+        spinner: {
           "0%": {
-            "opacity": "1"
+            opacity: "1",
           },
           "100%": {
-            "opacity": "0.15"
-          }
+            opacity: "0.15",
+          },
         },
         "border-width": {
           from: {
@@ -220,13 +221,13 @@ const config: Config = {
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
-        "brightness": {
+        brightness: {
           "0%": {
-            "transform": "skew(-13deg) translateX(-100%)"
+            transform: "skew(-13deg) translateX(-100%)",
           },
           "100%": {
-            "transform": "skew(-13deg) translateX(100%)"
-          }
+            transform: "skew(-13deg) translateX(100%)",
+          },
         },
         // For Gradient Input, UI-Snippets : https://ui.ibelick.com
         "background-shine": {
@@ -339,7 +340,7 @@ const config: Config = {
           "100%": {
             transform: "scale(2)",
             opacity: "0",
-          }
+          },
         },
         rainbow: {
           "0%": { "background-position": "0%" },
@@ -406,9 +407,10 @@ const config: Config = {
         { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
       );
     },
-    require("@tailwindcss/typography"),
+    typography,
+    // require("@tailwindcss/typography"),
   ],
-};
+} satisfies Config;
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 function addVariablesForColors({ addBase, theme }: any) {
@@ -422,4 +424,4 @@ function addVariablesForColors({ addBase, theme }: any) {
   });
 }
 
-export default config;
+// export default config;
