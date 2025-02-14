@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  interface Sparkle {
+  interface SparkleText {
     id: string;
     x: string;
     y: string;
@@ -20,7 +20,7 @@
   let className = "";
   export { className as class };
 
-  let sparkles: Sparkle[] = [];
+  let sparkles: SparkleText[] = [];
   import { onMount, onDestroy, tick } from "svelte";
   import Sparkle from "./Sparkle.svelte";
 

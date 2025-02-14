@@ -4,7 +4,7 @@
   import DockItem from "./DockItem.svelte";
   import { AlbumIcon, HomeIcon, MonitorIcon } from "lucide-svelte";
 
-  type DockItem = {
+  type DockItemProps = {
     id: string;
     icon?: {
       component: any;
@@ -12,7 +12,7 @@
     };
   };
 
-  const icons: Record<string, DockItem["icon"]> = {
+  const icons: Record<string, DockItemProps["icon"]> = {
     homeIcon: {
       component: HomeIcon,
       props: {
@@ -36,7 +36,7 @@
   export let side: "top" | "bottom" = "bottom";
   export let className: string;
   export { className as class };
-  export const items: DockItem[] = [
+  export const items: DockItemProps[] = [
     { id: "1", icon: icons["homeIcon"] },
     { id: "2", icon: icons["albumIcon"] },
     { id: "3", icon: icons["monitorIcon"] },
