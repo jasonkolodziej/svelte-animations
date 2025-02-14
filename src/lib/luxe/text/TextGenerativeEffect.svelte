@@ -1,10 +1,14 @@
 <script lang="ts">
   import { Motion } from "svelte-motion";
 
-  export let text: string = "This is a text generation effect.";
-  export let duration = 0.3;
-  let _class: string = "";
-  export { _class as class };
+  interface Props {
+    text?: string;
+    duration?: number;
+    class?: string;
+  }
+
+  let { text = "This is a text generation effect.", duration = 0.3, class: _class = "" }: Props = $props();
+  
 </script>
 
 <div class="inline-block whitespace-pre tracking-[-3.8px]">
@@ -22,14 +26,16 @@
         rotateX: 0,
         y: 0,
       }}
-      let:motion
+      
     >
-      <span
-        use:motion
-        class="inline-block whitespace-pre tracking-tighter text-neutral-200"
-      >
-        {item}
-      </span>
-    </Motion>
+      {#snippet children({ motion })}
+            <span
+          use:motion
+          class="inline-block whitespace-pre tracking-tighter text-neutral-200"
+        >
+          {item}
+        </span>
+                {/snippet}
+        </Motion>
   {/each}
 </div>

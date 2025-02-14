@@ -1,5 +1,10 @@
-<script>
+<script lang="ts">
   import Line from "./Line.svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 
 <div class="relative mx-auto w-fit px-4 sm:px-6 md:px-8">
@@ -13,6 +18,6 @@
     class="w-px bg-gradient-to-t left-2 sm:left-4 md:left-6 h-full inset-y-0"
   />
   <div class="relative z-20 mx-auto py-8">
-    <slot></slot>
+    {@render children?.()}
   </div>
 </div>

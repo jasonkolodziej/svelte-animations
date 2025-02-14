@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import * as Card from "$lib/components/ui/card/index";
   import * as Carousel from "$lib/components/ui/carousel/index";
   import type { CarouselAPI } from "$lib/components/ui/carousel/context";
@@ -9,19 +11,19 @@
   import ButtonLoading from "$lib/luxe/buttons/ButtonLoading.svelte";
   import ButtonDestructive from "$lib/luxe/buttons/ButtonDestructive.svelte";
 
-  let carouselApi: CarouselAPI;
-  let activeCarouselItemId = 0;
+  let carouselApi: CarouselAPI = $state();
+  let activeCarouselItemId = $state(0);
   function setActiveCarouselItem(index: number) {
     carouselApi.scrollTo(index);
     activeCarouselItemId = index;
   }
-  $: {
+  run(() => {
     if (carouselApi) {
       carouselApi.on("select", (e) => {
         activeCarouselItemId = carouselApi.selectedScrollSnap();
       });
     }
-  }
+  });
   let comps = [
     {
       id: 0,
@@ -96,7 +98,7 @@
                 /></svg
               >
             </a>
-            <svelte:component this={item.comp} />
+            <item.comp />
           </Card.Content>
         </Card.Root>
       </Carousel.Item>
@@ -105,7 +107,7 @@
   <div class="flex space-x-2 w-full items-center p-2 h-fit">
     {#each comps as _, idx}
       <button
-        on:click={() => {
+        onclick={() => {
           setActiveCarouselItem(idx);
         }}
         class="rounded-full aspect-square w-3.5 {idx === activeCarouselItemId

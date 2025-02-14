@@ -1,17 +1,22 @@
-<script>
+<script lang="ts">
+  import Folder from './Folder.svelte';
   import File from "./File.svelte";
   import { slide } from "svelte/transition";
 
-  export let expanded = false;
-  export let name;
-  export let files;
+  interface Props {
+    expanded?: boolean;
+    name: any;
+    files: any;
+  }
+
+  let { expanded = $bindable(false), name, files }: Props = $props();
 
   function toggle() {
     expanded = !expanded;
   }
 </script>
 
-<button on:click={toggle} class='font-medium'>
+<button onclick={toggle} class='font-medium'>
   {#if expanded}
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +58,7 @@
     {#each files as file}
       <li>
         {#if file.type === "folder"}
-          <svelte:self {...file} />
+          <Folder {...file} />
         {:else}
           <File {...file} />
         {/if}

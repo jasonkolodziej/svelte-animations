@@ -1,14 +1,23 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import Code from "./Code.svelte";
   import CopyCode from "./CopyCode.svelte";
   import GradientLine from "./GradientLine.svelte";
 
-  export let code = "";
-  export let fileName = "";
-  export let lang = "svelte";
-  let _class = "";
-  export { _class as class };
+  interface Props {
+    code?: string;
+    fileName?: string;
+    lang?: string;
+    class?: string;
+  }
+
+  let {
+    code = "",
+    fileName = "",
+    lang = "svelte",
+    class: _class = ""
+  }: Props = $props();
+  
 </script>
 
 <div class="p-4 relative h-full rounded-xl bg-background border border-border group">

@@ -1,7 +1,7 @@
 <script>
     import Button from "$lib/components/ui/button/button.svelte";
     import { crossfade } from "svelte/transition";
-    let layout = "layout-a";
+    let layout = $state("layout-a");
   
     const [send, receive] = crossfade({
       duration: 500,

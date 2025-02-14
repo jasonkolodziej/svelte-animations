@@ -1,16 +1,21 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import DesktopSidebar from "./DesktopSidebar.svelte";
   import MobileSidebar from "./MobileSidebar.svelte";
-  let _class = "";
-  export { _class as class };
+  interface Props {
+    class?: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let { class: _class = "", children }: Props = $props();
+  
 </script>
 
 <div class={cn(_class)}>
   <DesktopSidebar>
-    <slot></slot>
+    {@render children?.()}
   </DesktopSidebar>
   <MobileSidebar>
-    <slot></slot>
+    {@render children?.()}
   </MobileSidebar>
 </div>

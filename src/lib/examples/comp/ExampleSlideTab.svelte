@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Motion } from "svelte-motion";
-    let left = 0;
-    let width = 0;
-    let opacity = 0;
+    let left = $state(0);
+    let width = $state(0);
+    let opacity = $state(0);
     let ref: any;
     let navs = [
       {
@@ -36,7 +36,7 @@
   
   <div class="py-20 w-full bg-white">
     <ul
-      on:mouseleave={() => {
+      onmouseleave={() => {
         width = width;
         left = left;
         opacity = 0;
@@ -63,13 +63,15 @@
           damping: 30,
   
         }}
-        let:motion
+        
       >
-        <li
-          use:motion
-          class="absolute z-0 h-7 rounded-full bg-black md:h-12"
-        ></li>
-      </Motion>
+        {#snippet children({ motion })}
+            <li
+            use:motion
+            class="absolute z-0 h-7 rounded-full bg-black md:h-12"
+          ></li>
+                  {/snippet}
+        </Motion>
     </ul>
   </div>
   

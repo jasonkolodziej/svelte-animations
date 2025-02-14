@@ -1,6 +1,6 @@
 <script>
 	import { crossfade, scale } from 'svelte/transition';
-	let layout = 'layout-a';
+	let layout = $state('layout-a');
 	
 	const [send, receive] = crossfade({
 		duration: 200,

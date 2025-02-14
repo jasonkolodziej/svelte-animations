@@ -1,10 +1,19 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
   
-    export let img: string;
-    export let name: string;
-    export let username: string;
-    export let body: string;
+  interface Props {
+    img: string;
+    name: string;
+    username: string;
+    body: string;
+  }
+
+  let {
+    img,
+    name,
+    username,
+    body
+  }: Props = $props();
   </script>
   
   <figure
@@ -19,7 +28,7 @@
     <div class="flex flex-row items-center gap-2">
       <img class="rounded-full" width="32" height="32" alt="" src={img} />
       <div class="flex flex-col">
-        <!-- svelte-ignore a11y-structure -->
+        <!-- svelte-ignore a11y_figcaption_parent -->
         <figcaption class="text-sm font-medium dark:text-white">
           {name}
         </figcaption>

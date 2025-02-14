@@ -1,8 +1,12 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
 
-  let className: any = "";
-  export { className as class };
+  interface Props {
+    class?: any;
+  }
+
+  let { class: className = "" }: Props = $props();
+  
 </script>
 
 <div
@@ -25,11 +29,11 @@
         // Dark styles
         "dark:[background-image:linear-gradient(to_right,rgba(255,255,255,0.2)_1px,transparent_0),linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_0)]"
       )}
-    />
+></div>
   </div>
 
   <!-- Background Gradient -->
   <div
     class="absolute inset-0 bg-gradient-to-t from-white to-transparent to-90% dark:from-black"
-  />
+></div>
 </div>

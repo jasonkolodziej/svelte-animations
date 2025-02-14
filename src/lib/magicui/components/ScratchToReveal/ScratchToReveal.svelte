@@ -5,21 +5,34 @@
   import { cn } from "$lib/utils";
   import { Motion, useAnimation } from "svelte-motion";
 
-  export let width: number;
-  export let height: number;
-  export let minScratchPercentage: number = 50;
-  export let onComplete: (() => void) | undefined;
-  let _class: string | undefined;
-  export { _class as class };
-  export let gradientColors: [string, string, string] = [
+  
+  interface Props {
+    width: number;
+    height: number;
+    minScratchPercentage?: number;
+    onComplete: (() => void) | undefined;
+    class: string | undefined;
+    gradientColors?: [string, string, string];
+    children?: import('svelte').Snippet;
+  }
+
+  let {
+    width,
+    height,
+    minScratchPercentage = 50,
+    onComplete,
+    class: _class,
+    gradientColors = [
     "#A97CF8",
     "#F38CB8",
     "#FDCC92",
-  ];
+  ],
+    children
+  }: Props = $props();
 
   let isScratching = false;
   let isComplete = false;
-  let canvas: HTMLCanvasElement | null;
+  let canvas: HTMLCanvasElement | null = $state();
   let ctx: CanvasRenderingContext2D | null;
 
   //   const controls = tweened(1, { duration: 500, easing: cubicOut });
@@ -128,28 +141,32 @@
       }
     }
   }
+
+  const children_render = $derived(children);
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<Motion let:motion animate={controls}>
-  <div
-    use:motion
-    class={cn("scratch-container", _class)}
-    style="width: {width}px; height: {height}px; cursor:
-     url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgc3R5bGU9ImZpbGw6I2ZmZjtzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MXB4OyIgLz4KPC9zdmc+'), auto; z-index: 90;"
-  >
-    <canvas
-      bind:this={canvas}
-      {width}
-      {height}
-      class="z-20"
-      on:mousedown={handleMouseDown}
-      on:touchstart={handleTouchStart}
-    ></canvas>
-    <div style="position: relative;">
-      <slot />
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<Motion  animate={controls}>
+  {#snippet children({ motion })}
+    <div
+      use:motion
+      class={cn("scratch-container", _class)}
+      style="width: {width}px; height: {height}px; cursor:
+       url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgc3R5bGU9ImZpbGw6I2ZmZjtzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MXB4OyIgLz4KPC9zdmc+'), auto; z-index: 90;"
+    >
+      <canvas
+        bind:this={canvas}
+        {width}
+        {height}
+        class="z-20"
+        onmousedown={handleMouseDown}
+        ontouchstart={handleTouchStart}
+      ></canvas>
+      <div style="position: relative;">
+        {@render children_render?.()}
+      </div>
     </div>
-  </div>
+  {/snippet}
 </Motion>
 
 <style>

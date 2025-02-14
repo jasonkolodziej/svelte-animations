@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
-  export let showGradient = false;
-  export let className = "";
+  interface Props {
+    showGradient?: boolean;
+    className?: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let { showGradient = false, className = "", children }: Props = $props();
 </script>
 
 <div
@@ -12,5 +17,5 @@
       "bg-neutral-300 dark:bg-[rgba(40,40,40,0.70)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
   )}
 >
-  <slot></slot>
+  {@render children?.()}
 </div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import InputGradientBorder from "$lib/luxe/inputs/InputGradientBorder.svelte";
   import InputSpotlightBorder from "$lib/luxe/inputs/InputSpotlightBorder.svelte";
   import * as Card from "$lib/components/ui/card/index";
@@ -10,19 +12,19 @@
   import BadgeRotateBorder from "$lib/luxe/badge/BadgeRotateBorder.svelte";
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";
 
-  let carouselApi: CarouselAPI;
-  let activeCarouselItemId = 0;
+  let carouselApi: CarouselAPI = $state();
+  let activeCarouselItemId = $state(0);
   function setActiveCarouselItem(index: number) {
     carouselApi.scrollTo(index);
     activeCarouselItemId = index;
   }
-  $: {
+  run(() => {
     if (carouselApi) {
       carouselApi.on("select", (e) => {
         activeCarouselItemId = carouselApi.selectedScrollSnap();
       });
     }
-  }
+  });
   let comps = [
     {
       id: 0,
@@ -97,7 +99,7 @@
                 /></svg
               >
             </a>
-            <svelte:component this={item.comp} />
+            <item.comp />
           </Card.Content>
         </Card.Root>
       </Carousel.Item>
@@ -106,7 +108,7 @@
   <div class="flex space-x-2 w-full items-center p-2 h-fit">
     {#each comps as _, idx}
       <button
-        on:click={() => {
+        onclick={() => {
           setActiveCarouselItem(idx);
         }}
         class="rounded-full aspect-square w-3.5 {idx === activeCarouselItemId

@@ -1,13 +1,24 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
 
-  export let width;
-  export let height;
-  export let x;
-  export let y;
-  export let squares;
-  let _class = "";
-  export { _class as class };
+  interface Props {
+    width: any;
+    height: any;
+    x: any;
+    y: any;
+    squares: any;
+    class?: string;
+  }
+
+  let {
+    width,
+    height,
+    x,
+    y,
+    squares,
+    class: _class = ""
+  }: Props = $props();
+  
 
   let patternId = crypto.randomUUID();
 </script>

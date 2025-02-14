@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { onMount, type ComponentType } from "svelte";
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
@@ -8,9 +10,13 @@
     title: string;
     content: ComponentType | string;
   };
-  export let timelineData: TimelineItem[] = [];
-  let containerRef: HTMLDivElement;
-  let height = 0;
+  interface Props {
+    timelineData?: TimelineItem[];
+  }
+
+  let { timelineData = [] }: Props = $props();
+  let containerRef: HTMLDivElement = $state();
+  let height = $state(0);
   let scrollProgress = writable(0);
   let heightTransform = tweened(0, { duration: 400, easing: cubicOut });
   let opacityTransform = tweened(0, { duration: 400, easing: cubicOut });
@@ -39,9 +45,11 @@
     };
   });
 
-  $: scrollProgress.subscribe((progress) => {
-    heightTransform.set(progress * height);
-    opacityTransform.set(progress < 0.1 ? progress * 10 : 1);
+  run(() => {
+    scrollProgress.subscribe((progress) => {
+      heightTransform.set(progress * height);
+      opacityTransform.set(progress < 0.1 ? progress * 10 : 1);
+    });
   });
 </script>
 
@@ -72,7 +80,7 @@
           >
             <div
               class="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2"
-            />
+></div>
           </div>
           <h3
             class="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-500 dark:text-neutral-500"
@@ -90,7 +98,7 @@
           {#if typeof item.content === "string"}
             {item.content}
           {:else}
-            <svelte:component this={item.content} />
+            <item.content />
           {/if}
         </div>
       </div>
@@ -103,7 +111,7 @@
       <div
         style="height: {$heightTransform}px; opacity: {$opacityTransform};"
         class="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
-      />
+></div>
     </div>
   </div>
 </div>

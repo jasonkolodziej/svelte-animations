@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
   import CardContainer2 from "./CardContainer2.svelte";
 
@@ -6,8 +6,12 @@
     title: "Be Happy",
     desc: "Life is a shipwreck, but we must not forget to sing in the lifeboats.",
   };
-  let className = "";
-  export { className as class };
+  interface Props {
+    class?: string;
+  }
+
+  let { class: className = "" }: Props = $props();
+  
 </script>
 
 <CardContainer2>

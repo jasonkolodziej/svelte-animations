@@ -9,8 +9,8 @@
   import GridPattern from "$lib/magicui/backgrounds/GridPattern/GridPattern.svelte";
   import { cn } from "$lib/utils";
 
-  $: routeID = $page.params.componentID;
-  $: comp = allAceternityUI.filter((c) => c.id === routeID)[0];
+  let routeID = $derived($page.params.componentID);
+  let comp = $derived(allAceternityUI.filter((c) => c.id === routeID)[0]);
   // $: console.log(comp, "Component", routeID);
 </script>
 
@@ -135,7 +135,7 @@
                   />
                 {/if}
                 <div class="z-10">
-                  <svelte:component this={comp.preview.comp} />
+                  <comp.preview.comp />
                 </div>
               </ComponentView>
             </Tabs.Content>
@@ -284,7 +284,7 @@
                           />
                         {/if}
                         <div class="z-10">
-                          <svelte:component this={item.preview.comp} />
+                          <item.preview.comp />
                         </div>
                       </ComponentView>
                     </Tabs.Content>

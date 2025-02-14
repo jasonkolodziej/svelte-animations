@@ -3,7 +3,7 @@
 
   // Cycling through states
   import { Motion, useCycle } from "svelte-motion";
-  let stateText = "State 1";
+  let stateText = $state("State 1");
   // In React
   // const [animate, cycle] = useCycle(
   //   {
@@ -40,9 +40,11 @@
         stateText = "State 1";
       }
     }}
-    let:motion
-    ><div class="box" use:motion>
-      {stateText}
-    </div></Motion
+    
+    >{#snippet children({ motion })}
+        <div class="box" use:motion>
+        {stateText}
+      </div>      {/snippet}
+    </Motion
   >
 </Box>

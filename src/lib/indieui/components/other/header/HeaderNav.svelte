@@ -17,22 +17,32 @@
   });
   type Variant = VariantProps<typeof headerVariants>["variant"];
 
-  export let sticky: boolean = true;
-  export let variant: Variant = "default";
-  export let headerLinks = [
-    { name: "Features", href: "/header-demo/#features" },
-    { name: "Pricing", href: "/header-demo/#pricing" },
-    { name: "FAQs", href: "/header-demo/#faqs" },
-  ];
   // Mobile Part :
   import Button from "$lib/components/ui/button/button.svelte";
   import { XIcon, MenuIcon } from "lucide-svelte";
-  let isOpen = false;
+  let isOpen = $state(false);
   import Xsvg from "./examples/x.svg";
   import GithubSvg from "./examples/github.svg";
   import { slide } from "svelte/transition";
-  //    Mobile Comps
-  export let icons = [
+  
+  interface Props {
+    sticky?: boolean;
+    variant?: Variant;
+    headerLinks?: any;
+    //    Mobile Comps
+    icons?: any;
+    Logo?: import('svelte').Snippet;
+  }
+
+  let {
+    sticky = true,
+    variant = "default",
+    headerLinks = [
+    { name: "Features", href: "/header-demo/#features" },
+    { name: "Pricing", href: "/header-demo/#pricing" },
+    { name: "FAQs", href: "/header-demo/#faqs" },
+  ],
+    icons = [
     {
       name: "Twitter",
       icon: Xsvg,
@@ -43,7 +53,9 @@
       icon: GithubSvg,
       href: "https://github.com",
     },
-  ];
+  ],
+    Logo
+  }: Props = $props();
 </script>
 
 <header
@@ -62,7 +74,7 @@
     <div
       class="flex-row flex justify-start items-center px-6 py-3 w-full gap-2"
     >
-      <slot name="Logo"></slot>
+      {@render Logo?.()}
       <div class="flex justify-end grow">
         <nav class="grow flex-row flex justify-end gap-10 lg:gap-8">
           {#each headerLinks as { name, href }, i}
@@ -81,7 +93,7 @@
     )}
   >
     <div class="flex-row flex pb-2">
-      <slot name="Logo"></slot>
+      {@render Logo?.()}
       <Button
         variant="animated"
         class="absolute top-1.5 right-2"

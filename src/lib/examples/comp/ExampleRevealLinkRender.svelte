@@ -16,58 +16,64 @@
       style={{
         lineHeight: 0.75,
       }}
-      let:motion
+      
     >
-      <a
-        {href}
-        alt="co"
-        class="relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase sm:text-4xl md:text-6xl lg:text-6xl"
-        use:motion
-      >
-        <div>
-          {#each children as item, i }
-            <Motion
-              variants={{
-                initial: {
-                  y: 0,
-                },
-                hovered: {
-                  y: "-100%",
-                },
-              }}
-              transition={{
-                duration: duration,
-                ease: "easeInOut",
-                delay: stagger * i,
-              }}
-              let:motion
-            >
-              <span class="inline-block" use:motion>{item}</span>
-            </Motion>
-          {/each}
-        </div>
-        <div class="absolute inset-0">
-          {#each children as item, i }
-            <Motion
-              variants={{
-                initial: {
-                  y: "100%",
-                },
-                hovered: {
-                  y: 0,
-                },
-              }}
-              transition={{
-                duration: duration,
-                ease: "easeInOut",
-                delay: stagger * i,
-              }}
-              let:motion
-            >
-              <span class="inline-block" use:motion>{item} </span>
-            </Motion>
-          {/each}
-        </div>
-      </a>
+      {#snippet children({ motion })}
+        <a
+          {href}
+          alt="co"
+          class="relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase sm:text-4xl md:text-6xl lg:text-6xl"
+          use:motion
+        >
+          <div>
+            {#each children as item, i }
+              <Motion
+                variants={{
+                  initial: {
+                    y: 0,
+                  },
+                  hovered: {
+                    y: "-100%",
+                  },
+                }}
+                transition={{
+                  duration: duration,
+                  ease: "easeInOut",
+                  delay: stagger * i,
+                }}
+                
+              >
+                {#snippet children({ motion })}
+                        <span class="inline-block" use:motion>{item}</span>
+                                      {/snippet}
+                    </Motion>
+            {/each}
+          </div>
+          <div class="absolute inset-0">
+            {#each children as item, i }
+              <Motion
+                variants={{
+                  initial: {
+                    y: "100%",
+                  },
+                  hovered: {
+                    y: 0,
+                  },
+                }}
+                transition={{
+                  duration: duration,
+                  ease: "easeInOut",
+                  delay: stagger * i,
+                }}
+                
+              >
+                {#snippet children({ motion })}
+                        <span class="inline-block" use:motion>{item} </span>
+                                      {/snippet}
+                    </Motion>
+            {/each}
+          </div>
+        </a>
+            {/snippet}
     </Motion>
   </div>

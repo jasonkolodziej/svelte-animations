@@ -6,16 +6,18 @@
     useViewportScroll,
   } from "svelte-motion";
 
-  const val = useElementScroll();
+  const val = $state(useElementScroll());
   let i = val.scrollYProgress;
-  $: mint = $i === undefined ? 1 : $i;
+  let mint = $derived($i === undefined ? 1 : $i);
 </script>
 
 <div bind:this={val.ref} class="scroller">
   <div class="inner"></div>
 </div>
-<Motion let:motion>
-  <div use:motion>{Math.round((100 * mint) / 1.07)}%</div>
+<Motion >
+  {#snippet children({ motion })}
+    <div use:motion>{Math.round((100 * mint) / 1.07)}%</div>
+  {/snippet}
 </Motion>
 
 <style>

@@ -33,13 +33,13 @@
   });
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-  on:mouseenter={() => {
+  onmouseenter={() => {
     variantOne.set(first.hover);
     variantTwo.set(second.hover);
   }}
-  on:mouseleave={() => {
+  onmouseleave={() => {
     variantOne.set(first.initial);
     variantTwo.set(second.initial);
   }}

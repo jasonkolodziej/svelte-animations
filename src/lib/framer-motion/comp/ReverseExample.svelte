@@ -15,7 +15,9 @@
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        let:motion><div class="box" use:motion></div></Motion
+        >{#snippet children({ motion })}
+            <div class="box" use:motion></div>          {/snippet}
+        </Motion
       >
     {/key}
   </Box>

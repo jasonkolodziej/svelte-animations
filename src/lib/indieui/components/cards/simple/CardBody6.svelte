@@ -1,12 +1,16 @@
-<script>
+<script lang="ts">
   import { cn } from "$lib/utils";
 
   let card = {
     title: "3D Card",
     desc: "Don't take above two words seriously, I just made them up.",
   };
-  let className = "p-8";
-  export { className as class };
+  interface Props {
+    class?: string;
+  }
+
+  let { class: className = "p-8" }: Props = $props();
+  
 </script>
 
 <div class={cn("text-left", className)}>

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { onMount, onDestroy } from "svelte";
   import {
     Motion,
@@ -9,13 +11,17 @@
     useViewportScroll,
   } from "svelte-motion";
 
-  export let text: string = "Hello World";
-  export let default_velocity: number = 5;
-  export let className: string = "";
+  interface Props {
+    text?: string;
+    default_velocity?: number;
+    className?: string;
+  }
+
+  let { text = "Hello World", default_velocity = 5, className = "" }: Props = $props();
 
   let containerWidth: number;
   let textWidth: number;
-  let repetitions: number = 1;
+  let repetitions: number = $state(1);
 
   let wrap = (min: number, max: number, v: number = 0) => {
     const rangeSize = max - min;
@@ -33,8 +39,8 @@
     clamp: false,
   });
 
-  let containerRef: HTMLDivElement;
-  let textRef: HTMLSpanElement;
+  let containerRef: HTMLDivElement = $state();
+  let textRef: HTMLSpanElement = $state();
 
   onMount(() => {
     const calculateRepetitions = () => {
@@ -97,7 +103,9 @@
   });
 
   let x = useTransform(baseX, (v) => `${wrap(-100 / 2, 0, v)}%`);
-  $: console.log(x, "x");
+  run(() => {
+    console.log(x, "x");
+  });
 </script>
 
 <section class="relative w-full">
@@ -109,22 +117,24 @@
       style={{
         x: x,
       }}
-      let:motion
+      
     >
-      <div use:motion class="inline-block {className}">
-        {#each Array(repetitions) as _, i}
-          {#if i === 0}
-            <span bind:this={textRef}>
-              {text}{" "}
-            </span>
-          {:else}
-            <span>
-              {text}{" "}
-            </span>
-          {/if}
-        {/each}
-      </div>
-    </Motion>
+      {#snippet children({ motion })}
+            <div use:motion class="inline-block {className}">
+          {#each Array(repetitions) as _, i}
+            {#if i === 0}
+              <span bind:this={textRef}>
+                {text}{" "}
+              </span>
+            {:else}
+              <span>
+                {text}{" "}
+              </span>
+            {/if}
+          {/each}
+        </div>
+                {/snippet}
+        </Motion>
   </div>
   <div class="w-full overflow-hidden whitespace-nowrap">
     <div class="inline-block {className}" style="transform: translateX({-x})">

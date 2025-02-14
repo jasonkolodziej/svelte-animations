@@ -2,18 +2,31 @@
   import { onMount, onDestroy } from "svelte";
   import { writable } from "svelte/store";
 
-  export let squareSize: number = 4;
-  export let gridGap: number = 6;
-  export let flickerChance: number = 0.3;
-  export let color = "rgb(0, 0, 0)";
-  export let width: number;
-  export let height: number;
-  let className = "";
-  export { className as class };
+  
 
-  export let maxOpacity: number = 0.3;
+  interface Props {
+    squareSize?: number;
+    gridGap?: number;
+    flickerChance?: number;
+    color?: string;
+    width: number;
+    height: number;
+    class?: string;
+    maxOpacity?: number;
+  }
 
-  let canvas: HTMLCanvasElement;
+  let {
+    squareSize = 4,
+    gridGap = 6,
+    flickerChance = 0.3,
+    color = "rgb(0, 0, 0)",
+    width,
+    height,
+    class: className = "",
+    maxOpacity = 0.3
+  }: Props = $props();
+
+  let canvas: HTMLCanvasElement = $state();
   let isInView = writable(false);
 
   let memoizedColor: any;
@@ -164,4 +177,4 @@
   bind:this={canvas}
   class="size-full pointer-events-none {className}"
   style="width: {width || '100%'}; height: {height || '100%'};"
-/>
+></canvas>

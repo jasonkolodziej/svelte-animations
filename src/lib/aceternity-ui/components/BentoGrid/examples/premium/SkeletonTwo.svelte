@@ -13,12 +13,12 @@
   };
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-  on:mouseenter={() => {
+  onmouseenter={() => {
     variantOne.set(animate);
   }}
-  on:mouseleave={() => {
+  onmouseleave={() => {
     variantOne.set(initial);
   }}
   class="flex flex-1 w-full h-full min-h-[10rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-col space-y-2"

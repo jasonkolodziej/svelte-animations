@@ -14,7 +14,7 @@
         scale,
         rotate,
       }}
-      let:motion
+      
       drag="x"
       dragConstraints={{
         right: 0,
@@ -27,37 +27,39 @@
       whileTap={{
         cursor: "grabbing",
       }}
-      ><div class="box relative" use:motion>
-        Drag
-        <div class="absolute left-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#00133D"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg
-          >
-        </div>
-        <div class="absolute right-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#00133D"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
-          >
-        </div>
-      </div></Motion
+      >{#snippet children({ motion })}
+        <div class="box relative" use:motion>
+          Drag
+          <div class="absolute left-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#00133D"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg
+            >
+          </div>
+          <div class="absolute right-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#00133D"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
+            >
+          </div>
+        </div>      {/snippet}
+    </Motion
     >
   </Box>
   

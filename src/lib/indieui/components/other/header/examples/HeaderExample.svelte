@@ -22,9 +22,11 @@
 </script>
 
 <HeaderNav sticky={false} {headerLinks}>
-  <div slot="Logo">
-    <a href="/" class="text-2xl font-bold text-white"
-      >Svelte IndieUI
-    </a>
-  </div>
+  {#snippet Logo()}
+    <div >
+      <a href="/" class="text-2xl font-bold text-white"
+        >Svelte IndieUI
+      </a>
+    </div>
+  {/snippet}
 </HeaderNav>

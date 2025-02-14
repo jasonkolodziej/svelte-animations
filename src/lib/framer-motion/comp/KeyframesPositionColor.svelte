@@ -12,7 +12,9 @@
     backgroundColor: ["#fd3", "#60f", "#fd3"],
   }}
   transition={{ duration: 4, ease: "linear" }}
-  let:motion
+  
 >
-  <div class="w-28 h-28 rounded-xl" use:motion></div>
+  {#snippet children({ motion })}
+    <div class="w-28 h-28 rounded-xl" use:motion></div>
+  {/snippet}
 </Motion>

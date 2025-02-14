@@ -1,9 +1,15 @@
 <script lang="ts">
-  import { writable } from "svelte/store";
-  export let text = "";
-  export let duration = 0;
+  import { run } from 'svelte/legacy';
 
-  let svgRef: any = null;
+  import { writable } from "svelte/store";
+  interface Props {
+    text?: string;
+    duration?: number;
+  }
+
+  let { text = "", duration = 0 }: Props = $props();
+
+  let svgRef: any = $state(null);
   let cursor = writable({ x: 0, y: 0 });
   let hovered = writable(false);
   let maskPosition = writable({ cx: "50%", cy: "50%" });
@@ -31,19 +37,21 @@
   function handleMouseMove(e) {
     cursor.set({ x: e.clientX, y: e.clientY });
   }
-  $: $cursor, cursorChange();
+  run(() => {
+    $cursor, cursorChange();
+  });
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <svg
   bind:this={svgRef}
   width="100%"
   height="100%"
   viewBox="0 0 300 100"
   xmlns="http://www.w3.org/2000/svg"
-  on:mouseenter={handleMouseEnter}
-  on:mouseleave={handleMouseLeave}
-  on:mousemove={(e) => handleMouseMove(e)}
+  onmouseenter={handleMouseEnter}
+  onmouseleave={handleMouseLeave}
+  onmousemove={(e) => handleMouseMove(e)}
   class="select-none"
 >
   <defs>

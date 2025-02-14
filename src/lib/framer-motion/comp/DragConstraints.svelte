@@ -9,7 +9,7 @@
     class="bg-gray-500/10 h-80  w-80 flex justify-center items-center rounded-xl shadow-md"
   >
     <Motion
-      let:motion
+      
       drag={true}
       dragConstraints={{
         top: -100,
@@ -27,7 +27,9 @@
         cursor: "grabbing",
       }}
       
-      ><div class="box" use:motion>Smooth Drag</div></Motion
+      >{#snippet children({ motion })}
+            <div class="box" use:motion>Smooth Drag</div>          {/snippet}
+        </Motion
     >
   </div>
 </Box>
