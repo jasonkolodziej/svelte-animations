@@ -1,7 +1,7 @@
 <script lang="ts">
   import { run } from 'svelte/legacy';
 
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
   import { writable } from "svelte/store";
   import { draw } from "svelte/transition";
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, AnimatePresence, useAnimation } from "svelte-motion";
+  import { Motion, AnimatePresence, useAnimation } from "motion-start";
   import { inview } from "svelte-inview";
   import { cn } from "$lib/utils";
   let defaultVariants = {

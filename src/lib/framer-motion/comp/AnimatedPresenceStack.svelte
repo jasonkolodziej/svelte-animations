@@ -1,7 +1,7 @@
 <script lang="ts">
   import { run } from 'svelte/legacy';
 
-  import { Motion, AnimatePresence } from "svelte-motion";
+  import { Motion, AnimatePresence } from "motion-start";
   import Card from "./Card.svelte";
   let index = $state(0);
   let mint;

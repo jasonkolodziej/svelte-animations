@@ -1,6 +1,6 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
-    import { useViewportScroll,useElementScroll } from "svelte-motion";
+    import { useViewportScroll,useElementScroll } from "motion-start";
     import Word from "./Word.svelte";
     
   interface Props {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useMotionValue } from "svelte-motion";
+  import { Motion, useMotionValue } from "motion-start";
   import { cn } from "$lib/utils";
   import DockItem from "./DockItem.svelte";
   import { AlbumIcon, HomeIcon, MonitorIcon } from "lucide-svelte";
@@ -57,10 +57,11 @@
   class={cn(side === "top" ? "top-4" : "bottom-4", className)}
   {...rest}
 >
-  <Motion >
-    {#snippet children({ motion })}
+  <Motion.div 
+  >
+    <!-- {#snippet children({ motion })} -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
-      <div
+      <!-- <div
         use:motion
         bind:this={containerRef}
         class="h-16 items-end gap-4 rounded-full bg-neutral-950 border border-neutral-800 px-3 pb-2 flex shadow-inner shadow-neutral-300/5"
@@ -72,7 +73,19 @@
             containerX.set(rect.x);
           }
         }}
-      >
+      > -->
+      <div
+      bind:this={containerRef}
+      class="h-16 items-end gap-4 rounded-full bg-neutral-950 border border-neutral-800 px-3 pb-2 flex shadow-inner shadow-neutral-300/5"
+      onmouseleave={() => mouseX.set(Infinity)}
+      onmousemove={(e) => {
+        const rect = containerRef.getBoundingClientRect();
+        if (rect) {
+          mouseX.set(e.clientX - rect.left);
+          containerX.set(rect.x);
+        }
+      }}
+    >
         {#each items as dockItem}
         
           <DockItem {containerX} {mouseX}>
@@ -84,6 +97,6 @@
           </DockItem>
         {/each}
       </div>
-          {/snippet}
-    </Motion>
+          <!-- {/snippet} -->
+    </Motion.div>
 </div>

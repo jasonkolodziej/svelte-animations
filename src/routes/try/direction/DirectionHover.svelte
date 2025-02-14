@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, AnimatePresence } from "svelte-motion";
+  import { Motion, AnimatePresence } from "motion-start";
   import { writable } from "svelte/store";
   import { cn } from "$lib/utils";
 
@@ -38,7 +38,7 @@
     }
   }
 
-  function getDirection(ev, obj) {
+  function getDirection(ev: MouseEvent, obj) {
     const { width: w, height: h, left, top } = obj.getBoundingClientRect();
     const x = ev.clientX - left - (w / 2) * (w > h ? h / w : 1);
     const y = ev.clientY - top - (h / 2) * (h > w ? w / h : 1);

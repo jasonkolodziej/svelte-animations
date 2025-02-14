@@ -7,7 +7,7 @@
     useMotionValue,
     useSpring,
     useTransform,
-  } from "svelte-motion";
+  } from "motion-start";
 
   let mint = useMotionValue(mouseX);
 

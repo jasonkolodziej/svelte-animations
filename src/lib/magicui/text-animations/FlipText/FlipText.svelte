@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  import { AnimatePresence, Motion } from "svelte-motion";
+  import { AnimatePresence, Motion } from "motion-start";
 
   interface Props {
     word?: string;

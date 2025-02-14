@@ -5,7 +5,7 @@
     AnimatePresence,
     useMotionValue,
     useSpring,
-  } from "svelte-motion";
+  } from "motion-start";
 
   interface Props {
     items: {

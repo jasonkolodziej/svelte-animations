@@ -1,6 +1,6 @@
 <script lang="ts">
   import ComponentView from "$lib/luxe/components/codeblock/ComponentView.svelte";
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
 </script>
 
 <!-- class="h-[380px] flex justify-center items-start" -->

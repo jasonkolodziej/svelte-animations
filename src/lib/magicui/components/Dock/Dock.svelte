@@ -1,7 +1,7 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
   import { setContext } from "svelte";
-  import { Motion, useMotionValue } from "svelte-motion";
+  import { Motion, useMotionValue } from "motion-start";
   let DEFAULT_MAGNIFICATION = 60;
   let DEFAULT_DISTANCE = 140;
   interface Props {

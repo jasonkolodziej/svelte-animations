@@ -2,7 +2,7 @@
   import { run } from 'svelte/legacy';
 
   import { onDestroy } from "svelte";
-  import { Motion, AnimatePresence } from "svelte-motion";
+  import { Motion, AnimatePresence } from "motion-start";
 
   // Animation Inspired from Aceternity UI : https://ui.aceternity.com/components/animated-testimonials
   type Testimonial = {

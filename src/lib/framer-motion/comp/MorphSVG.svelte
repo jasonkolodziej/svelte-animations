@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, M } from "svelte-motion";
+  import { Motion, M } from "motion-start";
 </script>
 
 <svg

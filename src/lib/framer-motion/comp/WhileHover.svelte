@@ -1,6 +1,6 @@
 <script lang="ts">
   import Box from "$lib/components/dev/tags/Box.svelte";
-    import { Motion } from "svelte-motion";
+    import { Motion } from "motion-start";
   </script>
   
   <Box cls="bg-slate-800 flex gap-3 md:gap-10 flex-col md:flex-row text-black">

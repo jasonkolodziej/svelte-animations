@@ -1,6 +1,6 @@
 <script lang="ts">
   import { inview } from "svelte-inview";
-  import { Motion, useAnimation } from "svelte-motion";
+  import { Motion, useAnimation } from "motion-start";
 
   interface Props {
     width?: string;

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Box from "$lib/components/dev/tags/Box.svelte";
-    import { Motion } from "svelte-motion";
+    import { Motion } from "motion-start";
     let i = 0;
   </script>
   

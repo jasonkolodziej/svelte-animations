@@ -3,7 +3,7 @@
       Motion,
       useMotionValue,
       useTransform,
-    } from "svelte-motion";
+    } from "motion-start";
     let exitX = $state(0);
     const x = useMotionValue(0);
     const scale = useTransform(x, [-150, 0, 150], [0.5, 1, 0.5]);

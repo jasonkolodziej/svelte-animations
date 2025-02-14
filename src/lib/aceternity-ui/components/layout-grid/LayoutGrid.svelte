@@ -1,7 +1,7 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
   import type { ComponentType } from "svelte";
-  import { Motion, AnimatePresence, AnimateSharedLayout } from "svelte-motion";
+  import { Motion, AnimatePresence, AnimateSharedLayout } from "motion-start";
 
   type Card = {
     id: number;

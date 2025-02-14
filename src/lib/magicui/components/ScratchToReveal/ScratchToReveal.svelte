@@ -3,7 +3,7 @@
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
   import { cn } from "$lib/utils";
-  import { Motion, useAnimation } from "svelte-motion";
+  import { Motion, useAnimation } from "motion-start";
 
   
   interface Props {

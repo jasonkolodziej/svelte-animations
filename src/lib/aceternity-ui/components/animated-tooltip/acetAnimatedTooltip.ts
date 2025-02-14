@@ -3,21 +3,20 @@ import AnimatedTooltipCode from "./AnimatedTooltip.svelte?raw";
 import AtExample from "./ATExample.svelte";
 import AtExampleCode from "./ATExample.svelte?raw";
 
-
 export let acet_animated_tooltip: AceternityUI = {
   id: "animated-tooltip",
   title: "Animated Tooltip",
   desc: "A tooltip that animates in and out. Good for showing more information on hover",
-  tags: ["tooltip", "animation", "Svelte-Motion", 'Svelte 4'],
+  tags: ["tooltip", "animation", "motion-start", "Svelte 4"],
   preview: {
     comp: AtExample,
     allcode: [
       {
         code: AtExampleCode,
         filename: "AnimatedTooltipExample.svelte",
-        language: "svelte"
-      }
-    ]
+        language: "svelte",
+      },
+    ],
   },
   installations: [
     {
@@ -27,7 +26,7 @@ export let acet_animated_tooltip: AceternityUI = {
           desc: "works only in svelte 4",
           code: "npm i svelte-motion clsx tailwind-merge",
           language: "bash",
-          filename: "Terminal"
+          filename: "Terminal",
         },
         {
           title: "Add Util File",
@@ -43,8 +42,8 @@ export function cn(...inputs: ClassValue[]) {
           title: "Copy the Source Code",
           code: AnimatedTooltipCode,
           filename: "AnimatedTooltip.svelte",
-        }
-      ]
-    }
-  ]
+        },
+      ],
+    },
+  ],
 };

@@ -4,7 +4,7 @@
     useElementScroll,
     useTransform,
     useViewportScroll,
-  } from "svelte-motion";
+  } from "motion-start";
 
   const val = $state(useElementScroll());
   let i = val.scrollYProgress;

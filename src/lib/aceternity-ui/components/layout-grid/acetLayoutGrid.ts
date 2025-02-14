@@ -7,7 +7,7 @@ export let acetLayoutGrid: AceternityUI = {
   id: "layout-grid",
   title: "Layout Grid",
   desc: "A layout effect that animates the grid item on click, powered by framer motion layout",
-  tags: ["animation", "Svelte-Motion"],
+  tags: ["animation", "motion-start"],
   preview: {
     comp: LayoutGridExample,
     allcode: [

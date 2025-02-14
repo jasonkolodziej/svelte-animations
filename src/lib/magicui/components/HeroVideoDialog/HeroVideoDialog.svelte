@@ -1,6 +1,6 @@
 <script lang="ts">
   import { writable } from "svelte/store";
-  import { AnimatePresence, Motion } from "svelte-motion";
+  import { AnimatePresence, Motion } from "motion-start";
   import { Play, X } from "lucide-svelte";
 
   type AnimationStyle =

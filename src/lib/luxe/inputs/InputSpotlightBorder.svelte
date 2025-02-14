@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useMotionTemplate, useMotionValue } from "svelte-motion";
+  import { Motion, useMotionTemplate, useMotionValue } from "motion-start";
 
   let divRef: HTMLInputElement = $state();
   let isFocused = false;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, AnimateSharedLayout, AnimatePresence } from "svelte-motion";
+  import { Motion, AnimateSharedLayout, AnimatePresence } from "motion-start";
   import { cn } from "$lib/utils";
 
   let hoverdIdx = $state(0);

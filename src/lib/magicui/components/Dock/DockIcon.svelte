@@ -3,7 +3,7 @@
 
   import { cn } from "$lib/utils";
   import { getContext } from "svelte";
-  import { Motion, useSpring, useTransform } from "svelte-motion";
+  import { Motion, useSpring, useTransform } from "motion-start";
 
   let DEFAULT_MAGNIFICATION = 60;
   let DEFAULT_DISTANCE = 140;

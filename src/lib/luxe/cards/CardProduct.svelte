@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useMotionTemplate, useMotionValue } from "svelte-motion";
+  import { Motion, useMotionTemplate, useMotionValue } from "motion-start";
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
   let background = useMotionTemplate`radial-gradient(200px circle at ${mouseX}px ${mouseY}px, rgba(51, 51, 51, 0.4), transparent 80%)`;

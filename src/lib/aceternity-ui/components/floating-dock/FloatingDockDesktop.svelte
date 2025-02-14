@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useMotionValue } from "svelte-motion";
+  import { Motion, useMotionValue } from "motion-start";
   import IconContainer from "./IconContainer.svelte";
 
   type Item = {

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Box from "$lib/components/dev/tags/Box.svelte";
     import Button from "$lib/components/ui/button/button.svelte";
-    import { Motion } from "svelte-motion";
+    import { Motion } from "motion-start";
     let i = $state(0);
   </script>
   

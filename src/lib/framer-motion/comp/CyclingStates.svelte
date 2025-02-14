@@ -2,7 +2,7 @@
   import Box from "$lib/components/dev/tags/Box.svelte";
 
   // Cycling through states
-  import { Motion, useCycle } from "svelte-motion";
+  import { Motion, useCycle } from "motion-start";
   let stateText = $state("State 1");
   // In React
   // const [animate, cycle] = useCycle(

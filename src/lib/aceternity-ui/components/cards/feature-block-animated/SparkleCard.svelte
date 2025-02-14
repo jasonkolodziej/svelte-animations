@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
   const randomMove = () => Math.random() * 2 - 1;
   const randomOpacity = () => Math.random();
   const random = () => Math.random();

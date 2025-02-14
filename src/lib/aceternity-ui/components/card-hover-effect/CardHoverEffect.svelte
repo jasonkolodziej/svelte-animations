@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  import { Motion, AnimateSharedLayout, AnimatePresence } from "svelte-motion";
+  import { Motion, AnimateSharedLayout, AnimatePresence } from "motion-start";
   import Card from "./Card.svelte";
   import CardTitle from "./CardTitle.svelte";
   import CardDesc from "./CardDesc.svelte";

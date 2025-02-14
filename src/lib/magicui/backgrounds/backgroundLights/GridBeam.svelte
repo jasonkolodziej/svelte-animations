@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  import { M, Motion } from "svelte-motion";
+  import { M, Motion } from "motion-start";
 
   interface Props {
     class?: any;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Nub from './../../../../routes/motion/Nub.svelte';
-    import { Motion } from "svelte-motion";
+    import { Motion } from "motion-start";
     import Products from "./Products.svelte";
     import Pricing from "./Pricing.svelte";
     import Blog from "./Blog.svelte";

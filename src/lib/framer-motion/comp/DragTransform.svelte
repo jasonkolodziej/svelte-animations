@@ -1,6 +1,6 @@
 <script lang="ts">
     import Box from "$lib/components/dev/tags/Box.svelte";
-    import { Motion, useTransform, useMotionValue } from "svelte-motion";
+    import { Motion, useTransform, useMotionValue } from "motion-start";
     let x = useMotionValue(0);
     let scale = useTransform(x, [-150, 0, 150], [1.5, 1, 0.4]);
     let rotate = useTransform(x, [-150, 0, 150], [-120, 0, 120]);

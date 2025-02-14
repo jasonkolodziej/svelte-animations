@@ -10,7 +10,7 @@ export let acetBackgroundLines: AceternityUI = {
   id: "background-lines",
   title: "Background Lines",
   desc: "A set of svg paths that animate in a wave pattern. Good for hero sections background, as seen on height.app",
-  tags: ["svg", "animation", "Svelte-Motion"],
+  tags: ["svg", "animation", "motion-start"],
   preview: {
     comp: BGlinesExample,
     allcode: [

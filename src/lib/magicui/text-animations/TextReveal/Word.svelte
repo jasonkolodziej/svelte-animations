@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useTransform } from "svelte-motion";
+  import { Motion, useTransform } from "motion-start";
   interface Props {
     progress?: any;
     range: [number, number];

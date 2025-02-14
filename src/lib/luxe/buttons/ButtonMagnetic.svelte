@@ -2,7 +2,7 @@
   
 
   import { cn } from "$lib/utils";
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
   interface Props {
     class?: string;
     children?: import('svelte').Snippet;

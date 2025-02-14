@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useMotionValue, useMotionTemplate } from "svelte-motion";
+  import { Motion, useMotionValue, useMotionTemplate } from "motion-start";
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
   let background = useMotionTemplate`

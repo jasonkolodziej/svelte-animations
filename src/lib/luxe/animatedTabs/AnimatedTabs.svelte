@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, AnimateSharedLayout } from "svelte-motion";
+  import { Motion, AnimateSharedLayout } from "motion-start";
   const tabs = [
     {
       title: "All Posts",

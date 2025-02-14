@@ -464,7 +464,7 @@ export let allSubMagicComps: MagicComponent[] = [
   {
     id: "hero-video-dialog",
     name: "Hero Video Dialog",
-    tags: ["Tailwind CSS", "Svelte-Motion"],
+    tags: ["Tailwind CSS", "motion-start"],
     desc: "A simple hero video dialog component from Magic UI",
     link: "/magic/hero-video-dialog",
     cncode: cncode,
@@ -508,24 +508,24 @@ export let allSubMagicComps: MagicComponent[] = [
         component: ScratchRevealExample,
         code: ScratchRevealExampleCode,
         fileName: "ScratchToRevealExample.svelte",
-      }
-    ]
+      },
+    ],
   },
   {
-    id: 'features',
-    name: 'Features',
-    desc: 'These components are used to build the features section of the website.',
-    tags: ['Features', 'Svelte 4 & 5'],
-    link: '/magic/features',
+    id: "features",
+    name: "Features",
+    desc: "These components are used to build the features section of the website.",
+    tags: ["Features", "Svelte 4 & 5"],
+    link: "/magic/features",
     code: FeatureCardCode,
     examples: [
       {
         id: 1,
-        name: 'Feature Card',
+        name: "Feature Card",
         component: FeatureCardExample,
         code: FeatureCardExampleCode,
-        fileName: 'FeatureCardExample.svelte'
-      }
-    ]
-  }
+        fileName: "FeatureCardExample.svelte",
+      },
+    ],
+  },
 ];

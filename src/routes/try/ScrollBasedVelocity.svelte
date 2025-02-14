@@ -9,7 +9,7 @@
     useTransform,
     useVelocity,
     useViewportScroll,
-  } from "svelte-motion";
+  } from "motion-start";
 
   interface Props {
     text?: string;

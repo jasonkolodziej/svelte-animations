@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Motion, AnimatePresence } from "svelte-motion";
+    import { Motion, AnimatePresence } from "motion-start";
     import { writable } from "svelte/store";
     import { cn } from "$lib/utils";
   

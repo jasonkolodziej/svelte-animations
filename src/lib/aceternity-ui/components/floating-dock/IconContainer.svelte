@@ -4,10 +4,10 @@
     useSpring,
     useMotionValue,
     AnimatePresence,
-  } from "svelte-motion";
+  } from "motion-start";
   import { writable } from "svelte/store";
-  import { Motion } from "svelte-motion";
-  import type { MotionValue } from "svelte-motion";
+  import { Motion } from "motion-start";
+  import type { MotionValue } from "motion-start";
   import { fade } from "svelte/transition";
 
   interface Props {

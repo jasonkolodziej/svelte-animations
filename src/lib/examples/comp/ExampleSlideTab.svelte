@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Motion } from "svelte-motion";
+    import { Motion } from "motion-start";
     let left = $state(0);
     let width = $state(0);
     let opacity = $state(0);

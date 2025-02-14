@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
+  // import { run } from 'svelte/legacy';
 
   import * as Card from "$lib/components/ui/card/index";
   import * as Carousel from "$lib/components/ui/carousel/index";
@@ -17,7 +17,14 @@
     carouselApi.scrollTo(index);
     activeCarouselItemId = index;
   }
-  run(() => {
+  // run(() => {
+  //   if (carouselApi) {
+  //     carouselApi.on("select", (e) => {
+  //       activeCarouselItemId = carouselApi.selectedScrollSnap();
+  //     });
+  //   }
+  // });
+  $effect.pre(() => {
     if (carouselApi) {
       carouselApi.on("select", (e) => {
         activeCarouselItemId = carouselApi.selectedScrollSnap();

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { useSpring, useTransform, Motion } from "svelte-motion";
-  import type { MotionValue } from "svelte-motion";
+  import { useSpring, useTransform, Motion } from "motion-start";
+  import type { MotionValue } from "motion-start";
 
   interface Props {
     containerX: MotionValue<number>;
@@ -30,7 +30,7 @@
   const children_render = $derived(children);
 </script>
 
-<Motion
+<Motion.div
   
   style={{ width: width }}
   transition={{
@@ -40,14 +40,19 @@
     duration: 0.8,
   }}
 >
-  {#snippet children({ motion })}
-    <div
+  <!-- {#snippet children({ motion })} -->
+    <!-- <div
       role="button"
       bind:this={dockItem}
       use:motion
       class="group p-2 flex aspect-square items-center justify-center overflow-hidden rounded-full transition active:-translate-y-10 bg-neutral-950 border-neutral-800 border shadow-inner shadow-neutral-300/20 active:duration-1000 active:ease-out text-neutral-400 hover:text-white duration-500"
-    >
+    > -->
+    <div
+    role="button"
+    bind:this={dockItem}
+    class="group p-2 flex aspect-square items-center justify-center overflow-hidden rounded-full transition active:-translate-y-10 bg-neutral-950 border-neutral-800 border shadow-inner shadow-neutral-300/20 active:duration-1000 active:ease-out text-neutral-400 hover:text-white duration-500"
+  >
       {@render children_render?.()}
     </div>
-  {/snippet}
-</Motion>
+  <!-- {/snippet} -->
+</Motion.div>

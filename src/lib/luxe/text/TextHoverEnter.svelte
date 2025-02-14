@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
 
   let DURATION = 0.25;
   let STAGGER = 0.025;

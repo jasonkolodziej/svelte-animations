@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useAnimation, animate } from "svelte-motion";
+  import { Motion, useAnimation, animate } from "motion-start";
   import {
     LayoutGridIcon,
     TrashIcon,

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion, useMotionValue, useMotionTemplate } from "svelte-motion";
+  import { Motion, useMotionValue, useMotionTemplate } from "motion-start";
   import { onMount } from "svelte";
   import { cn } from "$lib/utils";
 

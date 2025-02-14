@@ -3,7 +3,7 @@
 
   import { cn } from "$lib/utils";
   import { onMount, tick } from "svelte";
-  import { M, Motion } from "svelte-motion";
+  import { M, Motion } from "motion-start";
 
   
   interface Props {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
   interface Props {
     children?: import('svelte').Snippet;
   }

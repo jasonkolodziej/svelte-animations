@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
   import { cva, type VariantProps } from "class-variance-authority";
   import { cn } from "$lib/utils";
 

@@ -7,7 +7,7 @@ export let acetAnimatedTestimonials: AceternityUI = {
   id: "animated-testimonials",
   title: "Animated Testimonials",
   desc: "Minimal testimonials sections with image and quote.",
-  tags: ["testimonial", "animation", "svelte-motion"],
+  tags: ["testimonial", "animation", "motion-start"],
   preview: {
     comp: ExampleAt,
     allcode: [

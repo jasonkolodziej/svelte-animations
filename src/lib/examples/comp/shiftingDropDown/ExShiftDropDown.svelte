@@ -1,6 +1,6 @@
 <script lang="ts">
     import Blog from "./Blog.svelte";
-    import { Motion, AnimatePresence } from "svelte-motion";
+    import { Motion, AnimatePresence } from "motion-start";
     import Products from "./Products.svelte";
     import Pricing from "./Pricing.svelte";
     let selected = $state(0);

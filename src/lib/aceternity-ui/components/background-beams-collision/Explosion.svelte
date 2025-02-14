@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Motion } from "svelte-motion";
+  import { Motion } from "motion-start";
   let { style } = $props();
 
   let spans = Array.from({ length: 20 }, (_, index) => ({

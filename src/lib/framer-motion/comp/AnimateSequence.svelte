@@ -1,6 +1,6 @@
 <script lang="ts">
   import Box from "$lib/components/dev/tags/Box.svelte";
-  import { Motion, useAnimation } from "svelte-motion";
+  import { Motion, useAnimation } from "motion-start";
   let controls = useAnimation();
   let startCode = async () => {
     let all = [{ rotate: -90 }, { scale: 1.5 }, { rotate: 0 },{

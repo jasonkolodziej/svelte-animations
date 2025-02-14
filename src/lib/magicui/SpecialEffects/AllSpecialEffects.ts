@@ -148,7 +148,7 @@ export let allSpecialEffects: MagicComponent[] = [
   {
     id: "magic-card",
     name: "Magic Card",
-    tags: ["Tailwind CSS", "Svelte-Motion"],
+    tags: ["Tailwind CSS", "motion-start"],
     desc: "A spotlight effect that follows your mouse cursor and highlights borders on hover.",
     link: "/magic/magic-card",
     component: MagicCard,
